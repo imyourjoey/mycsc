@@ -71,8 +71,8 @@ class AdminController extends Controller
         $today = date('Y-m-d');
         $inquiryCount = DB::table('inquiry')->whereDate('created_at', $today)->count();
 
-        session(['inquiryCount' => $inquiryCount],
-                ['admin' => $admin]);
+        session(['inquiryCount' => $inquiryCount]);
+        session(['admin' => $admin]);
 
         
         return redirect('admindash')->with('message','Logged in successfully');
