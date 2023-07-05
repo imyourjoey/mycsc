@@ -59,4 +59,12 @@ Route::get('/inquirydatatable',[InquiryController::class, 'showDataTable']);
 //delete inquiry
 Route::delete('/inquiry/{inquiry}',[InquiryController::class, 'destroy']);
 
+//show edit inquiry form
+Route::get('/inquiry/{inquiryID}/edit', [InquiryController::class, 'edit']);
 
+
+// Update inquiry
+Route::put('/inquiry/{inquiryID}', [InquiryController::class, 'update']);
+
+//view inquiry
+Route::get('/inquiry/{inquiryID}/view', [InquiryController::class, 'view']);

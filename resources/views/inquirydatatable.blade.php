@@ -11,12 +11,86 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//unpkg.com/alpinejs" defer></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
 </head>
 
 <body>
+
+
+
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
+          <img src="/img/mycsc-logo.png" alt="Logo" width="123" height="55">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          
+          <ul class="navbar-nav ml-auto navbar-right-section">
+            <li class="nav-item">
+              <a class="nav-link" href="#">User</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Calendar</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Service</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Order</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#">Invoice</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Feedback</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Inquiry</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Training</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#">News</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Report</a>
+            </li>
+    
+    
+    
+            <li class="nav-item dropdown red-rounded-square">
+              <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+              </a>
+              <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                <a class="dropdown-item" href="/adminlogin">Admin</a>
+                <a class="dropdown-item" href="#">Technician</a>
+                <a class="dropdown-item" href="#">Client</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+<div class="inquiry-datatable">
   <div class="table-responsive">  
-    <table id="myTable" class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Inquiry ID</th>
@@ -24,7 +98,9 @@
                 <th>Message</th>
                 <th>Reply</th>
                 <th>Email</th>
-                <th>Actions</th>
+                <th>Submitted at</th>
+                <th>Updated at</th>
+                <th>Actions	</th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +111,23 @@
             <td>{{ $inquiry->inquiryMessage ?: '-'}}</td>
             <td>{{ $inquiry->inquiryReply ?: '-'}}</td>
             <td>{{ $inquiry->inquiryContactEmail ?: '-'}}</td>
-            <td><a  title="View"><i class="fas fa-eye"></i></a>
-                <a  title="Edit"><i class="fas fa-edit"></i></a>
+            <td>{{ $inquiry->created_at ?: '-'}}</td>
+            <td>{{ $inquiry->updated_at ?: '-'}}</td>
+            <td class="action-icon">
+                
+                <a  title="View" href="/inquiry/{{$inquiry->inquiryID}}/view"><i class="fas fa-eye"></i></a>
+                <a  title="Edit" href="/inquiry/{{$inquiry->inquiryID}}/edit" ><i class="fas fa-edit"></i></a>
 
-                <form method="POST"action="/inquiry/{{ $inquiry->inquiryID }}">
-                @csrf
-                @method('DELETE')
                 
-                <button title="Delete"><i class="fas fa-trash"></i></button>
-                
-                </form>
-                
+                    <form method="POST" action="/inquiry/{{ $inquiry->inquiryID }}" onsubmit="return confirmDelete()">
+                        @csrf 
+                        @method('DELETE')
+                        
+                        <button style="padding:0; margin:0; background: none; border:none; cursor: pointer" title="Delete"><i class="fas fa-trash"></i></button>
+                        
+                        </form>
+            
+                   
             </td>
 
 
@@ -58,14 +140,15 @@
         </tbody>
     </table>
   </div>
-
-
-  <div class="pagination">
-    {{ $inquiries->links('pagination::bootstrap-4') }}
 </div>
 
 
+    <div class="pagination">
+    {{ $inquiries->links('pagination::bootstrap-4') }}
+    </div>
 
+
+    <x-flash-message />
     <script>
         const table = document.getElementById('myTable');
         const headers = table.querySelectorAll('th');
@@ -102,7 +185,18 @@
             headers[columnIndex].classList.add(ascending ? 'ascending' : 'descending');
         }
 
+
+         // Confirmation dialog for delete
+         function confirmDelete() {
+            return confirm('Are you sure you want to delete this entry?');
+        }
+
     </script>
+
+
+
+    
+
 
 
 </body>

@@ -209,3 +209,25 @@ body {
   border-radius: 15px;
   font-weight: bold;
 }
+
+/*inquiry datatable*/
+.inquiry-datatable{
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top:2rem;
+}
+
+/*update and view inquiry form*/
+.update-inquiry-form{
+  margin-top: 3%;
+}
+
+.action-icon{
+  display: flex;
+}
+
+.action-icon a,
+.action-icon form {
+  margin-right: 10px; /* Adjust the spacing between icons */
+  color:black;
+}

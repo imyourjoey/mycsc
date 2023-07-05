@@ -52,7 +52,7 @@ class InquiryController extends Controller
 public function showDataTable()
 {
     $inquiries = DB::table('inquiry')
-    ->select('inquiryID', 'inquiryName', 'inquiryMessage' ,'inquiryReply', 'inquiryContactEmail' )
+    ->select('inquiryID', 'inquiryName', 'inquiryMessage' ,'inquiryReply', 'inquiryContactEmail' ,'created_at', 'updated_at')
     ->get();
 
     $inquiries= DB::table('inquiry')->paginate(10);
@@ -65,6 +65,46 @@ public function showDataTable()
 
         $inquiry->delete();
 
-        return redirect()->back()->with('message', 'hehehehehe');
+        return redirect()->back()->with('message', 'inquiry deleted successfully');
     }
+
+    //show edit form
+    public function edit($inquiryID){
+    $inquiry = DB::table('inquiry')->where('inquiryID', $inquiryID)->first();
+
+    if (!$inquiryID) {
+        return redirect('/inquirydatatable')->with('error', 'inquiry');
+    }
+
+    return view('inquiryupdate', compact('inquiry'));
+    }   
+
+
+    public function update(Request $request, $inquiryID){
+    $request->validate([
+        'inquiryID' => 'required',
+        'inquiryMessage' => 'required',
+        'inquiryName' => 'required'
+    ]);
+
+    DB::table('inquiry')->where('inquiryID', $inquiryID)->update([
+        'inquiryID' => $request->input('inquiryID'),
+        'inquiryName'=>$request->input('inquiryName'),
+        'inquiryMessage'=>$request->input('inquiryMessage'),
+        'inquiryReply'=>$request->input('inquiryReply'),
+        'inquiryContactEmail'=>$request->input('inquiryContactEmail'),
+    ]);
+
+    return redirect('/inquirydatatable')->with('message', 'inquiry updated successfully');
+    }
+
+    public function view(Request $request, $inquiryID){
+       
+    
+        $inquiry = DB::table('inquiry')->where('inquiryID', $inquiryID)->first();
+    
+        return view('inquiryview', compact('inquiry'));
+        }
+    
+   
 }
