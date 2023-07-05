@@ -68,3 +68,11 @@ Route::put('/inquiry/{inquiryID}', [InquiryController::class, 'update']);
 
 //view inquiry
 Route::get('/inquiry/{inquiryID}/view', [InquiryController::class, 'view']);
+
+
+
+//authenticate
+Route::post('/authenticate', [AdminController::class,'authenticate']);
+
+
+Route::get('/logout',[Admincontroller::class, 'logout']);

@@ -57,4 +57,30 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'New admin account created!');
     }
 
+
+    //authenticate admin
+    public function authenticate(Request $request) {
+    $credentials = $request->only('adminUsername', 'adminPassword');
+
+    $admin = Admin::where('adminUsername', $credentials['adminUsername'])->first();
+
+    if ($admin && password_verify($credentials['adminPassword'], $admin->adminPassword)) {
+        // Authentication successful
+        auth()->login($admin);
+        return redirect('/admindash')->with('message', 'Login successful');
+    }
+
+    // Authentication failed
+    return redirect('/adminlogin');
+}
+public function logout(){
+    auth()->logout();
+
+    return redirect('/adminlogin')->with('message','Logged out successfully');
+}
+
+
+
+
+
 }

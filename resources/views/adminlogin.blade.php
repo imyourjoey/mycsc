@@ -7,6 +7,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
 
 
 
@@ -44,17 +45,18 @@
   <div class="container login-form">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form>
+        <form method="POST" action="/authenticate">
+          @csrf
           <h2 class="text-left" style="font-size: 40px">Login to Your Account</h2>
           <p class="text-left">Please login with your username and password</p>
           <div class="form-group label-left">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter your username">
+            <input type="text" class="form-control" id="username" placeholder="Enter your username" name="adminUsername">
           </div>
           <div class="form-group label-left">
             <label for="password">Password:</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="password" placeholder="Enter your password">
+              <input type="password" class="form-control" id="password" placeholder="Enter your password" name="adminPassword">
               <div class="input-group-append">
                 <span class="input-group-text eye-icon">
                   <i class="fa fa-eye" aria-hidden="true"></i>
@@ -127,6 +129,7 @@
     </div>
     </div>
   </footer>
+  <x-flash-message />
 
 
 

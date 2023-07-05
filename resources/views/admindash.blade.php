@@ -73,7 +73,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="loginDropdown">
             <a class="dropdown-item" href="/adminlogin">Admin</a>
-            <a class="dropdown-item" href="#">Technician</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
             <a class="dropdown-item" href="#">Client</a>
           </div>
         </li>
