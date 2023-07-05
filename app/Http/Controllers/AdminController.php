@@ -67,16 +67,26 @@ class AdminController extends Controller
     if ($admin && password_verify($credentials['adminPassword'], $admin->adminPassword)) {
         // Authentication successful
         auth()->login($admin);
-        return redirect('/admindash')->with('message', 'Login successful');
+
+        $today = date('Y-m-d');
+        $inquiryCount = DB::table('inquiry')->whereDate('created_at', $today)->count();
+
+        session(['inquiryCount' => $inquiryCount],
+                ['admin' => $admin]);
+
+        
+        return redirect('admindash')->with('message','Logged in successfully');
+
+        
     }
 
     // Authentication failed
-    return redirect('/adminlogin');
+    return redirect('adminlogin')->with('message', 'Login unsuccessful');
 }
 public function logout(){
     auth()->logout();
 
-    return redirect('/adminlogin')->with('message','Logged out successfully');
+    return redirect('adminlogin')->with('message','Logged out successfully');
 }
 
 

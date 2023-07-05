@@ -8,6 +8,8 @@
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="//unpkg.com/alpinejs" defer></script>
+
 
   
   <title>Document</title>
@@ -69,7 +71,11 @@
 
         <li class="nav-item dropdown red-rounded-square">
           <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
+            
+            @if (session('admin'))
+                {{ session('admin')->adminName}}
+            @endif  
+
           </a>
           <div class="dropdown-menu" aria-labelledby="loginDropdown">
             <a class="dropdown-item" href="/adminlogin">Admin</a>
@@ -80,6 +86,45 @@
       </ul>
     </div>
   </nav>
+
+
+
+
+
+
+  <div class="card welcome-card">
+    <div class="card-header">
+        <h3> {{ date('d/m/Y') }}</h3>
+    </div>
+    <div class="card-body">
+        @php
+            $hour = date('G');
+            if ($hour >= 5 && $hour < 12) {
+                $greeting = 'Good morning';
+            } elseif ($hour >= 12 && $hour < 18) {
+                $greeting = 'Good afternoon';
+            } else {
+                $greeting = 'Good evening';
+            }
+        @endphp
+
+        <h4>{{ $greeting }}, {{ session('admin')->adminName }}</h4>
+
+        
+    </div>
+</div>
+
+<div class="card m-5" style="width:30%">
+  <div class="card-header">
+      <h5 class="card-title">Inquiry</h5>
+  </div>
+  <div class="card-body d-flex flex-column align-items-center">
+      <p class="card-text">Received Today: </p>
+      <p><span class="badge badge-primary" style="font-size: 2rem; background-color:white; color:blue">{{ session('inquiryCount')}}</span></p>
+    
+  </div>
+</div>
+
 
 
 </body>
@@ -137,6 +182,7 @@
       </div>
       </div>
     </footer>
+    <x-flash-message />
   
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

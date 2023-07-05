@@ -231,3 +231,7 @@ body {
   margin-right: 10px; /* Adjust the spacing between icons */
   color:black;
 }
+
+.welcome-card{
+  margin-bottom: 2rem;
+}
