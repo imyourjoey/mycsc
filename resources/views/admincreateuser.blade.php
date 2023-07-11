@@ -33,12 +33,15 @@
 
 
 
-  <title>Document</title>
+  <title>MyCSC@UMS</title>
+  <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
+
+  
 </head>
 <body>
   
   <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/admindash">
       <img src="img/mycsc-logo.png" alt="Logo" width="123" height="55">
     </a>
     
@@ -71,7 +74,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Inquiry</a>
+          <a class="nav-link" href="/inquirydatatable">Inquiry</a>
         </li>
 
         <li class="nav-item">
@@ -90,12 +93,16 @@
 
         <li class="nav-item dropdown red-rounded-square">
           <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
+            
+            @if (session('admin'))
+                {{ session('admin')->adminName}}
+            @endif  
+
           </a>
           <div class="dropdown-menu" aria-labelledby="loginDropdown">
-            <a class="dropdown-item" href="/adminlogin">Admin</a>
-            <a class="dropdown-item" href="#">Technician</a>
-            <a class="dropdown-item" href="#">Client</a>
+            <a class="dropdown-item" href="/">My Profile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+            
           </div>
         </li>
       </ul>
@@ -191,7 +198,7 @@
                 </div>
                 <div class="form-group">
                   @error('adminPassword_confirmation')
-                  <p class="text-red-500 text-xs mt-1">{{ message }}</p>
+                  <p class="text-red-500 text-xs mt-1">Please enter a matching password</p>
                   @enderror
                 </div>
               </div>

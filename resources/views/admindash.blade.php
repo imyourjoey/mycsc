@@ -12,14 +12,15 @@
 
 
   
-  <title>Document</title>
+  <title>MyCSC@UMS</title>
+  <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
 
 </head>
 <body>
   
 
   <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/admindash">
       <img src="img/mycsc-logo.png" alt="Logo" width="123" height="55">
     </a>
     
@@ -28,7 +29,7 @@
       
       <ul class="navbar-nav ml-auto navbar-right-section">
         <li class="nav-item">
-          <a class="nav-link" href="#">User</a>
+          <a class="nav-link" href="/admincreateuser">User</a>
         </li>
 
         <li class="nav-item">
@@ -52,7 +53,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Inquiry</a>
+          <a class="nav-link" href="/inquirydatatable">Inquiry</a>
         </li>
 
         <li class="nav-item">
@@ -78,9 +79,8 @@
 
           </a>
           <div class="dropdown-menu" aria-labelledby="loginDropdown">
-            <a class="dropdown-item" href="/adminlogin">Admin</a>
+            <a class="dropdown-item" href="/adminlogin">My Profile</a>
             <a class="dropdown-item" href="/logout">Logout</a>
-            <a class="dropdown-item" href="#">Client</a>
           </div>
         </li>
       </ul>

@@ -11,7 +11,8 @@
 
 
 
-  <title>Document</title>
+  <title>MyCSC@UMS</title>
+  <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
 </head>
 <body>
 {{-- navbar --}}
@@ -53,6 +54,13 @@
             <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" placeholder="Enter your username" name="adminUsername">
           </div>
+          
+          <div class="form-group label-left">
+            @error('adminUsername')
+            <p class="text-red-500 text-xs mt-1">Please enter your username</p>
+            @enderror
+          </div>
+
           <div class="form-group label-left">
             <label for="password">Password:</label>
             <div class="input-group">
@@ -64,6 +72,14 @@
               </div>
             </div>
           </div>
+
+          <div class="form-group label-left">
+            @error('adminPassword')
+            <p class="text-red-500 text-xs mt-1">Please enter your password</p>
+            @enderror
+          </div>
+
+          
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="rememberMe">
             <label class="form-check-label" for="rememberMe">Remember me</label>

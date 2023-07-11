@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="//unpkg.com/alpinejs" defer></script>
 
-  <title>Document</title>
-
+  <title>MyCSC@UMS</title>
+  <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
 </head>
 <body>
 
@@ -99,7 +99,7 @@
     <div class="col-sm-6">
       <h2 class="text-center">Inquiry Form</h2>
       <p class="text-center"> Please fill out this form. We will get in touch with you shortly.</p>
-      <form method="POST" action="/inquiry">
+      <form id="inquiryform" method="POST" action="/inquiry">
         @csrf
         <div class="form-group">
           <label for="name">Name:</label>
@@ -123,7 +123,7 @@
           <label for="message">Message:</label>
           <textarea class="form-control" type="text" id="message" rows="5" placeholder="Enter your message" name="inquiryMessage">{{ old('inquiryMessage') }}</textarea>
 
-          @error('inquiryName')
+          @error('inquiryMessage')
           <p class="text-red-500 text-xs mt-1">Please enter your message</p>
           @enderror
         </div>
@@ -195,6 +195,16 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  {{-- smooth scroll on error --}}
+  <script>
+    @if ($errors->any())
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#inquiryform').scrollIntoView({ behavior: 'smooth' });
+        });
+    @endif
+  </script>
 
 </body>
 </html>

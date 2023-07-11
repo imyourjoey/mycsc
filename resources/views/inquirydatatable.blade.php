@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>MyCSC@UMS</title>
+    <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -31,7 +32,7 @@
           
           <ul class="navbar-nav ml-auto navbar-right-section">
             <li class="nav-item">
-              <a class="nav-link" href="#">User</a>
+              <a class="nav-link" href="/admincreateuser">User</a>
             </li>
     
             <li class="nav-item">
@@ -55,7 +56,7 @@
             </li>
     
             <li class="nav-item">
-              <a class="nav-link" href="#">Inquiry</a>
+              <a class="nav-link" href="/inquirydatatable">Inquiry</a>
             </li>
     
             <li class="nav-item">
@@ -74,12 +75,16 @@
     
             <li class="nav-item dropdown red-rounded-square">
               <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login
+                
+                @if (session('admin'))
+                    {{ session('admin')->adminName}}
+                @endif  
+    
               </a>
               <div class="dropdown-menu" aria-labelledby="loginDropdown">
-                <a class="dropdown-item" href="/adminlogin">Admin</a>
-                <a class="dropdown-item" href="#">Technician</a>
-                <a class="dropdown-item" href="#">Client</a>
+                <a class="dropdown-item" href="/">My Profile</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+                
               </div>
             </li>
           </ul>

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
+   <title>MyCSC@UMS</title>
+   <link rel = "icon" href = {{ asset('img/ums_logo.png')}} type = "image/x-icon">
 </head>
 
 <body>

@@ -60,6 +60,12 @@ class AdminController extends Controller
 
     //authenticate admin
     public function authenticate(Request $request) {
+
+        $request->validate([
+            'adminUsername' => ['required'],
+            'adminPassword' => ['required']
+        ]);
+
     $credentials = $request->only('adminUsername', 'adminPassword');
 
     $admin = Admin::where('adminUsername', $credentials['adminUsername'])->first();
@@ -81,7 +87,7 @@ class AdminController extends Controller
     }
 
     // Authentication failed
-    return redirect('adminlogin')->with('message', 'Login unsuccessful');
+    return redirect('adminlogin')->with('warning', 'Login unsuccessful. Try again with correct credentials');
 }
 public function logout(){
     auth()->logout();
