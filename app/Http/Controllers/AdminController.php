@@ -9,8 +9,4 @@ class AdminController extends Controller
     public function index(){
         return view('admin.dashboard');
     }
-
-    public function showCreateUserForm(){
-        return view('user.create');
-    }
 }

@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     {{-- import css and js --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/layout.js'])
 
     {{-- bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
@@ -16,13 +17,6 @@
 
     {{-- fot awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-{{--     
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> --}}
-  
-    
-
-    
 
     <title>MyCSC@UMS</title>
 
@@ -99,7 +93,7 @@
 
 
 
-{{-- Dynameic Title --}}
+{{-- Dynamic Title --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const routeName = '{{ Route::currentRouteName() }}';
@@ -118,22 +112,28 @@
 </script>
 
 
-{{-- Dropdown Menu --}}
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 {{-- Toastr notifications --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-{{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
-
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-
-
-<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script> --}}
-
+{{-- password eye --}}
+<script>
+    $(document).ready(function() {
+      $(".eye-icon").click(function() {
+        var passwordInput = $(this).closest(".input-group").find("input");
+        var icon = $(this).find("i");
+        if (passwordInput.attr("type") === "password") {
+          passwordInput.attr("type", "text");
+          icon.removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+          passwordInput.attr("type", "password");
+          icon.removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+      });
+    });
+  </script>
 
 <x-flash-message />
 

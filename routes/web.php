@@ -37,9 +37,20 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/admin/create', [AdminController::class, 'showCreateUserForm'])->name('admin.createUserForm');
+
+
+
+    Route::get('/user/create', [UserController::class, 'showCreate'])->name('user.show-create');
+    Route::get('/user/update/{id}',[UserController::class,'showUpdate'])->name('user.show-update');
+
     Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
     Route::get('/user',[UserController::class,'index'])->name('user.index');
+
+    Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');
+
+
 });
 
 Route::middleware(['auth', 'role:client'])->group(function () {

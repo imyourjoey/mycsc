@@ -70,8 +70,8 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="#">Manage Users</a>
-      <a class="dropdown-item" href="{{ route('admin.createUserForm') }}">Create User</a>
+      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Users</a>
+      <a class="dropdown-item" href="{{ route('user.show-create') }}">Create User</a>
   </div>
   </li>
   <li class="nav-item">
@@ -123,5 +123,11 @@
 
   </div>
 </nav>
+
+
+{{-- Dropdown Menu --}}
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 

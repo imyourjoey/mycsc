@@ -57,20 +57,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $(".eye-icon").click(function() {
-      var passwordInput = $(this).closest(".input-group").find("input");
-      var icon = $(this).find("i");
-      if (passwordInput.attr("type") === "password") {
-        passwordInput.attr("type", "text");
-        icon.removeClass("fa-eye").addClass("fa-eye-slash");
-      } else {
-        passwordInput.attr("type", "password");
-        icon.removeClass("fa-eye-slash").addClass("fa-eye");
-      }
-    });
-  });
-</script>
+
 
 </x-layout>
