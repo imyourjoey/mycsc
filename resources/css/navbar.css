@@ -1,0 +1,29 @@
+/*Navbar*/
+.custom-navbar{
+  background-color: black;
+}
+
+
+
+.navbar-right-section .navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-right-section .nav-item {
+  margin-left: 12px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 20px;
+}
+
+.red-rounded-square {
+  display: inline-block;
+  padding: 0px 6px;
+  border-radius: 10px;
+  background-color: #871719;
+}
+
+#userDropdown::after {
+  display: none;
+}

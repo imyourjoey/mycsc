@@ -1,0 +1,16 @@
+/*inquiry form*/
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+}
+
+.submit-button {
+  width: 100%;
+}
