@@ -252,7 +252,8 @@
                 'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                 },
                 success: function (response) {
-                    alert(response.message);
+                    //alert(response.message);
+                    toastr.success('Selected record(s) have been deleted successfully')
                     // You can reload the DataTable or update it as needed.
                     table.ajax.reload();
                 },
@@ -299,6 +300,9 @@
         ]
         });
     });
+
+
+    
 
 
 
