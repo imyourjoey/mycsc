@@ -6,8 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\TechnicianController;
 use Egulias\EmailValidator\Parser\Comment;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\TechnicianController;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +21,20 @@ use Egulias\EmailValidator\Parser\Comment;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index');
+
 
 
 Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-Route::get('/hello', function () {
-    return view('hello');
-});
+Route::post('appointment/create', [AppointmentController::class,'create'])->name('appointment.create');
+
+
+// Route::get('/hello', function () {
+//     return view('hello');
+// });
 
 Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');
 
