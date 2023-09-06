@@ -24,6 +24,11 @@ use App\Http\Controllers\AppointmentController;
 Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index');
 
 
+Route::get('/kkkk', function () {
+    return view('new-form');
+})->name('kkkk');
+
+
 
 Route::get('/', function () {
     return view('landing');

@@ -32,7 +32,7 @@
           <label for="client_name">Client Name</label>
           <select class="form-control selectpicker" id="client_name" data-live-search="true">
             @foreach ($clients as $client)
-            <option>{{ $client->clientName }}</option>
+            <option>{{ $client->name }}</option>
           @endforeach
           </select>
         </div>
@@ -94,10 +94,14 @@
       defaultDate: $selectedDate
     });
 
-      $('#saveAppointmentBtn').click(function(){
+      // $('#saveAppointmentBtn').click(function(){
+      //   var clientName = $('#client_name').val();
+      //   var appointmentDateTime = $('#appointmentDateTime').val();
+      //   var appointmentDateTime = moment(appointmentDateTime).format("YYYY-MM-DD HH:mm:ss");
+      function saveAppointment() {
         var clientName = $('#client_name').val();
         var appointmentDateTime = $('#appointmentDateTime').val();
-        var appointmentDateTime = moment(appointmentDateTime).format("YYYY-MM-DD HH:mm:ss")
+        var appointmentDateTime = moment(appointmentDateTime).format("YYYY-MM-DD HH:mm:ss");
 
         $.ajax({
           url: "{{ route('appointment.create') }}",
@@ -138,9 +142,10 @@
 
         });
 
-      })
+      }
 
-    
+      $('#saveAppointmentBtn').off('click').on('click', saveAppointment);
+
       
       
       }

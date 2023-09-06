@@ -12,12 +12,12 @@ class CalendarController extends Controller
         $events = array();
         $appointments = DB::table('appointment')->get();
         $trainings = DB::table('training')->get();
-        $clients = DB::table('client')->get();
+        $clients = DB::table('users')->where('role','client')->get();
 
 
         foreach($appointments as $appointment){
 
-            $client = DB::table('client')->where('clientID', $appointment->clientID)->first();
+            $client = DB::table('users')->where('userTag', $appointment->userTag)->first();
             
             $dateTimeFormat = "Y-m-d H:i:s";
             $appointmentEndTime = strtotime($appointment->appointmentDateTime)+3600;
@@ -25,7 +25,7 @@ class CalendarController extends Controller
             
             $events[] = [
                 'id'   => $appointment->appointmentID,
-                'title' => 'Appointment with: '.$client->clientName,
+                'title' => 'Appointment with: '.$client->name,
                 'start' => $appointment->appointmentDateTime,
                 'end' => $appointmentEndTime
             ];

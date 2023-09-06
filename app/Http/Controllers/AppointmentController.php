@@ -31,7 +31,7 @@ class AppointmentController extends Controller
 
 
         //find client with same name with request
-        $client = DB::table('client')->where('clientName', $request->input('clientName'))->first();
+        $client = DB::table('users')->where('name', $request->input('clientName'))->first();
 
         if (!$client) {
         // If the client doesn't exist, you can handle the error here
@@ -42,7 +42,7 @@ class AppointmentController extends Controller
 
        $newAppointment = new Appointment();
        $newAppointment->appointmentID = $formattedAppointmentId;
-       $newAppointment->clientID = $client->clientID;
+       $newAppointment->userTag = $client->userTag;
        $newAppointment->appointmentDateTime = $request->appointmentDateTime;
        $newAppointment->appointmentStatus = 'Approved';
     //    $newAppointment->remarks = null;
@@ -51,7 +51,7 @@ class AppointmentController extends Controller
 
        $responseData = [
         'newAppointment' => $newAppointment,
-        'clientName' => $client->clientName,
+        'clientName' => $client->name,
        ];
 
        return response()->json($responseData);

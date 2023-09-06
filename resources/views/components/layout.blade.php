@@ -106,6 +106,28 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css
     ">
 
+
+    <style>
+        /* Override Bootstrap default primary button color */
+        .btn-primary {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #2A2A2A; 
+            border-color: #2A2A2A;
+        }
+
+        .invalid-feedback{
+            display: block;
+        }
+
+        .form-required{
+            color: red;
+        }
+    </style>
+
     
     {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> --}}

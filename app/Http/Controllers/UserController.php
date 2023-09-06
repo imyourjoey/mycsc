@@ -12,6 +12,48 @@ class UserController extends Controller
 {
 
 
+    public function generateUniqueUserTag($role)
+{
+    $prefix = '';
+
+    switch ($role) {
+        case 'client':
+            $prefix = 'CL';
+            break;
+        case 'admin':
+            $prefix = 'AD';
+            break;
+        case 'technician':
+            $prefix = 'TE';
+            break;
+        default:
+            // Handle other roles or throw an error
+            break;
+    }
+
+    if ($prefix) {
+        $unique = false;
+        $count = 1;
+        
+        while (!$unique) {
+            $userTag = $prefix . str_pad($count, 3, '0', STR_PAD_LEFT);
+            
+            if (!User::where('userTag', $userTag)->exists()) {
+                $unique = true;
+            }
+            
+            $count++;
+        }
+
+        return $userTag;
+    }
+
+    // Handle cases where the role is not recognized
+    // You can throw an error or return a default value
+    return 'UnknownRole';
+}
+
+
     public function showCreate(){
         return view('user.create');
     }
@@ -20,18 +62,22 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'role' => 'required|in:client,technician,admin',
-            'username' => 'required|unique:users,username',
             'name' => 'required',
+            'role' => 'required|in:client,technician,admin',
             'phoneNo' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:8',
+        ],
+        [
+            'phoneNo.required' => 'The phone number field is required'
         ]);
 
+        $userTag = UserController::generateUniqueUserTag($request->role);
+
         $user = new User();
-        $user->role = $request->role;
-        $user->username = $request->username;
         $user->name = $request->name;
+        $user->userTag = $userTag;
+        $user->role = $request->role;
         $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
@@ -39,7 +85,7 @@ class UserController extends Controller
 
 
 
-        return redirect()->route('admin.index')->with('message', 'User created successfully!');
+        return redirect()->back()->with('message', 'User created successfully!');
     }
 
 
@@ -110,6 +156,9 @@ class UserController extends Controller
 
     return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
 }
+
+
+
 
 
 
