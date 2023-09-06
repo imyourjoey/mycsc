@@ -25,8 +25,9 @@ Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index
 
 
 Route::get('/kkkk', function () {
-    return view('new-form');
+    return view('training.create');
 })->name('kkkk');
+
 
 
 
