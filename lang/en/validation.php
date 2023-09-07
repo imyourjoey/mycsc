@@ -180,6 +180,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'phoneNo' =>'phone number',
+        'serviceTitle' => 'service title',
+        'serviceDesc' => 'service description',
+        'servicePic' => 'service picture',
+        'estDuration' => 'estimated duration',
+        'adminName' => 'admin name',
+    ],
 
 ];

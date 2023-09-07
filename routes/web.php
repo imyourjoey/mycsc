@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\AppointmentController;
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
 
 
-
+    //User
     Route::get('/user/create', [UserController::class, 'showCreate'])->name('user.show-create');
     Route::get('/user/update/{id}',[UserController::class,'showUpdate'])->name('user.show-update');
 
@@ -60,9 +61,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
     Route::get('/user',[UserController::class,'index'])->name('user.index');
-
     Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');
 
+
+    //Service
+    Route::get('/service/create',[ServiceController::class, 'create'])->name('service.create');
+    Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
+
+    
 
 });
 

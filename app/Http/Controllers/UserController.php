@@ -48,9 +48,7 @@ class UserController extends Controller
         return $userTag;
     }
 
-    // Handle cases where the role is not recognized
-    // You can throw an error or return a default value
-    return 'UnknownRole';
+    return abort(422, 'Please Try again later');
 }
 
 
@@ -69,7 +67,7 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:8',
         ],
         [
-            'phoneNo.required' => 'The phone number field is required'
+            // 'phoneNo.required' => 'The phone number field is required'
         ]);
 
         $userTag = UserController::generateUniqueUserTag($request->role);
