@@ -6,7 +6,7 @@
   <div class="container text-left create-user-form">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form method="POST" action={{ route('user.update', ['id' => $user->id]) }} id="editUserForm">
+        <form method="POST" action={{ route('user.update', ['user' => $user->id]) }} id="editUserForm">
           @csrf
          
           <div>

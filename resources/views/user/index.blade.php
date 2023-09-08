@@ -137,7 +137,7 @@
             {
             text: 'Add',
             action: function ( e, dt, button, config ) {
-            window.location =  "{{ route('user.show-create') }}" ;
+            window.location =  "{{ route('user.create') }}" ;
             }
             },
             {
@@ -150,7 +150,7 @@
 
                 if (selectedData) {
                             // Redirect to the user details page with the selected user's ID
-                            window.location = "{{ route('user.show-update', ['id' => ':id']) }}".replace(':id', selectedData.id);
+                            window.location = "{{ route('user.edit', ['user' => ':id']) }}".replace(':id', selectedData.id);
 
                 }
             }
@@ -174,7 +174,7 @@
         if (confirm('Are you sure you want to delete the selected records?')) {
             $.ajax({
                 url: "{{ route('user.destroy') }}",
-                type: "POST",
+                type: "DELETE",
                 data: { selectedIds: selectedIds },
                 headers: {
                 'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers

@@ -71,7 +71,7 @@
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
       <a class="dropdown-item" href="{{ route('user.index') }}">Manage Users</a>
-      <a class="dropdown-item" href="{{ route('user.show-create') }}">Create User</a>
+      <a class="dropdown-item" href="{{ route('user.create') }}">Create User</a>
   </div>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service</a>

@@ -52,12 +52,12 @@ class UserController extends Controller
 }
 
 
-    public function showCreate(){
+    public function create(){
         return view('user.create');
     }
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -99,23 +99,24 @@ class UserController extends Controller
 
     }
 
-    public function showUpdate($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-        return view('user.update', compact('user'));
+        // $user = User::findOrFail($id);
+        // return view('user.update', compact('user'));
+        return view('user.update', ['user' => $user]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'phoneNo' => 'required|string|max:20',
-            'email' => 'required|email|unique:users,email,'.$id, // Unique rule, but exclude the current user's email
+            'email' => 'required|email|unique:users,email,'.$user->id, // Unique rule, but exclude the current user's email
         ]);
 
-        // Find the user by ID
-        $user = User::findOrFail($id);
+        
+        
 
         // Update the user's attributes
         $user->name = $validatedData['name'];
@@ -126,19 +127,10 @@ class UserController extends Controller
         $user->save();
 
         // Redirect back with a success message
-        return redirect()->route('user.index', ['id' => $id])->with('message', 'User details updated successfully');
+        return redirect()->route('user.index', ['user' => $user])->with('message', 'User details updated successfully');
     }
 
 
-    // public function destroy(Request $request)
-    // {
-    //     $ids = $request->input('ids');
-    
-    //     // Assuming your user model is named 'User'
-    //     User::whereIn('id', $ids)->delete();
-    
-    //     return response()->json(['message' => 'Users deleted successfully']);
-    // }
 
     public function destroy(Request $request)
 {
@@ -161,6 +153,3 @@ class UserController extends Controller
 
 
 }
-
-
-

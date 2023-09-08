@@ -50,50 +50,52 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
+    //dashboard
+    Route::get('/admins/index', [AdminController::class, 'index'])->name('admin.index');
 
 
     //User
-    Route::get('/user/create', [UserController::class, 'showCreate'])->name('user.show-create');
-    Route::get('/user/update/{id}',[UserController::class,'showUpdate'])->name('user.show-update');
-
-    Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
-
-    Route::get('/user',[UserController::class,'index'])->name('user.index');
-    Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::prefix('users')->name('user.')->group(function () {
+    Route::get('',[UserController::class,'index'])->name('index');
+    Route::get('create', [UserController::class, 'create'])->name('create');
+    Route::post('store', [UserController::class, 'store'])->name('store');
+    Route::get('{user}/edit',[UserController::class,'edit'])->name('edit');
+    Route::post('{user}/update', [UserController::class, 'update'])->name('update');
+    Route::delete('destroy', [UserController::class, 'destroy'])->name('destroy');
+    });
+    
 
 
     //Service
-    Route::get('/service/create',[ServiceController::class, 'create'])->name('service.create');
-    Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
+    Route::get('/services/create',[ServiceController::class, 'create'])->name('service.create');
+    Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
 
     //Order
-    Route::get('/order/create',[OrderController::class, 'create'])->name('order.create');
+    Route::get('/orders/create',[OrderController::class, 'create'])->name('order.create');
 
     //Invoice
-    Route::get('/invoice/create',[InvoiceController::class, 'create'])->name('invoice.create');
+    Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoice.create');
 
     //Feedback
-    Route::get('/feedback/create',[FeedbackController::class, 'create'])->name('feedback.create');
+    Route::get('/feedbacks/create',[FeedbackController::class, 'create'])->name('feedback.create');
 
     //Inquiry
-    Route::get('/inquiry/create',[InquiryController::class, 'create'])->name('inquiry.create');
+    Route::get('/inquiries/create',[InquiryController::class, 'create'])->name('inquiry.create');
 
     //Training
-    Route::get('/training/create',[TrainingController::class, 'create'])->name('training.create');
+    Route::get('/trainings/create',[TrainingController::class, 'create'])->name('training.create');
 
     //News
-    Route::get('/announcement/create',[AnnouncementController::class, 'create'])->name('announcement.create');
+    Route::get('/announcements/create',[AnnouncementController::class, 'create'])->name('announcement.create');
 
     
 
 });
 
 Route::middleware(['auth', 'role:client'])->group(function () {
-    Route::get('/client/index', [ClientController::class, 'index'])->name('client.index');
+    Route::get('/clients/index', [ClientController::class, 'index'])->name('client.index');
 });
 
 Route::middleware(['auth', 'role:technician'])->group(function () {
-    Route::get('/technician/index', [TechnicianController::class, 'index'])->name('technician.index');
+    Route::get('/technicians/index', [TechnicianController::class, 'index'])->name('technician.index');
 });
