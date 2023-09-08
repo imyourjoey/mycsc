@@ -7,7 +7,7 @@
   </button>
     
 
-@if (request()->routeIs('landing') && !auth()->check())
+@if (!request()->routeIs('login') && !auth()->check())
 
 <a class="navbar-brand" href="{{ route('landing') }}">
   <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">

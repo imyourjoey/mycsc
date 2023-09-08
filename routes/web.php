@@ -68,6 +68,24 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/service/create',[ServiceController::class, 'create'])->name('service.create');
     Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
 
+    //Order
+    Route::get('/order/create',[OrderController::class, 'create'])->name('order.create');
+
+    //Invoice
+    Route::get('/invoice/create',[InvoiceController::class, 'create'])->name('invoice.create');
+
+    //Feedback
+    Route::get('/feedback/create',[FeedbackController::class, 'create'])->name('feedback.create');
+
+    //Inquiry
+    Route::get('/inquiry/create',[InquiryController::class, 'create'])->name('inquiry.create');
+
+    //Training
+    Route::get('/training/create',[TrainingController::class, 'create'])->name('training.create');
+
+    //News
+    Route::get('/announcement/create',[AnnouncementController::class, 'create'])->name('announcement.create');
+
     
 
 });

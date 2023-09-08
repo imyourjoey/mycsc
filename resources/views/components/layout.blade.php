@@ -216,7 +216,11 @@
             'landing': 'Home',
             'login': 'Login',
             'admin.index': 'Dashboard',
-            'admin.createUserForm': 'Create User'
+            'admin.createUserForm': 'Create User',
+            'user.index' : 'Manage Users',
+            'user.show-create' : 'Create User',
+            'service.create' : 'Create Service'
+
 
             // Add more route names and corresponding titles
         };
