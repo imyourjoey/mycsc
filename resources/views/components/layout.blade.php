@@ -218,7 +218,8 @@
             'admin.createUserForm': 'Create User',
             'user.index' : 'Manage Users',
             'user.show-create' : 'Create User',
-            'service.create' : 'Create Service'
+            'service.create' : 'Create Service',
+            'service.index' : 'Manage Services'
 
 
             // Add more route names and corresponding titles

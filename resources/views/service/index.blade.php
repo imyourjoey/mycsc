@@ -8,7 +8,6 @@
           <thead>
               <tr>
                   <th></th>
-                  <th></th>
                   <th>ID</th>
                   <th>Title</th>
                   <th>Description</th>
@@ -28,7 +27,7 @@
   
   
   
-  Initialise Datatable
+  {{-- Initialise Datatable --}}
   <script>
       $(function () {
           var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -65,7 +64,7 @@
                           header: function (row) 
                           {
                               var data = row.data();
-                              return 'Details of ' + data.name;
+                              return 'Details of ' + data.serviceName;
                           }
                       }),
                   renderer: DataTable.Responsive.renderer.tableAll()
@@ -206,7 +205,7 @@
           columnDefs:
           [{
               targets:1,
-              orderable:false,
+              orderable:true,
               className: 'dtr-control',
              
           }],
@@ -218,19 +217,30 @@
               orderable: false, 
               className: 'select-checkbox'
           },
-          {
-              data:null,
-              defaultContent: ''
-          },
-          { data: 'serviceID', name: 'serviceID' },
+          { data: 'serviceID', name: 'serviceID' ,className:'all'},
           { data: 'serviceName', name: 'serviceName' },
           { data: 'serviceDesc', name: 'serviceDesc' },
-          { data: 'servicePic', name: 'servicePic' },
+          { data: 'servicePic', name: 'servicePic',
+            render: function(data, type, row) {
+            // 'data' here represents the URL of the image
+            // 'type' indicates the rendering type (e.g., 'display', 'filter', 'sort')
+            if (type === 'display') {
+            // Display the image as an <img> element
+            var imageUrl = '{{ asset('storage/') }}' + '/' + data;
+            return '<img src="' + imageUrl + '" alt="Image not available" style="max-width: 100px; max-height: 100px;" />';
+            } else {
+            // For other types, return the raw data
+            return data;
+            }
+
+
+
+        }},
           { data: 'serviceEstDuration', name: 'serviceEstDuration' },
-          { data: 'created_at', name: 'created_at',  render: function (data) {
+          { data: 'created_at', name: 'created_at', className:'none', render: function (data) {
               return new Date(data).toLocaleString("en-GB"); 
           }},
-          { data: 'updated_at', name: 'updated_at' , render: function (data) {
+          { data: 'updated_at', name: 'updated_at' , className:'none',render: function (data) {
               return new Date(data).toLocaleString("en-GB");}}
                         
           ]
