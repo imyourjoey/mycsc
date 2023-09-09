@@ -3,7 +3,7 @@
 
 
     <div class="container">
-        <div class="mt-4 mb-4">
+        <div class="mb-4 mt-4">
             <p class="h2">Create New Service</p>
             <p>Please fill in the following information to create a new service.</p>
         </div>

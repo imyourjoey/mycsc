@@ -1,8 +1,9 @@
 @if(session()->has('message'))
     <script>
-        toastr.success("{{ session('message') }}", {
+        toastr.success("{{session('message')}} ", {
             timeOut: 5000, 
             positionClass: "toast-top-right",
+            
 
         });
 

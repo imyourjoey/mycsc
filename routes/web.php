@@ -64,11 +64,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('destroy', [UserController::class, 'destroy'])->name('destroy');
     });
     
+    //service
+    Route::prefix('services')->name('service.')->group(function () {
+    Route::get('', [ServiceController::class, 'index'])->name('index');
+    Route::get('create',[ServiceController::class, 'create'])->name('create');
+    Route::post('store', [ServiceController::class, 'store'])->name('store');
+    Route::get('{service}/edit', [ServiceController::class, 'edit'])->name('edit');
+    Route::post('{service}/update', [ServiceController::class, 'update'])->name('update');
+    Route::delete('destroy', [ServiceController::class, 'destroy'])->name('destroy');
 
-
-    //Service
-    Route::get('/services/create',[ServiceController::class, 'create'])->name('service.create');
-    Route::post('/services/store', [ServiceController::class, 'store'])->name('service.store');
+    });
+    
 
     //Order
     Route::get('/orders/create',[OrderController::class, 'create'])->name('order.create');

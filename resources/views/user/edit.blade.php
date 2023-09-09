@@ -1,7 +1,6 @@
 <x-layout>
   <x-navbar/>
-  
-  
+
   {{-- create new user form --}}
   <div class="container text-left create-user-form">
     <div class="row justify-content-center">

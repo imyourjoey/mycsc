@@ -142,3 +142,39 @@ body {
 
 
 
+
+/* Fade in button*/
+        /* Basic button styles */
+        .fade-in-button {
+          padding: 10px 20px;
+          cursor: pointer;
+          opacity: 0; /* Initially set opacity to 0 to make it invisible */
+      }
+      
+      /* Define a keyframe animation called "fadeIn" */
+      @keyframes fadeIn {
+          from {
+              opacity: 0; /* Start with opacity 0 */
+          }
+          to {
+              opacity: 1; /* End with opacity 1 */
+          }
+      }
+      
+      /* Apply the animation to the button */
+      .fade-in-button {
+          animation: fadeIn 0.5s ease-in-out forwards; /* Use the "fadeIn" animation with a 1-second duration */
+      }
+
+/*Datatables*/
+th {
+  border-top: 2px solid #dddddd;
+  border-bottom: 2px solid #dddddd;
+  border-right: 2px solid #dddddd;
+  }
+
+  th:first-child {
+  border-left: 2px solid #dddddd;
+  }
+
+

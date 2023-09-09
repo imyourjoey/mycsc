@@ -76,7 +76,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Services</a>
+      <a class="dropdown-item" href="{{ route('service.index') }}">Manage Services</a>
       <a class="dropdown-item" href="{{ route('service.create') }}">Create Service</a>
   </div>
   </li>

@@ -1,6 +1,9 @@
 <x-layout>
 <x-navbar/>
 
+    <div class="container-fluid">
+    <div class="h1 mt-4 mb-4 ml-2 font-weight-bold">Users</div>
+
     <div style="margin-top: 1rem"></div>
     <table class="display cell-border" id="users-table" style="width: 100%;">
         <thead>
@@ -15,6 +18,7 @@
             </tr>
         </thead>
     </table>
+    </div>
 
 
 
