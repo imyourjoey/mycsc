@@ -1,62 +1,59 @@
 <x-layout>
-
-<x-navbar/>
-
-
-
-{{-- Login Form --}}
-<div class="container login-form">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <h2 class="text-left" style="font-size: 40px">Login to Your Account</h2>
-        <p class="text-left">Please login with your username and password</p>
-        <div class="form-group label-left">
-          <label for="email">Username:</label>
-          <input type="text" class="form-control" id="username" placeholder="Enter your username" name="email">
-        </div>
-        
-        <div class="form-group label-left">
-          @error('email')
-          <p class="text-red-500 text-xs mt-1">Please enter your username</p>
-          @enderror
-        </div>
-
-        <div class="form-group label-left">
-          <label for="password">Password:</label>
-          <div class="input-group">
-            <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
-            <div class="input-group-append">
-              <span class="input-group-text eye-icon">
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </span>
+    <x-navbar/>
+    <div class="container offset-3 mt-5">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <p class="h1">Login to Your Account</p>
+                <p>Please login with your email and password</p>
             </div>
-          </div>
         </div>
 
-        <div class="form-group label-left">
-          @error('password')
-          <p class="text-red-500 text-xs mt-1" >Please enter your password</p>
-          @enderror
-        </div>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="row align-items-center">
+                <div class="form-group col-md-1">
+                    <label for="email">Email</label>
 
-        
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="rememberMe">
-          <label class="form-check-label" for="rememberMe">Remember me</label>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" style="background-color:black">Login <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-      </form>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <input type="text" class="form-control" id="email" placeholder="Please enter your email address"
+                        name="email" value="{{ old('email') }}">
+                </div>
+
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-1 form-group">
+                    <label for="password">Password</label>
+                </div>
+
+
+                <div class="col-md-5 form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password"
+                            placeholder="Please enter your password" name="password">
+                        <div class="input-group-append">
+                            <span class="input-group-text eye-icon">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mt-3">
+                <div class="form-group col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block">Login <i class="fa fa-arrow-right"
+                            aria-hidden="true"></i></button>
+
+                </div>
+            </div>
+
+
+        </form>
+
+
     </div>
-  </div>
-</div>
-
-{{-- <x-flash-message /> --}}
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </x-layout>
