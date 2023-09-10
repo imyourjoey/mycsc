@@ -94,19 +94,55 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     //Invoice
-    Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoice.create');
-
+    Route::prefix('invoices')->name('invoice.')->group(function () {
+        Route::get('', [InvoiceController::class, 'index'])->name('index');
+        Route::get('create', [InvoiceController::class, 'create'])->name('create');
+        Route::post('store', [InvoiceController::class, 'store'])->name('store'); 
+        Route::get('{invoice}/edit', [InvoiceController::class, 'edit'])->name('edit');
+        Route::post('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
+        Route::delete('{invoice}/destroy', [InvoiceController::class, 'destroy'])->name('destroy');
+    });
+    
     //Feedback
-    Route::get('/feedbacks/create',[FeedbackController::class, 'create'])->name('feedback.create');
-
+    Route::prefix('feedbacks')->name('feedback.')->group(function () {
+        Route::get('', [FeedbackController::class, 'index'])->name('index');
+        Route::get('create',[FeedbackController::class, 'create'])->name('create');
+        Route::post('store', [FeedbackController::class, 'store'])->name('store'); 
+        Route::get('{feedback}/edit', [FeedbackController::class, 'edit'])->name('edit');
+        Route::post('{feedback}/update', [FeedbackController::class, 'update'])->name('update');
+        Route::delete('destroy', [FeedbackController::class, 'destroy'])->name('destroy');
+    });
     //Inquiry
-    Route::get('/inquiries/create',[InquiryController::class, 'create'])->name('inquiry.create');
+    Route::prefix('inquiries')->name('inquiry.')->group(function () {
+        Route::get('', [InquiryController::class, 'index'])->name('index');
+        Route::get('create', [InquiryController::class, 'create'])->name('create');
+        Route::post('store', [InquiryController::class, 'store'])->name('store'); 
+        Route::get('{inquiry}/edit', [InquiryController::class, 'edit'])->name('edit');
+        Route::post('{inquiry}/update', [InquiryController::class, 'update'])->name('update');
+        Route::delete('{inquiry}/destroy', [InquiryController::class, 'destroy'])->name('destroy');
+    });
+    
 
     //Training
-    Route::get('/trainings/create',[TrainingController::class, 'create'])->name('training.create');
-
+    Route::prefix('trainings')->name('training.')->group(function () {
+        Route::get('', [TrainingController::class, 'index'])->name('index');
+        Route::get('create', [TrainingController::class, 'create'])->name('create');
+        Route::post('store', [TrainingController::class, 'store'])->name('store'); 
+        Route::get('{training}/edit', [TrainingController::class, 'edit'])->name('edit');
+        Route::post('{training}/update', [TrainingController::class, 'update'])->name('update');
+        Route::delete('{training}/destroy', [TrainingController::class, 'destroy'])->name('destroy');
+    });
+    
     //News
-    Route::get('/announcements/create',[AnnouncementController::class, 'create'])->name('announcement.create');
+    Route::prefix('announcements')->name('announcement.')->group(function () {
+        Route::get('', [AnnouncementController::class, 'index'])->name('index');
+        Route::get('create', [AnnouncementController::class, 'create'])->name('create');
+        Route::post('store', [AnnouncementController::class, 'store'])->name('store'); 
+        Route::get('{announcement}/edit', [AnnouncementController::class, 'edit'])->name('edit');
+        Route::post('{announcement}/update', [AnnouncementController::class, 'update'])->name('update');
+        Route::delete('{announcement}/destroy', [AnnouncementController::class, 'destroy'])->name('destroy');
+    });
+    
 
     
 

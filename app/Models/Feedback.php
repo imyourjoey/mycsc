@@ -10,6 +10,8 @@ class Feedback extends Model
     use HasFactory;
 
     public $table = 'feedback';
+    public $incrementing = false;
+    protected $primaryKey = 'feedbackID';
 
     protected $fillable = [
         'feedbackMessage',

@@ -11,7 +11,7 @@
                   <th class="colvis">ID</th>
                   <th class="colvis">Title</th>
                   <th class="colvis">Description</th>
-                  <th class="colvis">Image</th>
+                  <th>Image</th>
                   <th class="colvis" style="max-width: 75px">Estimated Duration</th>
                   <th>Created At</th>
                   <th>Updated At</th>
@@ -131,7 +131,7 @@
               config:
                   {
                       depthLimit:2,
-                      columns: [1,2,3,4,5]
+                      columns: [1,2,3,5]
                   }
               },
               {
@@ -221,7 +221,7 @@
           { data: 'serviceID', name: 'serviceID' ,className:'all'},
           { data: 'serviceName', name: 'serviceName' },
           { data: 'serviceDesc', name: 'serviceDesc' },
-          { data: 'servicePic', name: 'servicePic',
+          { data: 'servicePic', name: 'servicePic', className:'none',
             render: function(data, type, row) {
             // 'data' here represents the URL of the image
             // 'type' indicates the rendering type (e.g., 'display', 'filter', 'sort')
@@ -239,8 +239,6 @@
         }},
           { data: 'serviceEstDuration', 
             name: 'serviceEstDuration',
-            className: '', 
-
             render: function (data, type, row) {
             // Check if the rendering is for display (type === 'display')
             if (type === 'display') {

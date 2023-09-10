@@ -100,8 +100,8 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feedback</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Feedback</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Feedback</a>
+      <a class="dropdown-item" href="{{ route('feedback.index') }}">Manage Feedback</a>
+      <a class="dropdown-item" href="{{ route('feedback.create') }}">Create Feedback</a>
   </div>
   </li>
   <li class="nav-item dropdown">
