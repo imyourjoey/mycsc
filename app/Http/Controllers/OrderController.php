@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -71,6 +72,19 @@ class OrderController extends Controller
         $order->save();
 
         return redirect()->back()->with('message', 'Order created successfully!');
+    }
+
+
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $orders = Order::select(['orderID', 'clientTag', 'serviceID', 'technicianTag', 'deviceType', 'hardwareManufacturer', 'partNo', 'serialNo', 'diskCapacity', 'capacityRestored', 'othersIncluded', 'orderStatus', 'orderStatusPic', 'orderRemarks', 'created_at', 'updated_at']);
+            
+            return DataTables::of($orders)->toJson();
+        }
+    
+        return view('order.index'); 
+
     }
 
 

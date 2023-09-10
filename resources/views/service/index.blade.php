@@ -7,14 +7,15 @@
       <table class="display cell-border" id="services-table" style="width: 100%;">
           <thead>
               <tr>
-                  <th></th>
+                  <th style="max-width: 20px"></th>
                   <th class="colvis">ID</th>
                   <th class="colvis">Title</th>
                   <th class="colvis">Description</th>
                   <th class="colvis">Image</th>
-                  <th class="colvis">Estimated Duration</th>
+                  <th class="colvis" style="max-width: 75px">Estimated Duration</th>
                   <th>Created At</th>
                   <th>Updated At</th>
+                  <th style="max-width: 40px"></th>
               </tr>
           </thead>
       </table>
@@ -59,7 +60,7 @@
                   details:
                   {
                       type:'column',
-                      target: 1,
+                      target: -1,
                       display: $.fn.dataTable.Responsive.display.modal({
                           header: function (row) 
                           {
@@ -204,9 +205,9 @@
   
           columnDefs:
           [{
-              targets:1,
+              targets:-1,
               orderable:true,
-              className: 'dtr-control',
+              className: 'dtr-control arrow-right',
              
           }],
           columns: 
@@ -236,7 +237,10 @@
 
 
         }},
-          { data: 'serviceEstDuration', name: 'serviceEstDuration', 
+          { data: 'serviceEstDuration', 
+            name: 'serviceEstDuration',
+            className: '', 
+
             render: function (data, type, row) {
             // Check if the rendering is for display (type === 'display')
             if (type === 'display') {
@@ -250,7 +254,14 @@
               return new Date(data).toLocaleString("en-GB"); 
           }},
           { data: 'updated_at', name: 'updated_at' , className:'none',render: function (data) {
-              return new Date(data).toLocaleString("en-GB");}}
+              return new Date(data).toLocaleString("en-GB");}},
+              {
+            
+            data: null,
+            defaultContent: '',
+            orderable: false,
+            className: 'text-center'
+        }
                         
           ]
           });

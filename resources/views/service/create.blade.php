@@ -4,6 +4,15 @@
 
     <div class="container">
         <div class="mb-4 mt-4">
+            @if(session()->has('message'))
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <a href="{{ route('service.index') }}">
+                    <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Services</button>
+                    </a>   
+                </div>
+            </div>
+        @endif
             <p class="h2">Create New Service</p>
             <p>Please fill in the following information to create a new service.</p>
         </div>
