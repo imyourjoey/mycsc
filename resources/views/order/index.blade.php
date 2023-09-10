@@ -13,15 +13,15 @@
                     <th class="colvis">Service Type</th>
                     <th class="colvis">Assigned Technician</th>
                     <th class="colvis">Device Type</th>
-                    <th class="colvis">Hardware<br>Manufacturer</th>
-                    <th class="colvis">Part No.</th>
-                    <th class="colvis">Serial No.</th>
+                    <th>Hardware<br>Manufacturer</th>
+                    <th>Part No.</th>
+                    <th>Serial No.</th>
                     <th class="colvis">Disk Capacity</th>
                     <th class="colvis">Capacity Restored</th>
-                    <th class="colvis">Others Included</th>
+                    <th>Others Included</th>
                     <th class="colvis">Order Status</th>
-                    <th class="colvis">Order Status Image</th>
-                    <th class="colvis">Order Remarks</th>
+                    <th>Order Status Image</th>
+                    <th>Order Remarks</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th style="max-width: 40px"></th>
@@ -128,7 +128,13 @@
                 {
                 extend: 'collection',
                 text: 'Export',
-                buttons: [ 'excel', 'pdf' ]
+                buttons: [ 'excel',
+                            {
+                            extend: 'pdfHtml5',
+                            orientation: 'landscape',
+                            pageSize: 'LEGAL'
+                            } 
+                         ]
                 },
                 {
                 extend: 'collection',
@@ -140,7 +146,7 @@
                 config:
                     {
                         depthLimit:2,
-                        columns: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+                        columns: [1,2,3,4,5,12]
                     }
                 },
                 {
@@ -228,19 +234,32 @@
                 className: 'select-checkbox'
             },
             { data: 'orderID', name: 'orderID'},
-            { data: 'clientTag', name: 'clientTag' },
-            { data: 'serviceID', name: 'serviceID' },
-            { data: 'technicianTag', name: 'technicianTag' },
+            { data: 'clientName', name: 'clientName' },
+            { data: 'serviceName', name: 'serviceName' },
+            { data: 'assignedTechnician', name: 'assignedTechnician' },
             { data: 'deviceType', name: 'deviceType' },
-            { data: 'hardwareManufacturer', name: 'hardwareManufacturer' },
-            { data: 'partNo', name: 'partNo' },
-            { data: 'serialNo', name: 'serialNo' },
+            { data: 'hardwareManufacturer', name: 'hardwareManufacturer', className:'none' },
+            { data: 'partNo', name: 'partNo', className:'none' },
+            { data: 'serialNo', name: 'serialNo', className:'none'},
             { data: 'diskCapacity', name: 'diskCapacity' },
             { data: 'capacityRestored', name: 'capacityRestored' },
-            { data: 'othersIncluded', name: 'othersIncluded' },
+            { data: 'othersIncluded', name: 'othersIncluded', className:'none'},
             { data: 'orderStatus', name: 'orderStatus' },
-            { data: 'orderStatusPic', name: 'orderStatusPic' },
-            { data: 'orderRemarks', name: 'orderRemarks' },
+            { data: 'orderStatusPic', name: 'orderStatusPic', className:'none',
+            render: function(data, type, row) {
+            // 'data' here represents the URL of the image
+            // 'type' indicates the rendering type (e.g., 'display', 'filter', 'sort')
+            if (type === 'display') {
+            // Display the image as an <img> element
+            var imageUrl = '{{ asset('storage/') }}' + '/' + data;
+            return '<img src="' + imageUrl + '" alt="Image not available" style="max-width: 100px; max-height: 100px;" />';
+            } else {
+            // For other types, return the raw data
+            return data;
+            } 
+        }           
+            },
+            { data: 'orderRemarks', name: 'orderRemarks', className:'none' },
             { data: 'created_at', name: 'created_at', className:'none', render: function (data) {
                 return new Date(data).toLocaleString("en-GB"); 
             }},

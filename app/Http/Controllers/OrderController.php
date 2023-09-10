@@ -78,13 +78,44 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $orders = Order::select(['orderID', 'clientTag', 'serviceID', 'technicianTag', 'deviceType', 'hardwareManufacturer', 'partNo', 'serialNo', 'diskCapacity', 'capacityRestored', 'othersIncluded', 'orderStatus', 'orderStatusPic', 'orderRemarks', 'created_at', 'updated_at']);
+            // $orders = Order::select(['orderID', 'clientTag', 'serviceID', 'technicianTag', 'deviceType', 'hardwareManufacturer', 'partNo', 'serialNo', 'diskCapacity', 'capacityRestored', 'othersIncluded', 'orderStatus', 'orderStatusPic', 'orderRemarks', 'created_at', 'updated_at']);
+
+            $orders = DB::table('order')
+                ->select([
+                    'order.orderID',
+                    'client.name as clientName', 
+                    'service.serviceName as serviceName',
+                    'technician.name as assignedTechnician',
+                    'order.deviceType',
+                    'order.hardwareManufacturer',
+                    'order.partNo',
+                    'order.serialNo',
+                    'order.diskCapacity',
+                    'order.capacityRestored',
+                    'order.othersIncluded',
+                    'order.orderStatus',
+                    'order.orderStatusPic',
+                    'order.orderRemarks',
+                    'order.created_at',
+                    'order.updated_at'
+                ])
+                ->leftJoin('users as client', 'order.clientTag', '=','client.userTag')
+                ->leftJoin('service','order.serviceID', '=', 'service.serviceID')
+                ->leftJoin('users as technician', 'order.technicianTag', '=', 'technician.userTag')
+                ->get();
             
             return DataTables::of($orders)->toJson();
         }
     
         return view('order.index'); 
 
+    }
+
+    public function edit(Order $order)
+    {
+        // $user = User::findOrFail($id);
+        // return view('user.update', compact('user'));
+        return view('order.edit', ['order' => $order]);
     }
 
 
