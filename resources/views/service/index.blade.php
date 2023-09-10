@@ -8,11 +8,11 @@
           <thead>
               <tr>
                   <th></th>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Picture</th>
-                  <th>Estimated Duration<br>(in Days)</th>
+                  <th class="colvis">ID</th>
+                  <th class="colvis">Title</th>
+                  <th class="colvis">Description</th>
+                  <th class="colvis">Image</th>
+                  <th class="colvis">Estimated Duration</th>
                   <th>Created At</th>
                   <th>Updated At</th>
               </tr>
@@ -105,7 +105,7 @@
               {
                   extend: 'colvis',
                   text: 'Show/Hide',
-                  columns:':not(:eq(1))',
+                  columns:'th.colvis',
                   columnText: function ( dt, idx, title ) 
                   {
                       if(idx == 0 ){
@@ -236,7 +236,16 @@
 
 
         }},
-          { data: 'serviceEstDuration', name: 'serviceEstDuration' },
+          { data: 'serviceEstDuration', name: 'serviceEstDuration', 
+            render: function (data, type, row) {
+            // Check if the rendering is for display (type === 'display')
+            if (type === 'display') {
+            // Assuming 'data' is the number of days, you can format it as desired
+            return data + ' days';
+            }
+            // For other types (sorting, filtering, etc.), return the raw data
+            return data;
+            }},
           { data: 'created_at', name: 'created_at', className:'none', render: function (data) {
               return new Date(data).toLocaleString("en-GB"); 
           }},
