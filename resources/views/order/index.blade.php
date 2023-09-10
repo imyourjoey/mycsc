@@ -171,7 +171,7 @@
                     if (selectedData) {
                                 // Redirect to the user details page with the selected user's ID
                                 window.location = "{{ route('order.edit', ['order' => ':orderID']) }}".replace(':orderID', selectedData.orderID);
-                                console.log('selectedData.serviceID')
+                                
     
                     }
                 }
@@ -194,7 +194,7 @@
     
             if (confirm('Are you sure you want to delete the selected records?')) {
                 $.ajax({
-                    url: "{{ route('service.destroy') }}",
+                    url: "{{ route('order.destroy') }}",
                     type: "DELETE",
                     data: { selectedIds: selectedIds },
                     headers: {

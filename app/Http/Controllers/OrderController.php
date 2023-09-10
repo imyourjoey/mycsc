@@ -113,10 +113,85 @@ class OrderController extends Controller
 
     public function edit(Order $order)
     {
+        $clients = DB::table('users')->where('role','client')->get();
+        $technicians = DB::table('users')->where('role','technician')->get();
+        $services = DB::table('service')->get();
+
         // $user = User::findOrFail($id);
         // return view('user.update', compact('user'));
-        return view('order.edit', ['order' => $order]);
+        return view('order.edit', ['order' => $order,'clients' => $clients, 'technicians'=> $technicians, 'services'=> $services]);
+
+        
     }
+
+
+    public function update(Request $request, Order $order)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'deviceType' => 'required',
+            'manufacturer' => 'nullable',
+            'assignedTechnician' => 'required',
+            'partNo' => 'nullable',
+            'orderStatus' => 'required',
+            'serialNo' => 'nullable',
+            'statusPic' => 'nullable|mimes:jpeg,png|max:10000',
+            'othersIncluded' => 'nullable',
+            'remarks' => 'nullable',
+            'diskCapacity' => 'numeric|nullable',
+            'capacityRestored' => 'numeric|nullable',
+        ]);
+
+        if($request->hasFile('statusPic')){
+            $imgpath = $request->file('statusPic')->store('statusPics', 'public');
+            $order->orderStatusPic = $imgpath;
+
+        }
+
+        
+        
+        $technicianTag = OrderController::getUserTagByName($validatedData['assignedTechnician']);
+        
+
+        // Update the service's attributes
+        $order->deviceType = $validatedData['deviceType'];
+        $order->hardwareManufacturer = $validatedData['manufacturer'];
+        $order->technicianTag = $technicianTag;
+        $order->partNo = $validatedData['partNo'];
+        $order->orderStatus = $validatedData['orderStatus'];
+        $order->serialNo = $validatedData['serialNo'];        
+        $order->othersIncluded = $validatedData['othersIncluded'];
+        $order->orderRemarks = $validatedData['remarks'];
+        $order->diskCapacity = $validatedData['diskCapacity'];
+        $order->capacityRestored = $validatedData['capacityRestored'];
+
+        
+        // $service->userTag = $validatedData['adminName'];
+
+        // Save the changes
+        $order->save();
+
+        // Redirect back with a success message
+        return redirect()->route('order.edit', ['order' => $order])
+        ->with('message', 'Order details updated successfully.');
+    }
+
+
+    public function destroy(Request $request)
+{
+    $selectedIds = $request->input('selectedIds');
+    
+    // Ensure selectedIds is an array and not empty
+    if (!is_array($selectedIds) || count($selectedIds) === 0) {
+        return response()->json(['message' => 'No records selected for deletion.'], 400);
+    }
+
+    // Delete the selected records from the database
+    Order::whereIn('orderID', $selectedIds)->delete();
+
+    return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
+}
+
 
 
     public function generateUniqueOrderID()
