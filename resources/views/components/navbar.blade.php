@@ -87,7 +87,7 @@
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
       <a class="dropdown-item" href="{{ route('user.index') }}">Manage Orders</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Order</a>
+      <a class="dropdown-item" href="{{ route('order.create') }}">Create Order</a>
   </div>
   </li>
   <li class="nav-item dropdown">

@@ -11,6 +11,9 @@ class Order extends Model
 
     public $table = 'order';
 
+    public $incrementing = false;
+    protected $primaryKey = 'orderID';
+
     protected $fillable = [
         'clientTag',
         'serviceID',

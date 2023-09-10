@@ -42,15 +42,6 @@ class ServiceController extends Controller
             // 'phoneNo.required' => 'The phone number field is required'
         ]);
 
-        // $file = $request->file('servicePic');
-        // $file->store('service', 'public');
-
-        // if($request->hasFile('servicePic')){
-        //      $request->file('servicePic')->store('services', 'public');
-        // }
-        // $imageName = time().'.'.$request->servicePic->extension();  
-         
-        // $url=$request->servicePic->storeAs('services',$imageName);
         if($request->hasFile('servicePic')){
             $imgpath = $request->file('servicePic')->store('services', 'public');
         }

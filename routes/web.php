@@ -4,13 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
+use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +83,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     
 
     //Order
-    Route::get('/orders/create',[OrderController::class, 'create'])->name('order.create');
+    Route::prefix('orders')->name('order.')->group(function () {
+        Route::get('', [OrderController::class, 'index'])->name('index');
+        Route::get('create',[OrderController::class, 'create'])->name('create');
+        Route::post('store', [OrderController::class, 'store'])->name('store');
+        Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
+        Route::post('{order}/update', [OrderController::class, 'update'])->name('update');
+        Route::delete('destroy', [OrderController::class, 'destroy'])->name('destroy');
+    
+    });
 
     //Invoice
     Route::get('/invoices/create',[InvoiceController::class, 'create'])->name('invoice.create');

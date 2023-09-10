@@ -187,6 +187,7 @@ return [
         'servicePic' => 'service picture',
         'estDuration' => 'estimated duration',
         'adminName' => 'admin name',
+        
     ],
 
 ];

@@ -39,7 +39,7 @@
         <div class="form-group">
           <label for="appointmentDateTime">Date</label>
           <div class="input-group date">
-            <input type="text" class="form-control selector"  id="appointmentDateTime">
+            <input type="text" class="form-control selector border"  id="appointmentDateTime">
           </div>
         </div>
       </div>
