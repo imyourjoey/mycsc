@@ -10,6 +10,8 @@ class Inquiry extends Model
     use HasFactory;
 
     public $table = 'inquiry';
+    public $incrementing = false;
+    protected $primaryKey = 'inquiryID';
 
     protected $fillable = [
         'inquiryName',

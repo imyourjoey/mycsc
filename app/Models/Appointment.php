@@ -12,6 +12,9 @@ class Appointment extends Model
     
 
     public $table = 'appointment';
+
+    public $incrementing = false;
+    protected $primaryKey = 'appointmentID';
     
     protected $fillable = [
         'appointmentID',

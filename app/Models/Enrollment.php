@@ -11,6 +11,9 @@ class Enrollment extends Model
 
     public $table = 'training_enrollment';
 
+    public $incrementing = false;
+    protected $primaryKey = 'enrollmentID';
+
     protected $fillable = [
         'trainingID',
         'applicantName',

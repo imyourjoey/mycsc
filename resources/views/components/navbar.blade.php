@@ -107,22 +107,22 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inquiry</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Inquiries</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Inquiries</a>
+      <a class="dropdown-item" href="{{ route('inquiry.index') }}">Manage Inquiries</a>
+      <a class="dropdown-item" href="{{ route('inquiry.create') }}">Create Inquiries</a>
   </div>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Training</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Training Programmes</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Training Programmes</a>
+      <a class="dropdown-item" href="{{ route('training.index') }}">Manage Training Programmes</a>
+      <a class="dropdown-item" href="{{ route('training.create') }}">Create Training Programmes</a>
   </div>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Announcements</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Announcement</a>
+      <a class="dropdown-item" href="{{ route('announcement.index') }}">Manage Announcements</a>
+      <a class="dropdown-item" href="{{ route('announcement.create') }}">Create Announcement</a>
   </div>
   </li>
 <li class="nav-item dropdown red-rounded-square mr-3">

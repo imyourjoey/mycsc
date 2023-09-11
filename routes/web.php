@@ -100,7 +100,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('store', [InvoiceController::class, 'store'])->name('store'); 
         Route::get('{invoice}/edit', [InvoiceController::class, 'edit'])->name('edit');
         Route::post('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
-        Route::delete('{invoice}/destroy', [InvoiceController::class, 'destroy'])->name('destroy');
+        Route::delete('destroy', [InvoiceController::class, 'destroy'])->name('destroy');
     });
     
     //Feedback
@@ -118,8 +118,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create', [InquiryController::class, 'create'])->name('create');
         Route::post('store', [InquiryController::class, 'store'])->name('store'); 
         Route::get('{inquiry}/edit', [InquiryController::class, 'edit'])->name('edit');
-        Route::post('{inquiry}/update', [InquiryController::class, 'update'])->name('update');
-        Route::delete('{inquiry}/destroy', [InquiryController::class, 'destroy'])->name('destroy');
+        Route::put('{inquiry}/update', [InquiryController::class, 'update'])->name('update');
+        Route::delete('destroy', [InquiryController::class, 'destroy'])->name('destroy');
     });
     
 

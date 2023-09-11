@@ -10,6 +10,8 @@ class Invoice extends Model
     use HasFactory;
 
     public $table = 'invoice';
+    public $incrementing = false;
+    protected $primaryKey = 'invoiceID';
 
     protected $fillable = [
         'orderID',

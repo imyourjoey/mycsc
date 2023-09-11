@@ -10,6 +10,8 @@ class Training extends Model
     use HasFactory;
 
     public $table = 'training';
+    public $incrementing = false;
+    protected $primaryKey = 'trainingID';
 
     protected $fillable = [
         'trainingTitle',
