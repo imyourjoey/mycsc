@@ -10,7 +10,7 @@
           <p>Please fill in the following information to create a new announcement.</p>
       </div>
 
-      <form method="POST" action={{ route('user.create') }} id="createUserForm">
+      <form method="POST" action={{ route('announcement.store') }} id="createAnnouncementForm" enctype="multipart/form-data">
       @csrf
           <div class="row">
               <div class="form-group col-md-6">
@@ -39,7 +39,7 @@
 
           <div class="row">
               <div class="form-group col-md-6">
-                  <label for="picture">Picture</label>
+                  <label for="picture">Image</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="picture" name="picture">
                     <label class="custom-file-label" for="picture">Choose an image for the announcement (optional)</label>
@@ -63,9 +63,3 @@
   </div>
 </x-layout>
 
-<script>
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>

@@ -68,8 +68,6 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        // $user = User::findOrFail($id);
-        // return view('user.update', compact('user'));
         return view('service.edit', ['service' => $service]);
     }
 
@@ -121,6 +119,9 @@ class ServiceController extends Controller
 
     return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
 }
+
+
+
 
 
     public function generateUniqueServiceID()

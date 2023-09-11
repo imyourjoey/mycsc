@@ -139,8 +139,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create', [AnnouncementController::class, 'create'])->name('create');
         Route::post('store', [AnnouncementController::class, 'store'])->name('store'); 
         Route::get('{announcement}/edit', [AnnouncementController::class, 'edit'])->name('edit');
-        Route::post('{announcement}/update', [AnnouncementController::class, 'update'])->name('update');
-        Route::delete('{announcement}/destroy', [AnnouncementController::class, 'destroy'])->name('destroy');
+        Route::put('{announcement}/update', [AnnouncementController::class, 'update'])->name('update');
+        Route::delete('destroy', [AnnouncementController::class, 'destroy'])->name('destroy');
     });
     
 
