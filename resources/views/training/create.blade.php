@@ -130,7 +130,7 @@
           minDate: "today"
         });
 
-    }); // You were missing this closing parenthesis
+    }); 
     </script>
 
     

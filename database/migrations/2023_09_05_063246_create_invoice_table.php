@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('userTag', 15);
             $table->foreign('userTag')->references('userTag')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('totalPayable', 10, 2);
-            $table->datetime('invoiceDueDate');
-            $table->string('paymentStatus', 60);
-            $table->decimal('paymentAmount', 10, 2);
-            $table->string('paymentMethod', 60);
+            $table->datetime('invoiceDueDate')->nullable();
+            $table->string('paymentStatus', 60)->nullable();
+            $table->decimal('paymentAmount', 10, 2)->nullable();
+            $table->string('paymentMethod', 60)->nullable();
             $table->timestamps();
         });
     }

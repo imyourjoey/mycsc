@@ -9,27 +9,20 @@
             <p>Please fill in the following information to create an invoice.</p>
         </div>
 
-        <form method="POST" action={{ route('user.create') }} id="createUserForm">
+        <form method="POST" action={{ route('invoice.store') }} id="createInvoiceForm">
             @csrf
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="orderID">Order ID<span class="form-required">*</span></label>
-                    <input type="text" class="form-control" id="orderID" placeholder="Enter the Order ID"
-                        name="orderID" value="{{ old('orderID') }}">
+                    <select class="selectpicker form-control border bg-white" id="orderID" data-live-search="true" name="orderID">
+                        <option disabled selected>-Enter Order ID-</option>
+                        @foreach ($orders as $order)
+                        <option value="{{ $order->orderID }}" @if(old('orderID')=== $order->orderID ) selected @endif>{{ $order->orderID }} - {{ $order->name }}</option>
+                      @endforeach
+                      </select>
+
 
                     @error('orderID')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="clientName">Client Name<span class="form-required">*</span></label>
-                    <input type="text" class="form-control" id="clientName" placeholder="Enter the client's full name"
-                        name="clientName" value="{{ old('clientName') }}">
-
-                    @error('clientName')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -40,7 +33,7 @@
                     <label for="dueDate">invoice Due Date<span class="form-required">*</span></label>
                     
                    
-                    <input type="text" class="form-control" id="dueDate" placeholder="Select invoice due date"
+                    <input type="text" class="form-control selector bg-white" id="dueDate" placeholder="Select invoice due date"
                         name="dueDate" value="{{ old('dueDate') }}">
                     
                     @error('dueDate')
@@ -65,8 +58,8 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="amountPaid">Amount Paid<span class="form-required">*</span></label>
-                    <<div class="input-group">
+                    <label for="amountPaid">Amount Paid</label>
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">MYR</span>
                         </div>
@@ -83,10 +76,12 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="paymentStatus">Payment Status<span class="form-required">*</span></label>
-                    <input type="text" class="form-control" id="paymentStatus" placeholder="Enter payment status (optional)"
-                        name="paymentStatus" value="{{ old('paymentStatus') }}">
-
+                    <label for="paymentStatus">Payment Status</label>
+                    <select name="paymentStatus" class=" border form-control selectpicker" id="paymentStatus">
+                        <option disabled selected>-Select payment status-</option>
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                    </select>
                     @error('paymentStatus')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -95,7 +90,7 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="paymentMethod">Payment Method<span class="form-required">*</span></label>
+                    <label for="paymentMethod">Payment Method</label>
                     <input type="text" class="form-control" id="paymentMethod" placeholder="Enter payment method (optional)"
                         name="paymentMethod" value="{{ old('paymentMethod') }}">
 
@@ -119,9 +114,14 @@
 </x-layout>
 
 <script>
-    $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        //initialize Datepicker
+        $(".selector").flatpickr({
+          dateFormat: "Y-m-d",
+          time_24hr: true,
+          minDate: "today"
+        });
 
-</script>
+    }); 
+    </script>
+

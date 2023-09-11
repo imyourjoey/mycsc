@@ -99,7 +99,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create', [InvoiceController::class, 'create'])->name('create');
         Route::post('store', [InvoiceController::class, 'store'])->name('store'); 
         Route::get('{invoice}/edit', [InvoiceController::class, 'edit'])->name('edit');
-        Route::post('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
+        Route::put('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
         Route::delete('destroy', [InvoiceController::class, 'destroy'])->name('destroy');
     });
     

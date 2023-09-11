@@ -93,8 +93,8 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Invoice</a>
     <div class="dropdown-menu" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="{{ route('user.index') }}">Manage Invoices</a>
-      <a class="dropdown-item" href="{{ route('user.create') }}">Create Invoice</a>
+      <a class="dropdown-item" href="{{ route('invoice.index') }}">Manage Invoices</a>
+      <a class="dropdown-item" href="{{ route('invoice.create') }}">Create Invoice</a>
   </div>
   </li>
   <li class="nav-item dropdown">
