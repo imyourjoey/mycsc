@@ -129,8 +129,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('create', [TrainingController::class, 'create'])->name('create');
         Route::post('store', [TrainingController::class, 'store'])->name('store'); 
         Route::get('{training}/edit', [TrainingController::class, 'edit'])->name('edit');
-        Route::post('{training}/update', [TrainingController::class, 'update'])->name('update');
-        Route::delete('{training}/destroy', [TrainingController::class, 'destroy'])->name('destroy');
+        Route::put('{training}/update', [TrainingController::class, 'update'])->name('update');
+        Route::delete('destroy', [TrainingController::class, 'destroy'])->name('destroy');
     });
     
     //News
