@@ -2,7 +2,7 @@
   <x-navbar/>
 
   <div class="container-fluid">
-      <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Feedback</div>
+      <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Feedbacks</div>
 
       <div style="margin-top: 1rem"></div>
       <table class="display cell-border" id="feedback-table" style="width: 100%;">

@@ -8,13 +8,16 @@
     <table class="display cell-border" id="users-table" style="width: 100%;">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th style="max-width:20px"></th>
+                <th class="colvis">ID</th>
+                <th class="colvis">Name</th>
+                <th class="colvis">Email</th>
+                <th class="colvis">Phone No.</th>
+                <th class="colvis">Role</th>
                 <th>Created At</th>
                 <th>Updated At</th>
+                <th style="max-witdth:40px"></th>
+
             </tr>
         </thead>
     </table>
@@ -59,12 +62,12 @@
                 details:
                 {
                     type:'column',
-                    target: 1,
+                    target: -1,
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function (row) 
                         {
                             var data = row.data();
-                            return 'Details of ' + data.name;
+                            return 'User Details';
                         }
                     }),
                 renderer: DataTable.Responsive.renderer.tableAll()
@@ -105,7 +108,7 @@
             {
                 extend: 'colvis',
                 text: 'Show/Hide',
-                columns:':not(:eq(1))',
+                columns:'th.colvis',
                 columnText: function ( dt, idx, title ) 
                 {
                     if(idx == 0 ){
@@ -203,9 +206,9 @@
 
         columnDefs:
         [{
-            targets:1,
+            targets:-1,
             orderable:false,
-            className: 'dtr-control',
+            className: 'dtr-control arrow-right',
            
         }],
         columns: 
@@ -216,18 +219,34 @@
             orderable: false, 
             className: 'select-checkbox'
         },
-        {
-            data:null,
-            defaultContent: ''
-        },
-        { data: 'id', name: 'id' },
+        { data: 'userTag', name: 'userTag' },
         { data: 'name', name: 'name' },
         { data: 'email', name: 'email' },
-        { data: 'created_at', name: 'created_at',  render: function (data) {
+        { data: 'phoneNo', name: 'phoneNo' },
+        { data: 'role', 
+          name: 'role',
+          render: function (data) {
+                return data.charAt(0).toUpperCase() + data.slice(1);
+            }  
+        },
+        {   data: 'created_at', 
+            name: 'created_at',
+            className: 'none',  
+            render: function (data) {
             return new Date(data).toLocaleString("en-GB"); 
         }},
-        { data: 'updated_at', name: 'updated_at' , render: function (data) {
-            return new Date(data).toLocaleString("en-GB");}}
+        {   data: 'updated_at', 
+            name: 'updated_at',
+            className: 'none', 
+            render: function (data) {
+            return new Date(data).toLocaleString("en-GB");
+        }},
+        {
+                  data: null,
+                  defaultContent: '',
+                  orderable: false,
+                  className: 'text-center'
+        }
                       
         ]
         });

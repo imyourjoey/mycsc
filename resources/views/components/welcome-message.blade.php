@@ -1,6 +1,6 @@
 <div class="card welcome-card">
   <div class="card-header">
-      <h3> {{ date('d/m/Y') }}</h3>
+      <h3 class="pl-2"> {{ date('d/m/Y') }}</h3>
   </div>
   <div class="card-body">
       @php
@@ -14,7 +14,7 @@
           }
       @endphp
 
-      <h4>{{ $greeting }}, {{ auth()->user()->name }}</h4>
+      <h4 class="pl-2">{{ $greeting }}, {{ auth()->user()->name }}</h4>
 
       
   </div>

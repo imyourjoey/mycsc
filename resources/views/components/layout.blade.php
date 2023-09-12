@@ -222,9 +222,14 @@
             'admin.index': 'Dashboard',
             'admin.createUserForm': 'Create User',
             'user.index' : 'Manage Users',
-            'user.show-create' : 'Create User',
+            'user.create' : 'Create User',
             'service.create' : 'Create Service',
-            'service.index' : 'Manage Services'
+            'service.index' : 'Manage Services',
+            'order.create' : 'Create Orders',
+            'order.index' : 'Manage Orders'
+
+            
+
 
 
             // Add more route names and corresponding titles

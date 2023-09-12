@@ -2,15 +2,119 @@
 <x-navbar/>
 
 <x-welcome-message />
-
-<div class="card m-5" style="width:30%">
-<div class="card-header">
-    <h5 class="card-title">Inquiry</h5>
-</div>
-<div class="card-body d-flex flex-column align-items-center">
-    <p class="card-text">Received Today: </p>
-    <p><span class="badge badge-primary" style="font-size: 2rem; background-color:white; color:blue">{{ session('inquiryCount')}}</span></p>
+<div class="container-fluid">
+<div class="row ml-1 mr-1 mb-3">
+    <div class="col-9">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Appointment</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <p>Scheduled Today</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
   
+                    </div>
+                    <div class="col-4 text-center">
+                        <p>Requested Today</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        
+                    </div>
+                    <div class="col-4 text-center">
+                        <p>Unapproved</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Revenue</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p>Month-To-Date</p>
+                    <p><span class="h2 font-weight-bold">RM{{ $inquiryCount }}</span></p>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-5 ml-1 mr-1">
+    <div class="col-9">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Training</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <p>Scheduled Today</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+  
+                    </div>
+                    <div class="col-4 text-center">
+                        <p>Enrolled Today</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        
+                    </div>
+                    <div class="col-4 text-center">
+                        <p>Unapproved</p>
+                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Revenue</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p>Today</p>
+                    <p><span class="h2 font-weight-bold">RM{{ $inquiryCount }}</span></p>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 ml-1 mr-1">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Inquiry</h5>
+            </div>
+            <div class="card-body text-center">
+                <p>Received Today</p>
+                <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                
+            </div>
+    </div>
+</div>
+<div class="col-3">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Feedback</h5>
+        </div>
+        <div class="card-body text-center">
+            <p>Received Today</p>
+            <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+            
+        </div>
+</div>
+</div>
 </div>
 </div>
 
