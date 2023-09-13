@@ -6,11 +6,11 @@
   <div class="row d-flex align-items-center">
     <div class="col">
       <!-- Left section content -->
-      <h2>Who are we?</h2>
+      <h2 class="ml-5">Who are we?</h2>
     </div>
     <div class="col">
       <!-- Right section content -->
-      <p>MyCyberSecurity Clinic is the trusted partner for assuring control through proven services, people and technology that recover, analyze and manage information and is a trustworthy and credible entityfor secure data handling and recovery.
+      <p class="text-justify">MyCyberSecurity Clinic is the trusted partner for assuring control through proven services, people and technology that recover, analyze and manage information and is a trustworthy and credible entityfor secure data handling and recovery.
 
         </p>
     </div>

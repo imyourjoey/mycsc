@@ -266,6 +266,10 @@
     });
     </script>
 
+<script>
+  $('.collapse').collapse();
+</script>
+
 
 
 <x-flash-message />
