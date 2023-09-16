@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,5 +48,17 @@ class CalendarController extends Controller
         }
         
         return view('/hello', ['events' => $events, 'clients' => $clients]);
+}
+
+
+public function destroy(Request $request)
+{
+    $id = $request->input('id');
+    $idArray = explode(',', $id);
+
+    // Delete the selected records from the database
+    Appointment::whereIn('appointmentID', $idArray)->delete();
+
+    return response()->json(['message' => 'Selected record have been deleted successfully.'], 200);
 }
 }

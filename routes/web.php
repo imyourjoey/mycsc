@@ -29,6 +29,9 @@ use App\Http\Controllers\AnnouncementController;
 |
 */
 Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index');
+Route::delete('/hello/destroy', [CalendarController::class, 'destroy'])->name('calendar.destroy');
+
+
 
 
 Route::get('/kkkk', function () {

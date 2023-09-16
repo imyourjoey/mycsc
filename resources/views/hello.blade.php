@@ -53,8 +53,8 @@
 </form>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
 
 
 <script>
@@ -73,13 +73,41 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       headerToolbar:{
-        start :'listMonth,dayGridMonth,timeGridWeek,timeGridDay',
+        start :'listMonth dayGridMonth,timeGridWeek,timeGridDay',
         center: 'title',
         end:'today prev,next'
       },
       events: events,
       selectable: true,
       eventInteractive:true,
+      eventClick: function(event){
+      if (confirm('Are you sure you want to delete the selected records?')) {
+        var id = event.event._def.publicId;
+
+        $.ajax({
+          url: "{{ route('calendar.destroy') }}",
+          type: "DElETE",
+          dataType:'json',
+          data: {id:id},
+          headers: {
+                  'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+          },
+          success: function (response) {
+                  toastr.success('Selected record(s) have been deleted successfully');
+                  
+                  },
+                  error: function (xhr, status, error) {
+                  alert('Error deleting records: ' + xhr.responseText);
+                  }
+
+        });
+        location.reload();
+      }
+        
+
+        
+
+      },
       select: function(start, end, allDays){
       $('#appointmentModal').modal('toggle');
       
@@ -143,6 +171,9 @@
         });
 
       }
+
+
+      
 
       $('#saveAppointmentBtn').off('click').on('click', saveAppointment);
 
