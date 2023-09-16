@@ -74,7 +74,7 @@
     <a class="nav-link" href="{{ route('service.index') }}">Service</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="">Calendar</a>
+    <a class="nav-link" href="{{ route('appointment.index') }}">Calendar</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{ route('order.index') }}">Order</a>

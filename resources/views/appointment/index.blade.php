@@ -2,60 +2,20 @@
 <x-navbar/>
 
 
+  <div class="container-fluid">
+    <div class="h1 ml-3 mt-4 font-weight-bold">Appointments</div>
 
-<body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="col-lg-12 mt-5 mb-5">
-                <div id='calendar'></div>
-            </div>
-        </div>
-    </div>
-    
-  </body>
-
-
-  {{-- Modal --}}
-<form>
-  @csrf
-<div class="modal hide fade" id="appointmentModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="client_name">Client Name</label>
-          <select class="form-control selectpicker" id="client_name" data-live-search="true">
-            @foreach ($clients as $client)
-            <option>{{ $client->name }}</option>
-          @endforeach
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="appointmentDateTime">Date</label>
-          <div class="input-group date">
-            <input type="text" class="form-control selector border"  id="appointmentDateTime">
+      <div class="row-fluid">
+          <div class="col-lg-12 mt-4 mb-5">
+              <div id='calendar'></div>
           </div>
-        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="saveAppointmentBtn">Save changes</button>
-      </div>
-    </div>
   </div>
-</div>
-</form>
+  
 
 
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
-
+  
+</x-layout>
 
 <script>
 
@@ -66,7 +26,7 @@
     //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     //             }
     //         });
-    var selectedDate = "";
+    // var selectedDate = "";
     var events = @json($events);
     // var selectedDate;
     var calendarEl = document.getElementById('calendar');
@@ -86,7 +46,7 @@
 
         $.ajax({
           url: "{{ route('calendar.destroy') }}",
-          type: "DElETE",
+          type: "DELETE",
           dataType:'json',
           data: {id:id},
           headers: {
@@ -109,8 +69,10 @@
 
       },
       select: function(start, end, allDays){
-        window.location.href ="{{ route('appointment.create') }}"
-      }
+        var selectedDate = moment(start.startStr).format('YYYY-MM-DD');
+        window.location.href = "{{ route('appointment.create', ['date' => '']) }}" + selectedDate;
+
+    }
     //   select: function(start, end, allDays){
     //   $('#appointmentModal').modal('toggle');
       
@@ -202,13 +164,3 @@
  
 
 </script>
-
-
-
-</x-layout>
-
-
-
-
-
-

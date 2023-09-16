@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class CalendarController extends Controller
 {
+
+    public function create(){
+        return view('appointment.create');
+    }
     public function index()
     {
         $events = array();

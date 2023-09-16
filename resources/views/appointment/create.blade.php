@@ -4,30 +4,37 @@
 
 
   <div class="container">
+    <p>Selected Date:{{ $selectedDate }}</p>
+
 
       <div class="mt-4 mb-4">
           <p class="h2">Schedule New Appointment</p>
           <p>Please fill in the following information to schedule an appointment.</p>
       </div>
 
-      <form method="POST" action={{ route('user.create') }} id="createUserForm">
+      <form method="POST" action={{ route('appointment.store') }} id="createUserForm">
       @csrf
           <div class="row">
               <div class="form-group col-md-6">
                   <label for="clientName">Client Name <span class="form-required">*</span></label>
-                  <input type="text" class="form-control" id="clientName"
-                      placeholder="Enter the client's full name" name="clientName" value="{{ old('clientName') }}">
+                  <select class="selectpicker form-control border" id="clientName" data-live-search="true" name="clientName">
+                    <option disabled selected>-Enter client name-</option>
+                    @foreach ($clients as $client)
+                    <option value="{{ $client->name }}" @if(old('clientName')=== $client->name ) selected @endif>{{ $client->name }} - {{ $client->userTag }}</option>
+                  @endforeach
+                  </select>
 
-                      @error('clientName')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
+                @error('clientName')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+
               </div>
           </div>
 
           <div class="row">
               <div class="form-group col-md-6">
                   <label for="datetime">Date and Time <span class="form-required">*</span></label>
-                  <input type="text" class="form-control" id="datetime"
+                  <input type="text" class="form-control selector bg-white" id="datetime"
                       placeholder="Select date and time for the appointment" name="datetime" value="{{ old('datetime') }}">
 
                       @error('datetime')
@@ -62,8 +69,14 @@
 </x-layout>
 
 <script>
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+        //initialize Datepicker
+$(".selector").flatpickr({
+          dateFormat: "Y-m-d H:i",
+          enableTime: true,
+          time_24hr: true,
+          minDate: "today"
+        });
+
+    }); 
+    </script>

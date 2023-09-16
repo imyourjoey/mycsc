@@ -45,7 +45,7 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-Route::post('appointment/create', [AppointmentController::class,'create'])->name('appointment.create');
+// Route::get('appointment/create', [CalendarController::class,'create'])->name('appointment.create');
 
 
 // Route::get('/hello', function () {
@@ -124,6 +124,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('{inquiry}/update', [InquiryController::class, 'update'])->name('update');
         Route::delete('destroy', [InquiryController::class, 'destroy'])->name('destroy');
     });
+
+
+    //Appointment
+    Route::prefix('appointments')->name('appointment.')->group(function () {
+        Route::get('', [AppointmentController::class, 'index'])->name('index');
+        Route::get('create', [AppointmentController::class, 'create'])->name('create');
+        Route::post('store', [AppointmentController::class, 'store'])->name('store'); 
+        Route::get('{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit');
+        Route::put('{appointment}/update', [AppointmentController::class, 'update'])->name('update');
+        Route::delete('destroy', [AppointmentController::class, 'destroy'])->name('destroy');
+    });
+
+
+
+    
     
 
     //Training
