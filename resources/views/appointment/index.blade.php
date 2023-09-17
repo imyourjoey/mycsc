@@ -1,4 +1,10 @@
 <x-layout>
+  <style>
+    .fc-event-time, .fc-event-title {
+padding: 0 1px;
+white-space: normal;
+}
+  </style>
 <x-navbar/>
 
 
@@ -32,12 +38,21 @@
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
+      validRange: function(nowDate) {
+    return {
+      start: nowDate
+    };
+    },
       headerToolbar:{
         start :'listMonth dayGridMonth,timeGridWeek,timeGridDay',
         center: 'title',
         end:'today prev,next'
       },
       events: events,
+      eventDisplay: 'block',
+      displayEventTime: true,
+      displayEventEnd:true,
+      timeFormat: 'H:mm', 
       selectable: true,
       eventInteractive:true,
       eventClick: function(event){

@@ -1,24 +1,30 @@
 
 <x-layout>
+<style>
+  .btn-light{
+    background-color: #FFF;
+    color: #000;
+}
+
+
+</style>
   <x-navbar />
 
-
   <div class="container">
-    <p>Selected Date:{{ $selectedDate }}</p>
 
 
       <div class="mt-4 mb-4">
-          <p class="h2">Schedule New Appointment</p>
+          <p class="h2">Schedule An Appointment</p>
           <p>Please fill in the following information to schedule an appointment.</p>
       </div>
 
-      <form method="POST" action={{ route('appointment.store') }} id="createUserForm">
+      <form method="POST" action={{ route('appointment.store') }} id="createAppointmentForm">
       @csrf
           <div class="row">
               <div class="form-group col-md-6">
                   <label for="clientName">Client Name <span class="form-required">*</span></label>
                   <select class="selectpicker form-control border" id="clientName" data-live-search="true" name="clientName">
-                    <option disabled selected>-Enter client name-</option>
+                    <option disabled selected >-Enter client name-</option>
                     @foreach ($clients as $client)
                     <option value="{{ $client->name }}" @if(old('clientName')=== $client->name ) selected @endif>{{ $client->name }} - {{ $client->userTag }}</option>
                   @endforeach
@@ -34,7 +40,7 @@
           <div class="row">
               <div class="form-group col-md-6">
                   <label for="datetime">Date and Time <span class="form-required">*</span></label>
-                  <input type="text" class="form-control selector bg-white" id="datetime"
+                  <input type="text" class="form-control selector bg-white"  id="datetime"
                       placeholder="Select date and time for the appointment" name="datetime" value="{{ old('datetime') }}">
 
                       @error('datetime')
@@ -75,7 +81,9 @@ $(".selector").flatpickr({
           dateFormat: "Y-m-d H:i",
           enableTime: true,
           time_24hr: true,
-          minDate: "today"
+          minDate: "today",
+          minTime: "09:00",
+          defaultDate:"{{ $selectedDate }}"
         });
 
     }); 
