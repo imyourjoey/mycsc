@@ -4,6 +4,11 @@
 padding: 0 1px;
 white-space: normal;
 }
+
+.close {
+  font-size: 15px; 
+  margin-top: none;
+}
   </style>
 <x-navbar/>
 
@@ -17,6 +22,78 @@ white-space: normal;
           </div>
       </div>
   </div>
+
+  
+  <div class="modal hide" id="appointmentModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 50%" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times</span>
+          </button>
+
+          <div class="container mt-4">
+            <div class="form-group h3">Details of Appointment 1</div>
+            <div class="row">
+              <div class="col-6">
+                Client Name:
+              </div>
+              <div class="col-6">
+                hello
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                Date & Time:
+              </div>
+              <div class="col-6">
+                hello
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                Remarks:
+              </div>
+              <div class="col-6">
+                hello
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                Status:
+              </div>
+              <div class="col-6">
+                Approved
+              </div>
+            </div>
+          </div>
+          {{-- <div class="form-group">
+            <label for="client_name">Client Name</label>
+            <select class="form-control selectpicker" id="client_name" data-live-search="true">
+              @foreach ($clients as $client)
+              <option>{{ $client->name }}</option>
+            @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appointmentDateTime">Date</label>
+            <div class="input-group date">
+              <input type="text" class="form-control selector border"  id="appointmentDateTime">
+            </div>
+          </div> --}}
+        </div>
+        
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveAppointmentBtn">Save changes</button>
+        
+      </div>
+    </div>
+  </div>
+  
+
   
 
 
@@ -56,33 +133,37 @@ white-space: normal;
       selectable: true,
       eventInteractive:true,
       eventClick: function(event){
-      if (confirm('Are you sure you want to delete the selected records?')) {
-        var id = event.event._def.publicId;
-
-        $.ajax({
-          url: "{{ route('calendar.destroy') }}",
-          type: "DELETE",
-          dataType:'json',
-          data: {id:id},
-          headers: {
-                  'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-          },
-          success: function (response) {
-                  toastr.success('Selected record(s) have been deleted successfully');
-                  
-                  },
-                  error: function (xhr, status, error) {
-                  alert('Error deleting records: ' + xhr.responseText);
-                  }
-
-        });
-        location.reload();
-      }
-        
-
-        
-
+        $('#appointmentModal').modal('toggle');
       },
+      // eventClick: function(event){
+      //   $('#appointmentModal').modal('toggle');
+      // if (confirm('Are you sure you want to delete the selected records?')) {
+      //   var id = event.event._def.publicId;
+
+      //   $.ajax({
+      //     url: "{{ route('calendar.destroy') }}",
+      //     type: "DELETE",
+      //     dataType:'json',
+      //     data: {id:id},
+      //     headers: {
+      //             'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+      //     },
+      //     success: function (response) {
+      //             toastr.success('Selected record(s) have been deleted successfully');
+                  
+      //             },
+      //             error: function (xhr, status, error) {
+      //             alert('Error deleting records: ' + xhr.responseText);
+      //             }
+
+      //   });
+      //   location.reload();
+      // }
+        
+
+        
+
+      // },
       select: function(start, end, allDays){
         var selectedDate = moment(start.startStr).format('YYYY-MM-DD');
         window.location.href = "{{ route('appointment.create', ['date' => '']) }}" + selectedDate;
