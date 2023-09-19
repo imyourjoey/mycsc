@@ -6,9 +6,29 @@ use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class AppointmentController extends Controller
 {
+    public function show(Request $request)
+    {
+        $appointmentId = $request->input('id');
+        $appointment = DB::table('appointment')->where('appointmentID', $appointmentId)->first();
+    
+        if (!$appointment) {
+            return response()->json(['error' => 'Appointment not found'], 404);
+        }
+    
+        $responseData = [
+            'clientName' => $appointment->appointmentName,
+            'dateTime' => $appointment->appointmentDateTime,
+            'remarks' => $appointment->remarks,
+            'status' => $appointment->appointmentStatus,
+        ];
+    
+        return response()->json($responseData);
+    }
+    
 
     public function create(Request $request){
         
@@ -19,35 +39,49 @@ class AppointmentController extends Controller
         return view('appointment.create', ['clients' => $clients, 'selectedDate'=> $selectedDate]);
 
     }
+
     public function index()
     {
         $events = array();
-        $appointments = DB::table('appointment')->get();
+        $approvedAppointments = DB::table('appointment')->where('appointmentStatus','approved')->get();
+        $upapprovedAppointments = DB::table('appointment')->where('appointmentStatus','pending')->get();
         // $trainings = DB::table('training')->get();
         $clients = DB::table('users')->where('role','client')->get();
 
 
-        foreach($appointments as $appointment){
+        foreach($approvedAppointments as $approvedAppointment){
 
-            $client = DB::table('users')->where('userTag', $appointment->userTag)->first();
+            $client = DB::table('users')->where('userTag', $approvedAppointment->userTag)->first();
             
             $dateTimeFormat = "Y-m-d H:i:s";
-            $appointmentEndTime = strtotime($appointment->appointmentDateTime)+3600;
+            $appointmentEndTime = strtotime($approvedAppointment->appointmentDateTime)+3600;
             $appointmentEndTime = date($dateTimeFormat, $appointmentEndTime);
             
             $events[] = [
-                'id'   => $appointment->appointmentID,
+                'id'   => $approvedAppointment->appointmentID,
                 'title' => 'Appointment with: '.$client->name,
-                'start' => $appointment->appointmentDateTime,
-                'end' => $appointmentEndTime
+                'start' => $approvedAppointment->appointmentDateTime,
+                'end' => $appointmentEndTime,
             ];
-
-           
-            
-            
-            
         }
-        
+
+        foreach($upapprovedAppointments as $unapprovedAppointment){
+
+            $client = DB::table('users')->where('userTag', $unapprovedAppointment->userTag)->first();
+            
+            $dateTimeFormat = "Y-m-d H:i:s";
+            $appointmentEndTime = strtotime($unapprovedAppointment->appointmentDateTime)+3600;
+            $appointmentEndTime = date($dateTimeFormat, $appointmentEndTime);
+            
+            $events[] = [
+                'id'   => $unapprovedAppointment->appointmentID,
+                'title' => 'Appointment with: '.$client->name,
+                'start' => $unapprovedAppointment->appointmentDateTime,
+                'end' => $appointmentEndTime,
+                'color' =>'#FE9100'
+            ];
+        }
+
         // foreach($trainings as $training) {
             
         //     $events[] = [
@@ -62,7 +96,7 @@ class AppointmentController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     $request->validate([
         'clientName' => 'required',
         'datetime' => 'required|date_format:Y-m-d H:i',
@@ -88,15 +122,19 @@ class AppointmentController extends Controller
     $appointment->appointmentContact = $clientPhone; 
     $appointment->appointmentEmail = $clientEmail;   
     $appointment->appointmentDateTime = $appointmentDateTime;
-    $appointment->appointmentStatus = 'Approved';
+    $appointment->appointmentStatus = 'approved';
     $appointment->remarks = $request->remarks;
     $appointment->save();
 
     return redirect()->back()->with('message', 'Appointment created successfully!');
-}
+    }
 
-public function generateUniqueAppointmentID()
-{
+    public function edit(Appointment $appointment){
+        return view('appointment.edit', ['appointment' => $appointment]);
+    }
+
+    public function generateUniqueAppointmentID()
+    {
     $prefix = 'AP';
     
     if ($prefix) {
@@ -117,18 +155,59 @@ public function generateUniqueAppointmentID()
     }
 
     return '';
+    }
+
+    public function update(Request $request, Appointment $appointment)
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'clientName' => 'required',
+        'datetime' => 'required|date',
+        'status' => 'required|in:pending,approved', // Assuming "status" can only be "pending" or "approved"
+        'remarks' => 'nullable',
+    ]);
+
+    // Update the appointment's attributes
+    $appointment->appointmentName = $validatedData['clientName'];
+    $appointment->appointmentDateTime = $validatedData['datetime'];
+    $appointment->appointmentStatus = $validatedData['status'];
+    $appointment->remarks = $validatedData['remarks'];
+
+    // Save the changes
+    $appointment->save();
+
+    // Redirect back with a success message
+    return redirect()->route('appointment.edit', ['appointment' => $appointment])
+        ->with('message', 'Appointment details updated successfully.');
+}
+
+public function destroy(Request $request)
+{
+     $appointmentId = $request->input('id');
+    
+    
+    // Ensure selectedIds is an array and not empty
+    if ( $appointmentId == 'null') {
+        return response()->json(['message' => 'No appointments selected for deletion.'], 400);
+    }
+
+    // Delete the selected appointments from the database
+    
+    Appointment::where('appointmentID',  $appointmentId)->delete();
+
+    return response()->json(['message' => 'Selected appointments have been deleted successfully.'], 200);
 }
 
 
-public function getUserTagByName($name)
-{
+    public function getUserTagByName($name)
+    {
     $user = User::where('name', $name)->first();
 
     if ($user) {
         $userTag = $user->userTag; 
         return $userTag;
     } 
-}
+    }
 
 
 

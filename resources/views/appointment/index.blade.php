@@ -4,6 +4,9 @@
 padding: 0 1px;
 white-space: normal;
 }
+.fc-event{
+    cursor: pointer;
+}
 
 .close {
   font-size: 15px; 
@@ -33,13 +36,13 @@ white-space: normal;
           </button>
 
           <div class="container mt-4">
-            <div class="form-group h3">Details of Appointment 1</div>
+            <div class="form-group h3">Appointment Details</div>
             <div class="row">
               <div class="col-6">
                 Client Name:
               </div>
-              <div class="col-6">
-                hello
+              <div class="col-6 client-name">
+                
               </div>
             </div>
 
@@ -47,8 +50,8 @@ white-space: normal;
               <div class="col-6">
                 Date & Time:
               </div>
-              <div class="col-6">
-                hello
+              <div class="col-6 date-time">
+                
               </div>
             </div>
 
@@ -56,8 +59,8 @@ white-space: normal;
               <div class="col-6">
                 Remarks:
               </div>
-              <div class="col-6">
-                hello
+              <div class="col-6 remarks">
+                
               </div>
             </div>
 
@@ -65,10 +68,23 @@ white-space: normal;
               <div class="col-6">
                 Status:
               </div>
-              <div class="col-6">
-                Approved
+              <div class="col-6 status">
+                
               </div>
             </div>
+
+            </div>
+
+
+          </div>
+
+          <div class="modal-footer container d-inline">
+            <div class="row">
+              <div class="col-6">
+                <p class="d-inline ml-3 mr-2">Actions:</p>
+                <a href="" id="editLink" class="link-dark">Edit <i class="fas fa-edit fa-lg"></i></a>
+                <a href="#" id="deleteAppointments" class="link-dark">Delete <i class="fas fa-trash fa-lg"></i></a>
+              </div>
           </div>
           {{-- <div class="form-group">
             <label for="client_name">Client Name</label>
@@ -86,8 +102,8 @@ white-space: normal;
           </div> --}}
         </div>
         
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="saveAppointmentBtn">Save changes</button>
+        
+
         
       </div>
     </div>
@@ -104,6 +120,7 @@ white-space: normal;
 
   document.addEventListener('DOMContentLoaded', function() {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    var appointmentId = '';
     // $.ajaxSetup({
     //             headers: {
     //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -129,11 +146,66 @@ white-space: normal;
       eventDisplay: 'block',
       displayEventTime: true,
       displayEventEnd:true,
-      timeFormat: 'H:mm', 
       selectable: true,
       eventInteractive:true,
       eventClick: function(event){
-        $('#appointmentModal').modal('toggle');
+        appointmentId = event.event._def.publicId;
+
+        var url = "{{ route('appointment.show', ['id' => ':id']) }}";
+        url = url.replace(':id', appointmentId);
+
+        var editUrl = "{{ route('appointment.edit', ['appointment' => ':id']) }}";
+        editUrl = editUrl.replace(':id', appointmentId);
+
+        // Update the href attribute of the edit link
+        $('#editLink').attr('href', editUrl);
+
+        console.log(url);
+        $.ajax({
+    url: url, // Constructed URL with appointmentId
+    type: "GET",
+    dataType: 'json',
+    data : {id:appointmentId},
+    success: function(response) {
+      // Update the modal content with appointment details
+      $('#appointmentModal .modal-body .client-name').text(response.clientName);
+      $('#appointmentModal .modal-body .date-time').text(response.dateTime);
+      $('#appointmentModal .modal-body .remarks').text(response.remarks);
+      $('#appointmentModal .modal-body .status').text(response.status.charAt(0).toUpperCase() + response.status.slice(1));
+      // Show the modal
+      $('#appointmentModal').modal('show');
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  });
+
+        $('#appointmentModal').modal('show');
+
+      
+      //   $.ajax({
+      //   url: "{{ route('appointment.index') }}",  
+      //   type: "GET",
+      //   dataType: 'json',
+      //   data: { id: appointmentId },
+      //   headers: {
+      //             'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+      //     },
+      //   success: function(response) {
+      //     // Update the modal content with appointment details
+      //     $('#appointmentModal .modal-body .client-name').text(response.clientName);
+      //     $('#appointmentModal .modal-body .date-time').text(response.dateTime);
+      //     $('#appointmentModal .modal-body .remarks').text(response.remarks);
+      //     $('#appointmentModal .modal-body .status').text(response.status);
+
+      //     // Show the modal
+      //     $('#appointmentModal').modal('show');
+      //   },
+      //   error: function(error) {
+      //     console.error(error);
+      //   }
+      // });
+
       },
       // eventClick: function(event){
       //   $('#appointmentModal').modal('toggle');
@@ -182,6 +254,10 @@ white-space: normal;
     //   time_24hr: true,
     //   defaultDate: $selectedDate
     // });
+
+
+
+    
 
     //   // $('#saveAppointmentBtn').click(function(){
     //   //   var clientName = $('#client_name').val();
@@ -243,9 +319,50 @@ white-space: normal;
     //   }
 
 
+    
+
+
 
     });
     calendar.render();
+
+
+    $('#deleteAppointments').on('click', function (e) {
+      e.preventDefault();
+      var id = appointmentId;
+      
+
+
+    if (appointmentId.length === 0) {
+        alert('No appointments selected for deletion.');
+        return;
+    }
+
+    if (confirm('Are you sure you want to delete the selected appointments?')) {
+     console.log(id);
+
+        $.ajax({
+            url: "{{ route('appointment.destroy') }}", // Change this route to the appropriate Appointment destroy route
+            type: "DELETE",
+            data: { id: id },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+            },
+            dataType: 'json',
+            success: function (response) {
+                toastr.success('Selected appointments have been deleted successfully');
+                location.reload();
+                // Remove the selected appointments from FullCalendar
+            },
+            error: function (xhr, status, error) {
+                alert('Error deleting appointments: ' + xhr.responseText);
+            }
+        });
+    }
+});
+
+
+
 
 
 
@@ -260,3 +377,11 @@ white-space: normal;
  
 
 </script>
+
+
+<script>
+  $(document).ready(function() {
+
+
+  });
+  </script>

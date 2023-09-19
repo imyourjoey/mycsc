@@ -129,6 +129,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //Appointment
     Route::prefix('appointments')->name('appointment.')->group(function () {
         Route::get('', [AppointmentController::class, 'index'])->name('index');
+        Route::get('show/{id}', [AppointmentController::class, 'show'])->name('show');
         Route::get('create', [AppointmentController::class, 'create'])->name('create');
         Route::post('store', [AppointmentController::class, 'store'])->name('store'); 
         Route::get('{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit');
