@@ -154,8 +154,9 @@
             action: function (e, dt, button, config) {
                         // Get the selected data
                 var selectedData = table.row({ selected: true }).data();
-
+               
                 if (selectedData) {
+                    console.log(selectedData.id);
                             // Redirect to the user details page with the selected user's ID
                             window.location = "{{ route('user.edit', ['user' => ':id']) }}".replace(':id', selectedData.id);
 

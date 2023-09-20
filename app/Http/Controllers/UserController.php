@@ -90,7 +90,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::select(['userTag', 'name', 'email', 'phoneNo', 'role',  'created_at', 'updated_at']);
+            $users = User::select(['id','userTag', 'name', 'email', 'phoneNo', 'role',  'created_at', 'updated_at']);
             
             return DataTables::of($users)->toJson();
         }
