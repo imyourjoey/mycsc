@@ -3,6 +3,15 @@
   <div class="container">
 
       <div class="mt-4 mb-4">
+        @if(session()->has('message'))
+        <div class="row">
+            <div class="form-group col-md-6">
+                <a href="{{ route('inquiry.index') }}">
+                <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Inquiries</button>
+                </a>   
+            </div>
+        </div>
+      @endif
           <p class="h2">Edit Inquiry</p>
           <p>Please change the information below update inquiry details.</p>
       </div>

@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
+
     {{-- import css and js --}}
     @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/layout.js', 'resources/css/star-rating.css'])
 
@@ -225,10 +226,22 @@
             'admin.createUserForm': 'Create User',
             'user.index' : 'Manage Users',
             'user.create' : 'Create User',
+            'user.edit' : 'Edit User',
             'service.create' : 'Create Service',
             'service.index' : 'Manage Services',
+            'service.edit' : 'Edit Services',
             'order.create' : 'Create Orders',
-            'order.index' : 'Manage Orders'
+            'order.index' : 'Manage Orders',
+            'order.edit' : 'Edit Orders',
+            'appointment.index' : 'Manage Appointments',
+            'appointment.create' : 'Schedule Appointments',
+            'appointment.edit' : 'Edit Appointments',
+            'inquiry.index' : 'Manage Inquiries',
+            'inquiry.create' : 'Submit Inquiries',
+            'inquiry.edit' : 'Edit Inquiries',
+
+
+
 
             
 
@@ -275,6 +288,8 @@
 
 
 <x-flash-message />
+
+
 
 </body>
 

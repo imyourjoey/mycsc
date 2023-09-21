@@ -95,7 +95,7 @@ class TrainingController extends Controller
         'trainingCapacity' => 'required|integer|min:1', 
         'startDateTime' => 'required|date',
         'endDateTime' => 'required|date|after:startDateTime',
-        'regisDeadline' => 'required|date|before:startDateTime|after:today', 
+        'regisDeadline' => 'required|date|before:startDateTime', 
     ]);
 
 

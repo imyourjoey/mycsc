@@ -3,6 +3,15 @@
   
   <div class="container" id="hello">
       <div class="mt-4 mb-4">
+        @if(session()->has('message'))
+        <div class="row">
+            <div class="form-group col-md-6">
+                <a href="{{ route('invoice.index') }}">
+                <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Invoices</button>
+                </a>   
+            </div>
+        </div>
+      @endif
           <p class="h2">Edit Invoice</p>
           <p>Please fill in the following information to edit invoice details.</p>
       </div>

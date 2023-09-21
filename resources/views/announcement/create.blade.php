@@ -6,6 +6,15 @@
   <div class="container">
 
       <div class="mt-4 mb-4">
+        @if(session()->has('message'))
+        <div class="row">
+            <div class="form-group col-md-6">
+                <a href="{{ route('announcement.index') }}">
+                <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Announcements</button>
+                </a>   
+            </div>
+        </div>
+      @endif
           <p class="h2">Create New Announcement</p>
           <p>Please fill in the following information to create a new announcement.</p>
       </div>

@@ -14,6 +14,15 @@
 
 
       <div class="mt-4 mb-4">
+        @if(session()->has('message'))
+        <div class="row">
+            <div class="form-group col-md-6">
+                <a href="{{ route('appointment.index') }}">
+                <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Appointments</button>
+                </a>   
+            </div>
+        </div>
+      @endif
           <p class="h2">Schedule An Appointment</p>
           <p>Please fill in the following information to schedule an appointment.</p>
       </div>

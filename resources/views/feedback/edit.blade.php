@@ -3,6 +3,15 @@
 
   <div class="container">
       <div class="mt-4 mb-4">
+        @if(session()->has('message'))
+        <div class="row">
+            <div class="form-group col-md-6">
+                <a href="{{ route('feedback.index') }}">
+                <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Feedbacks</button>
+                </a>   
+            </div>
+        </div>
+      @endif
           <p class="h2">Edit Feedback</p>
           <p>Please fill in the following information to edit feedback details</p>
       </div>
