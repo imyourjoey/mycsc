@@ -23,7 +23,14 @@
           </thead>
       </table>
   </div>
+
+
+
 </x-layout>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 
 {{-- Initialize DataTable --}}
 <script>
@@ -162,7 +169,7 @@
                                   'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                               },
                               success: function (response) {
-                                  toastr.success('Selected record(s) have been deleted successfully')
+                                  toastr.success('Selected record(s) have been deleted successfully');
                                   // You can reload the DataTable or update it as needed.
                                   table.ajax.reload();
                               },
@@ -170,6 +177,34 @@
                                   alert('Error deleting records: ' + xhr.responseText);
                               }
                           });
+                      }
+                  }
+              },
+              {
+                extend: 'selectedSingle', 
+                  text: 'Invoice',
+                  action: function (e, dt, button, config) {
+                      // Get the selected data
+                      var selectedData = table.row({ selected: true }).data();
+
+                      if (selectedData) {
+                          // Redirect to the invoice details page with the selected invoice's ID
+                          window.open("{{ route('invoice.showInvoice', ['invoice' => ':invoiceID']) }}".replace(':invoiceID', selectedData.invoiceID),'_blank');
+                      }
+                  }
+              },
+              {
+                extend: 'selectedSingle', 
+                  text: 'Receipt',
+                  action: function (e, dt, button, config) {
+                      // Get the selected data
+                      var selectedData = table.row({ selected: true }).data();
+                        
+                      if (selectedData.paymentStatus === 'paid' && selectedData.paymentStatus !==null) {
+                          // Redirect to the invoice details page with the selected invoice's ID
+                          window.open("{{ route('invoice.showReceipt', ['invoice' => ':invoiceID']) }}".replace(':invoiceID', selectedData.invoiceID),'_blank');
+                      }else{
+                        toastr.error('Receipts can only be generated for paid invoices')
                       }
                   }
               }
@@ -244,4 +279,9 @@
           ]
       });
   });
+
+
 </script>
+
+
+    

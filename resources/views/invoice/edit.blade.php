@@ -1,10 +1,10 @@
 <x-layout>
   <x-navbar />
   
-  <div class="container">
+  <div class="container" id="hello">
       <div class="mt-4 mb-4">
           <p class="h2">Edit Invoice</p>
-          <p>Please update the following information for the invoice.</p>
+          <p>Please fill in the following information to edit invoice details.</p>
       </div>
 
       <form method="POST" action="{{ route('invoice.update', ['invoice' => $invoice->invoiceID]) }}" id="editInvoiceForm">
@@ -65,7 +65,7 @@
                           <span class="input-group-text">MYR</span>
                       </div>
                       <input type="text" class="form-control" id="amountPaid" placeholder="00.00"
-                          name="amountPaid" value="{{ old('amountPaid', $invoice->amountPaid) }}">
+                          name="amountPaid" value="{{ old('amountPaid', $invoice->paymentAmount) }}">
                   </div>
                   @error('amountPaid')
                   <div class="invalid-feedback">{{ $message }}</div>
@@ -110,6 +110,8 @@
           </div>
       </form>
   </div>
+
+
 </x-layout>
 
 <script>
@@ -122,3 +124,4 @@
       });
   });
 </script>
+

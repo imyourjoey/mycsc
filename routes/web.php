@@ -98,12 +98,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //Invoice
     Route::prefix('invoices')->name('invoice.')->group(function () {
+        Route::get('{invoice}/showInvoice',[InvoiceController::class, 'showInvoice'])->name('showInvoice');
+        Route::get('{invoice}/showReceipt',[InvoiceController::class, 'showReceipt'])->name('showReceipt');
         Route::get('', [InvoiceController::class, 'index'])->name('index');
         Route::get('create', [InvoiceController::class, 'create'])->name('create');
         Route::post('store', [InvoiceController::class, 'store'])->name('store'); 
         Route::get('{invoice}/edit', [InvoiceController::class, 'edit'])->name('edit');
         Route::put('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
         Route::delete('destroy', [InvoiceController::class, 'destroy'])->name('destroy');
+        
     });
     
     //Feedback
