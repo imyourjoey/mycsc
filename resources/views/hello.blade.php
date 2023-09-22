@@ -1,214 +1,46 @@
-<x-layout>
-<x-navbar/>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
-
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
 <body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="col-lg-12 mt-5 mb-5">
-                <div id='calendar'></div>
-            </div>
-        </div>
+  <div class="container col-6 text-center border pt-2 mt-5">
+    <div class="row d-flex justify-content-center align-items-center mb-2">
+      <img src="{{ asset('img/ums_logo.png') }}" height="50px">
+      <img src="{{ asset('img/mycsc-logo-light.png') }}" alt="">
+
     </div>
-    
-  </body>
+
+    <p class="h2 mb-3">Hi Joey! Welcome to MyCSC@UMS!</p> 
+    <p class="ml-5 mr-5">
+      You are almost there! You have been successfully registered to MyCSC@UMS Web Based Management System as a <em>Client</em>
+    </p>
+
+    <p>
+      Please login to your account and verify your email using the code below:
+    </p>
+
+    <div class="text-center ml-5 mr-5 bg-light h3 p-3 mb-3">
+
+      00000
+      
+    </div>
+    <div class="ml-5 text-left">
+      Thank you,
+    </div>
+    <div class="ml-5 text-left">
 
 
-  {{-- Modal --}}
-<form>
-  @csrf
-<div class="modal hide fade" id="appointmentModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="client_name">Client Name</label>
-          <select class="form-control selectpicker" id="client_name" data-live-search="true">
-            @foreach ($clients as $client)
-            <option>{{ $client->name }}</option>
-          @endforeach
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="appointmentDateTime">Date</label>
-          <div class="input-group date">
-            <input type="text" class="form-control selector border"  id="appointmentDateTime">
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="saveAppointmentBtn">Save changes</button>
-      </div>
+MyCSC@UMS Team
     </div>
+
+    <hr class="ml-4 mr-4 mt-2 mb-2 border">
+    <small class="form-text text-left  text-muted ml-5 mr-5 mb-3" style="font-size: 12px">You're receiving this email because you recently created a new account with MyCSC@UMS. If this wasn't you, please ignore this email.</small>
+
   </div>
-</div>
-</form>
-
-
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
-
-
-<script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-    // $.ajaxSetup({
-    //             headers: {
-    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //             }
-    //         });
-    var selectedDate = "";
-    var events = @json($events);
-    // var selectedDate;
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar:{
-        start :'listMonth dayGridMonth,timeGridWeek,timeGridDay',
-        center: 'title',
-        end:'today prev,next'
-      },
-      events: events,
-      selectable: true,
-      eventInteractive:true,
-      eventClick: function(event){
-      if (confirm('Are you sure you want to delete the selected records?')) {
-        var id = event.event._def.publicId;
-
-        $.ajax({
-          url: "{{ route('calendar.destroy') }}",
-          type: "DElETE",
-          dataType:'json',
-          data: {id:id},
-          headers: {
-                  'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-          },
-          success: function (response) {
-                  toastr.success('Selected record(s) have been deleted successfully');
-                  
-                  },
-                  error: function (xhr, status, error) {
-                  alert('Error deleting records: ' + xhr.responseText);
-                  }
-
-        });
-        location.reload();
-      }
-        
-
-        
-
-      },
-      select: function(start, end, allDays){
-        window.location.href ="{{ route('appointment.create') }}"
-      }
-    //   select: function(start, end, allDays){
-    //   $('#appointmentModal').modal('toggle');
-      
-    //   $selectedDate = moment(start.startStr).format('YYYY-MM-DD');
-      
-    //   //initialise Datepicker
-    //   $(".selector").flatpickr({
-    //   dateFormat: "Y-m-d H:i",
-    //   enableTime:true,
-    //   minTime: "09:00",
-    //   time_24hr: true,
-    //   defaultDate: $selectedDate
-    // });
-
-    //   // $('#saveAppointmentBtn').click(function(){
-    //   //   var clientName = $('#client_name').val();
-    //   //   var appointmentDateTime = $('#appointmentDateTime').val();
-    //   //   var appointmentDateTime = moment(appointmentDateTime).format("YYYY-MM-DD HH:mm:ss");
-    //   function saveAppointment() {
-    //     var clientName = $('#client_name').val();
-    //     var appointmentDateTime = $('#appointmentDateTime').val();
-    //     var appointmentDateTime = moment(appointmentDateTime).format("YYYY-MM-DD HH:mm:ss");
-
-    //     $.ajax({
-    //       url: "{{ route('appointment.create') }}",
-    //       type: "POST",
-    //       dataType:'json',
-    //       data: {
-    //               clientName: clientName,
-    //               appointmentDateTime: appointmentDateTime
-    //       },
-
-    //       headers: {
-    //       'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-    //       },
-    //       success:function(response){
-    //         console.log(response);
-    //         location.reload();
-
-    //         // $('#calendar').fullCalendar('renderEvent',{
-    //         //   'title': 'Appointment with: '.$response.client,
-    //         // });
-            
-    //         // 
-            
-            
-
-    //         $('#appointmentModal').modal('hide');
-
-
-    //       },
-    //       error:function(error){
-    //         console.error(error);
-
-    //       }
-          
-
-
-
-
-    //     });
-
-    //   }
-
-
-      
-
-    //   $('#saveAppointmentBtn').off('click').on('click', saveAppointment);
-
-      
-      
-    //   }
-
-
-
-    });
-    calendar.render();
-
-
-
-
-
-   
-  });
-
-
-  
-
- 
-
-</script>
-
-
-
-</x-layout>
-
-
-
-
-
-
+</body>
+</html>
