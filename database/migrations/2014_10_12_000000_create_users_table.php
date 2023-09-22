@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('phoneNo',255);
             $table->string('password', 60);
             $table->string('role', 15);
+            $table->string('oneTimePin', 255)->nullable();
+            $table->boolean('emailVerified')->nullable()->default(false);
             $table->timestamps();
         });
     }

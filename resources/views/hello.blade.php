@@ -15,9 +15,9 @@
 
     </div>
 
-    <p class="h2 mb-3">Hi Joey! Welcome to MyCSC@UMS!</p> 
+    <p class="h2 mb-3">Hi, {{ ucfirst($user->name) }}! Welcome to MyCSC@UMS!</p> 
     <p class="ml-5 mr-5">
-      You are almost there! You have been successfully registered to MyCSC@UMS Web Based Management System as a <em>Client</em>
+      You are almost there! You have been successfully registered to MyCSC@UMS Web Based Management System as a <em>{{ ucfirst($user->role) }}</em>
     </p>
 
     <p>
@@ -26,7 +26,7 @@
 
     <div class="text-center ml-5 mr-5 bg-light h3 p-3 mb-3">
 
-      00000
+      {{ $user->oneTimePin }}
       
     </div>
     <div class="ml-5 text-left">

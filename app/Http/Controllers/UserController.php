@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\WelcomeEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 
 class UserController extends Controller
@@ -79,11 +82,17 @@ class UserController extends Controller
         $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        
+        // Generate a random six-digit one-time pin
+        $oneTimePin = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        // Encrypt and store the OTP
+        $user->oneTimePin = Crypt::encrypt($oneTimePin);
         $user->save();
-
-
-
+        
+        //Send OTP to email 
+        Mail::to($user->email)->send(new WelcomeEmail($user));
         return redirect()->back()->with('message', 'User created successfully!');
+        
     }
 
 

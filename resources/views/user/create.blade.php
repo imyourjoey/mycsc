@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <a href="{{ route('user.index') }}">
-                    <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Orders</button>
+                    <button class=" d-block btn btn-primary mb-2 fade-in-button" >Back to Users</button>
                     </a>   
                 </div>
             </div>
