@@ -1,22 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
-use App\Http\Controllers\InquiryController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\TechnicianController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
