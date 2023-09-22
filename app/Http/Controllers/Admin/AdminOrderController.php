@@ -10,7 +10,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class AdminOrderController extends Controller
 {
     public function create(){
         $clients = DB::table('users')->where('role','client')->get();
@@ -50,10 +50,10 @@ class OrderController extends Controller
 
         
         
-        $orderID = OrderController::generateUniqueOrderID();
-        $clientTag = OrderController::getUserTagByName($request->clientName);
-        $technicianTag = OrderController::getUserTagByName($request->assignedTechnician);
-        $serviceID = OrderController::getServiceIDByName($request->serviceType);
+        $orderID = AdminOrderController::generateUniqueOrderID();
+        $clientTag = AdminOrderController::getUserTagByName($request->clientName);
+        $technicianTag = AdminOrderController::getUserTagByName($request->assignedTechnician);
+        $serviceID = AdminOrderController::getServiceIDByName($request->serviceType);
 
         $order = new Order();
         $order->orderID = $orderID;
@@ -151,7 +151,7 @@ class OrderController extends Controller
 
         
         
-        $technicianTag = OrderController::getUserTagByName($validatedData['assignedTechnician']);
+        $technicianTag = AdminOrderController::getUserTagByName($validatedData['assignedTechnician']);
         
 
         // Update the service's attributes

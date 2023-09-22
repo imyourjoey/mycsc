@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class InquiryController extends Controller
+class AdminInquiryController extends Controller
 {
 
     public function index(Request $request)

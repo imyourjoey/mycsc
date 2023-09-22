@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class TrainingController extends Controller
+class AdminTrainingController extends Controller
 {
     public function index(Request $request)
     {
@@ -57,7 +57,7 @@ class TrainingController extends Controller
 
         // Create a new Training model instance and fill it with the validated data
         $training = new Training();
-        $training->trainingID = TrainingController::generateUniqueTrainingID(); // You can define a function to generate a unique ID
+        $training->trainingID = AdminTrainingController::generateUniqueTrainingID(); // You can define a function to generate a unique ID
         $training->userTag = $request->userTag; // Replace with the actual userTag
         $training->trainingTitle = $request->input('trainingTitle');
         $training->trainingCapacity = $request->input('trainingCapacity');

@@ -9,7 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class FeedbackController extends Controller
+class AdminFeedbackController extends Controller
 {
     public function create(){
         return view('feedback.create');
@@ -48,7 +48,7 @@ class FeedbackController extends Controller
 
     // Update properties using the $feedback variable
     $feedback->userTag=auth()->user()->userTag;
-    $feedback->feedbackID = FeedbackController::generateUniqueFeedbackID();
+    $feedback->feedbackID = AdminFeedbackController::generateUniqueFeedbackID();
     $feedback->feedbackMessage = $request->feedbackMessage;
     $feedback->feedbackRating = $request->rating;
 

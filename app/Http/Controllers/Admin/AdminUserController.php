@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
 
 
@@ -74,7 +74,7 @@ class UserController extends Controller
             // 'phoneNo.required' => 'The phone number field is required'
         ]);
 
-        $userTag = UserController::generateUniqueUserTag($request->role);
+        $userTag = AdminUserController::generateUniqueUserTag($request->role);
 
         $user = new User();
         $user->name = $request->name;

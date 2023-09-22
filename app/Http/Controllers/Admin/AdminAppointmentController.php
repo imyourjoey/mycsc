@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-class AppointmentController extends Controller
+class AdminAppointmentController extends Controller
 {
     public function show(Request $request)
     {
@@ -110,14 +110,14 @@ class AppointmentController extends Controller
         $appointmentDateTime = date($dateTimeFormat, $appointmentDateTime);
 
         // dd($appointmentDateTime);
-        $clientTag = AppointmentController::getUserTagByName($request->clientName);
+        $clientTag = AdminAppointmentController::getUserTagByName($request->clientName);
 
         $client = User::where('userTag', $clientTag)->first();
         $clientPhone = $client->phoneNo;
         $clientEmail = $client->email;
 
         $appointment = new Appointment();
-        $appointment->appointmentID = AppointmentController::generateUniqueAppointmentID();
+        $appointment->appointmentID = AdminAppointmentController::generateUniqueAppointmentID();
         $appointment->appointmentName = $request->clientName;
         $appointment->userTag = $clientTag;
         $appointment->appointmentContact = $clientPhone; 

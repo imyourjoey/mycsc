@@ -1,22 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
-use App\Http\Controllers\Admin\InquiryController;
-use App\Http\Controllers\Admin\InvoiceController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\Admin\FeedbackController;
-use App\Http\Controllers\Admin\TrainingController;
-use App\Http\Controllers\TechnicianController;
-use App\Http\Controllers\Admin\AppointmentController;
-use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminInquiryController;
+use App\Http\Controllers\Admin\AdminInvoiceController;
+use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminFeedbackController;
+use App\Http\Controllers\Admin\AdminTrainingController;
+use App\Http\Controllers\Admin\AdminAppointmentController;
+use App\Http\Controllers\Admin\AdminAnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,85 +63,85 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('verifyemail', [VerifyEmailController::class, 'showVerify'])->name('showVerify');
 Route::post('{user}/verifyemail',  [VerifyEmailController::class, 'verifyEmail'])->name('verifyEmail');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     //dashboard
-    Route::get('/admins/index', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('dash', [DashboardController::class, 'showAdminDash'])->name('admin.index');
 
     //User
     Route::prefix('users')->name('user.')->group(function () {
-    Route::get('',[UserController::class,'index'])->name('index');
-    Route::get('create', [UserController::class, 'create'])->name('create');
-    Route::post('store', [UserController::class, 'store'])->name('store');
-    Route::get('{user}/edit',[UserController::class,'edit'])->name('edit');
-    Route::post('{user}/update', [UserController::class, 'update'])->name('update');
-    Route::delete('destroy', [UserController::class, 'destroy'])->name('destroy');
+    Route::get('',[AdminUserController::class,'index'])->name('index');
+    Route::get('create', [AdminUserController::class, 'create'])->name('create');
+    Route::post('store', [AdminUserController::class, 'store'])->name('store');
+    Route::get('{user}/edit',[AdminUserController::class,'edit'])->name('edit');
+    Route::post('{user}/update', [AdminUserController::class, 'update'])->name('update');
+    Route::delete('destroy', [AdminUserController::class, 'destroy'])->name('destroy');
     });
     
     //service
     Route::prefix('services')->name('service.')->group(function () {
-    Route::get('', [ServiceController::class, 'index'])->name('index');
-    Route::get('create',[ServiceController::class, 'create'])->name('create');
-    Route::post('store', [ServiceController::class, 'store'])->name('store');
-    Route::get('{service}/edit', [ServiceController::class, 'edit'])->name('edit');
-    Route::post('{service}/update', [ServiceController::class, 'update'])->name('update');
-    Route::delete('destroy', [ServiceController::class, 'destroy'])->name('destroy');
+    Route::get('', [AdminServiceController::class, 'index'])->name('index');
+    Route::get('create',[AdminServiceController::class, 'create'])->name('create');
+    Route::post('store', [AdminServiceController::class, 'store'])->name('store');
+    Route::get('{service}/edit', [AdminServiceController::class, 'edit'])->name('edit');
+    Route::post('{service}/update', [AdminServiceController::class, 'update'])->name('update');
+    Route::delete('destroy', [AdminServiceController::class, 'destroy'])->name('destroy');
 
     });
     
 
     //Order
     Route::prefix('orders')->name('order.')->group(function () {
-        Route::get('', [OrderController::class, 'index'])->name('index');
-        Route::get('create',[OrderController::class, 'create'])->name('create');
-        Route::post('store', [OrderController::class, 'store'])->name('store');
-        Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
-        Route::post('{order}/update', [OrderController::class, 'update'])->name('update');
-        Route::delete('destroy', [OrderController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminOrderController::class, 'index'])->name('index');
+        Route::get('create',[AdminOrderController::class, 'create'])->name('create');
+        Route::post('store', [AdminOrderController::class, 'store'])->name('store');
+        Route::get('{order}/edit', [AdminOrderController::class, 'edit'])->name('edit');
+        Route::post('{order}/update', [AdminOrderController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminOrderController::class, 'destroy'])->name('destroy');
     
     });
 
     //Invoice
     Route::prefix('invoices')->name('invoice.')->group(function () {
-        Route::get('{invoice}/showInvoice',[InvoiceController::class, 'showInvoice'])->name('showInvoice');
-        Route::get('{invoice}/showReceipt',[InvoiceController::class, 'showReceipt'])->name('showReceipt');
-        Route::get('', [InvoiceController::class, 'index'])->name('index');
-        Route::get('create', [InvoiceController::class, 'create'])->name('create');
-        Route::post('store', [InvoiceController::class, 'store'])->name('store'); 
-        Route::get('{invoice}/edit', [InvoiceController::class, 'edit'])->name('edit');
-        Route::put('{invoice}/update', [InvoiceController::class, 'update'])->name('update');
-        Route::delete('destroy', [InvoiceController::class, 'destroy'])->name('destroy');
+        Route::get('{invoice}/showInvoice',[AdminInvoiceController::class, 'showInvoice'])->name('showInvoice');
+        Route::get('{invoice}/showReceipt',[AdminInvoiceController::class, 'showReceipt'])->name('showReceipt');
+        Route::get('', [AdminInvoiceController::class, 'index'])->name('index');
+        Route::get('create', [AdminInvoiceController::class, 'create'])->name('create');
+        Route::post('store', [AdminInvoiceController::class, 'store'])->name('store'); 
+        Route::get('{invoice}/edit', [AdminInvoiceController::class, 'edit'])->name('edit');
+        Route::put('{invoice}/update', [AdminInvoiceController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminInvoiceController::class, 'destroy'])->name('destroy');
         
     });
     
     //Feedback
     Route::prefix('feedbacks')->name('feedback.')->group(function () {
-        Route::get('', [FeedbackController::class, 'index'])->name('index');
-        Route::get('create',[FeedbackController::class, 'create'])->name('create');
-        Route::post('store', [FeedbackController::class, 'store'])->name('store'); 
-        Route::get('{feedback}/edit', [FeedbackController::class, 'edit'])->name('edit');
+        Route::get('', [AdminFeedbackController::class, 'index'])->name('index');
+        Route::get('create',[AdminFeedbackController::class, 'create'])->name('create');
+        Route::post('store', [AdminFeedbackController::class, 'store'])->name('store'); 
+        Route::get('{feedback}/edit', [AdminFeedbackController::class, 'edit'])->name('edit');
         Route::post('{feedback}/update', [FeedbackController::class, 'update'])->name('update');
-        Route::delete('destroy', [FeedbackController::class, 'destroy'])->name('destroy');
+        Route::delete('destroy', [AdminFeedbackController::class, 'destroy'])->name('destroy');
     });
     //Inquiry
     Route::prefix('inquiries')->name('inquiry.')->group(function () {
-        Route::get('', [InquiryController::class, 'index'])->name('index');
-        Route::get('create', [InquiryController::class, 'create'])->name('create');
-        Route::post('store', [InquiryController::class, 'store'])->name('store'); 
-        Route::get('{inquiry}/edit', [InquiryController::class, 'edit'])->name('edit');
-        Route::put('{inquiry}/update', [InquiryController::class, 'update'])->name('update');
-        Route::delete('destroy', [InquiryController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminInquiryController::class, 'index'])->name('index');
+        Route::get('create', [AdminInquiryController::class, 'create'])->name('create');
+        Route::post('store', [AdminInquiryController::class, 'store'])->name('store'); 
+        Route::get('{inquiry}/edit', [AdminInquiryController::class, 'edit'])->name('edit');
+        Route::put('{inquiry}/update', [AdminInquiryController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminInquiryController::class, 'destroy'])->name('destroy');
     });
 
 
     //Appointment
     Route::prefix('appointments')->name('appointment.')->group(function () {
-        Route::get('', [AppointmentController::class, 'index'])->name('index');
-        Route::get('show/{id}', [AppointmentController::class, 'show'])->name('show');
-        Route::get('create', [AppointmentController::class, 'create'])->name('create');
-        Route::post('store', [AppointmentController::class, 'store'])->name('store'); 
-        Route::get('{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit');
-        Route::put('{appointment}/update', [AppointmentController::class, 'update'])->name('update');
-        Route::delete('destroy', [AppointmentController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminAppointmentController::class, 'index'])->name('index');
+        Route::get('show/{id}', [AdminAppointmentController::class, 'show'])->name('show');
+        Route::get('create', [AdminAppointmentController::class, 'create'])->name('create');
+        Route::post('store', [AdminAppointmentController::class, 'store'])->name('store'); 
+        Route::get('{appointment}/edit', [AdminAppointmentController::class, 'edit'])->name('edit');
+        Route::put('{appointment}/update', [AdminAppointmentController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminAppointmentController::class, 'destroy'])->name('destroy');
     });
 
 
@@ -152,22 +151,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //Training
     Route::prefix('trainings')->name('training.')->group(function () {
-        Route::get('', [TrainingController::class, 'index'])->name('index');
-        Route::get('create', [TrainingController::class, 'create'])->name('create');
-        Route::post('store', [TrainingController::class, 'store'])->name('store'); 
-        Route::get('{training}/edit', [TrainingController::class, 'edit'])->name('edit');
-        Route::put('{training}/update', [TrainingController::class, 'update'])->name('update');
-        Route::delete('destroy', [TrainingController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminTrainingController::class, 'index'])->name('index');
+        Route::get('create', [AdminTrainingController::class, 'create'])->name('create');
+        Route::post('store', [AdminTrainingController::class, 'store'])->name('store'); 
+        Route::get('{training}/edit', [AdminTrainingController::class, 'edit'])->name('edit');
+        Route::put('{training}/update', [AdminTrainingController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminTrainingController::class, 'destroy'])->name('destroy');
     });
     
     //News
     Route::prefix('announcements')->name('announcement.')->group(function () {
-        Route::get('', [AnnouncementController::class, 'index'])->name('index');
-        Route::get('create', [AnnouncementController::class, 'create'])->name('create');
-        Route::post('store', [AnnouncementController::class, 'store'])->name('store'); 
-        Route::get('{announcement}/edit', [AnnouncementController::class, 'edit'])->name('edit');
-        Route::put('{announcement}/update', [AnnouncementController::class, 'update'])->name('update');
-        Route::delete('destroy', [AnnouncementController::class, 'destroy'])->name('destroy');
+        Route::get('', [AdminAnnouncementController::class, 'index'])->name('index');
+        Route::get('create', [AdminAnnouncementController::class, 'create'])->name('create');
+        Route::post('store', [AdminAnnouncementController::class, 'store'])->name('store'); 
+        Route::get('{announcement}/edit', [AdminAnnouncementController::class, 'edit'])->name('edit');
+        Route::put('{announcement}/update', [AdminAnnouncementController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminAnnouncementController::class, 'destroy'])->name('destroy');
     });
     
 
@@ -176,9 +175,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:client'])->group(function () {
-    Route::get('/clients/index', [ClientController::class, 'index'])->name('client.index');
+    Route::get('/clients/index', [DashboardController::class, 'showClientDash'])->name('client.index');
 });
 
 Route::middleware(['auth', 'role:technician'])->group(function () {
-    Route::get('/technicians/index', [TechnicianController::class, 'index'])->name('technician.index');
+    Route::get('/technicians/index', [DashboardController::class, 'showTechnicianDash'])->name('technician.index');
 });

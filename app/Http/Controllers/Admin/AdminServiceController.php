@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 
-class ServiceController extends Controller
+class AdminServiceController extends Controller
 {
 
 
@@ -52,8 +52,8 @@ class ServiceController extends Controller
 
         
         // $request->file('servicePic')->store('service', 'public');
-        $serviceID = ServiceController::generateUniqueServiceID();
-        $userTag = ServiceController::getUserTagByName($request->adminName);
+        $serviceID = AdminServiceController::generateUniqueServiceID();
+        $userTag = AdminServiceController::getUserTagByName($request->adminName);
 
         $service = new Service();
         $service->serviceID = $serviceID;

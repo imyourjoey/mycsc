@@ -9,7 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class InvoiceController extends Controller
+class AdminInvoiceController extends Controller
 {
     public function create(){
 
@@ -121,7 +121,7 @@ class InvoiceController extends Controller
 
     // Create a new invoice
     $invoice = new Invoice();
-    $invoice->invoiceID = InvoiceController::generateUniqueInvoiceID(); // Implement your unique ID generation logic
+    $invoice->invoiceID = AdminInvoiceController::generateUniqueInvoiceID(); // Implement your unique ID generation logic
     $invoice->orderID = $request->input('orderID');
     $invoice->userTag = $clientTag;
     $invoice->totalPayable = $request->totalPayable;

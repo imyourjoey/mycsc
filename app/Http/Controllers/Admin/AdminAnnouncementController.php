@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class AnnouncementController extends Controller
+class AdminAnnouncementController extends Controller
 {
     public function index(Request $request)
 {
@@ -48,7 +48,7 @@ class AnnouncementController extends Controller
 
     // Create a new Announcement model instance and fill it with the validated data
     $announcement = new Announcement();
-    $announcement->announcementID = AnnouncementController::generateUniqueAnnouncementID(); // You can define a function to generate a unique ID
+    $announcement->announcementID = AdminAnnouncementController::generateUniqueAnnouncementID(); // You can define a function to generate a unique ID
     $announcement->userTag = auth()->user()->userTag; // Replace with the actual userTag
     $announcement->announcementTitle = $request->input('title');
     $announcement->announcementContent = $request->input('description');

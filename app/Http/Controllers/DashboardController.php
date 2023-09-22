@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
-    public function index(){
+    public function showClientDash(){
+        return view('client.dashboard');
+    }
+
+    public function showAdminDash(){
 
 
         //get inquiries received today
@@ -17,4 +21,10 @@ class AdminController extends Controller
 
         return view('admin.dashboard',['inquiryCount'=>$inquiryCount]);
     }
+
+    public function showTechnicianDash(){
+        return view('technician.dashboard');
+    }
+
+
 }
