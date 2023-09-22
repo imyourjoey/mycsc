@@ -110,7 +110,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'phoneNo' => 'required|string|max:20',
-            'email' => 'required|email|unique:users,email,'.$user->id, // Unique rule, but exclude the current user's email
+            'email' => 'required|email|unique:users,email,'.$user->id, 
         ]);
 
         
@@ -126,7 +126,7 @@ class UserController extends Controller
 
         // Redirect back with a success message
         return redirect()
-        ->route('user.index', ['user' => $user])
+        ->route('user.edit', ['user' => $user])
         ->with('message', 'User details updated successfully');
     }
 
