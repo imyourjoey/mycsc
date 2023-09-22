@@ -29,6 +29,8 @@ use App\Http\Controllers\AnnouncementController;
 |
 */
 Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index');
+
+
 Route::delete('/hello/destroy', [CalendarController::class, 'destroy'])->name('calendar.destroy');
 
 
@@ -58,10 +60,13 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+//verify email routes
+Route::get('verifyemail', [VerifyEmailController::class, 'showVerify'])->name('showVerify');
+Route::post('{user}/verifyemail',  [VerifyEmailController::class, 'verifyEmail'])->name('verifyEmail');
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     //dashboard
     Route::get('/admins/index', [AdminController::class, 'index'])->name('admin.index');
-
 
     //User
     Route::prefix('users')->name('user.')->group(function () {

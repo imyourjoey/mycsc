@@ -21,7 +21,8 @@ class LoginController extends Controller
         // Authentication passed
         
         $user = Auth::user(); // Get the authenticated user
-
+        
+        if($user->emailVerified){
         // Determine where to redirect based on the user's role
         if ($user->role === 'admin') {
             return redirect()->route('admin.index')->with('message', 'Logged in successfully as admin!');
@@ -30,6 +31,11 @@ class LoginController extends Controller
         } elseif ($user->role === 'technician') {
             return redirect()->route('technician.index')->with('message', 'Logged in successfully as technician!');
         }
+        }else{
+            return redirect()->route('showVerify');
+        }
+
+
         
     }
     

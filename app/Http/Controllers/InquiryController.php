@@ -45,9 +45,9 @@ class InquiryController extends Controller
         // Update properties using the $inquiry variable
         $inquiry->userTag = auth()->user()->userTag;
         $inquiry->inquiryID = self::generateUniqueInquiryID();
-        $inquiry->inquiryName = auth()->user()->name; // Assuming you want to use the user's name
+        $inquiry->inquiryName = auth()->user()->name; 
         $inquiry->inquiryMessage = $request->inquiryMessage;
-        $inquiry->inquiryContactEmail = auth()->user()->email; // Assuming you want to use the user's email
+        $inquiry->inquiryContactEmail = auth()->user()->email; 
 
         $inquiry->save();
 

@@ -97,36 +97,36 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-    $request->validate([
+        $request->validate([
         'clientName' => 'required',
         'datetime' => 'required|date_format:Y-m-d H:i',
         'remarks' => 'nullable',
-    ]);
+        ]);
     
 
-    $dateTimeFormat = "Y-m-d H:i:s";
-    $appointmentDateTime = strtotime($request->datetime);
-    $appointmentDateTime = date($dateTimeFormat, $appointmentDateTime);
+        $dateTimeFormat = "Y-m-d H:i:s";
+        $appointmentDateTime = strtotime($request->datetime);
+        $appointmentDateTime = date($dateTimeFormat, $appointmentDateTime);
 
-    // dd($appointmentDateTime);
-    $clientTag = AppointmentController::getUserTagByName($request->clientName);
+        // dd($appointmentDateTime);
+        $clientTag = AppointmentController::getUserTagByName($request->clientName);
 
-    $client = User::where('userTag', $clientTag)->first();
-    $clientPhone = $client->phoneNo;
-    $clientEmail = $client->email;
+        $client = User::where('userTag', $clientTag)->first();
+        $clientPhone = $client->phoneNo;
+        $clientEmail = $client->email;
 
-    $appointment = new Appointment();
-    $appointment->appointmentID = AppointmentController::generateUniqueAppointmentID();
-    $appointment->appointmentName = $request->clientName;
-    $appointment->userTag = $clientTag;
-    $appointment->appointmentContact = $clientPhone; 
-    $appointment->appointmentEmail = $clientEmail;   
-    $appointment->appointmentDateTime = $appointmentDateTime;
-    $appointment->appointmentStatus = 'approved';
-    $appointment->remarks = $request->remarks;
-    $appointment->save();
+        $appointment = new Appointment();
+        $appointment->appointmentID = AppointmentController::generateUniqueAppointmentID();
+        $appointment->appointmentName = $request->clientName;
+        $appointment->userTag = $clientTag;
+        $appointment->appointmentContact = $clientPhone; 
+        $appointment->appointmentEmail = $clientEmail;   
+        $appointment->appointmentDateTime = $appointmentDateTime;
+        $appointment->appointmentStatus = 'approved';
+        $appointment->remarks = $request->remarks;
+        $appointment->save();
 
-    return redirect()->back()->with('message', 'Appointment created successfully!');
+        return redirect()->back()->with('message', 'Appointment created successfully!');
     }
 
     public function edit(Appointment $appointment){
@@ -135,9 +135,9 @@ class AppointmentController extends Controller
 
     public function generateUniqueAppointmentID()
     {
-    $prefix = 'AP';
+        $prefix = 'AP';
     
-    if ($prefix) {
+        if ($prefix) {
         $unique = false;
         $count = 1;
         
@@ -152,9 +152,9 @@ class AppointmentController extends Controller
         }
 
         return $appointmentID;
-    }
+        }
 
-    return '';
+        return '';
     }
 
     public function update(Request $request, Appointment $appointment)
@@ -201,12 +201,12 @@ public function destroy(Request $request)
 
     public function getUserTagByName($name)
     {
-    $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first();
 
-    if ($user) {
+        if ($user) {
         $userTag = $user->userTag; 
         return $userTag;
-    } 
+        } 
     }
 
 
