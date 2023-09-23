@@ -8,15 +8,13 @@
   }
 
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <!-- Slider main container -->
 
 <div class="container-fluid pb-5" style="background: black">
 <div class="h2 ml-5 pt-5 mb-5 text-light">News and Announcements</div>
-<div class="swiper col-9">
+<div class="swiper announcement-swiper col-9">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
       <!-- Slides -->
@@ -56,7 +54,7 @@
 </div>
 
 <script>
-  const swiper = new Swiper('.swiper', {
+  const announcement_swiper = new Swiper('.announcement-swiper', {
       // Optional parameters
       direction: 'horizontal',
       loop: true,

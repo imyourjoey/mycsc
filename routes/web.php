@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminTrainingController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
 use App\Http\Controllers\Admin\AdminAnnouncementController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,7 @@ Route::get('/kkkk', function () {
 
 
 
-Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+Route::get('', [LandingController::class,'showLandingPage'])->name('landing');
 
 // Route::get('appointment/create', [CalendarController::class,'create'])->name('appointment.create');
 

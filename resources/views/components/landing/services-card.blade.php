@@ -3,19 +3,25 @@
 
 <div class="container-fluid mb-5">
   <h2 class="ml-5 mt-4 mb-3">Services</h2>
-        <div class="row justify-content-between pr-5 pl-5">
-            
-            <div class="col-md-4 mt-1">
+        <div class="row justify-content-between pr-5 pl-5" >
+            <div class="swiper service-swiper col-12" style="height: 450px">
+                <div class="swiper-wrapper">
+            @foreach ($services as $service)
+            <div class="col-md-4 mt-1 swiper-slide">
                 <div class="card p-3">
-                    <div class="card-img-top" style="height: 200px; background-color: #f0f0f0;"></div>
+                    <div class="card-img-top" style="height: 220px; background-color: #f0f0f0;"></div>
                     <div class="card-body p-0 mt-3">
-                        <h5 class="card-title">Person 1</h5>
-                        <p class="card-text">Description of Person 1.</p>
+                        <h5 class="card-title">{{ $service->serviceName }}</h5>
+                        <p class="card-text">{{ $service->serviceDesc }}</p>
                         <a href="#" class="btn btn-primary form-control">Learn More</a>
                     </div>
                 </div>
             </div>
-            <div class="service-card col-md-4 mt-1">
+        @endforeach
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+            {{-- <div class="service-card col-md-4 mt-1">
                 <div class="service-card card p-3">
                     <div class="card-img-top" style="height: 200px; background-color: #f0f0f0;"></div>
                     <div class="card-body p-0 mt-3">
@@ -34,8 +40,26 @@
                         <a href="#" class="btn btn-primary form-control">Learn More</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             
 
         </div>
     </div>
+
+    <script>
+        const service_swiper = new Swiper('.service-swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView: 3,
+            centeredSlides: true,
+            pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+        grabCursor: true,
+        clickable: true,
+      },
+            
+        });
+      
+      </script>
