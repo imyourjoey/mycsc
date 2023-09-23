@@ -29,12 +29,12 @@ class AdminAnnouncementController extends Controller
         return DataTables::of($announcements)->toJson();
     }
 
-    return view('announcement.index'); // Replace 'announcement.index' with your actual view name
+    return view('admin.announcement.index'); // Replace 'announcement.index' with your actual view name
 }
 
 
     public function create(){
-        return view('announcement.create');
+        return view('admin.announcement.create');
     }
 
     public function store(Request $request)
@@ -70,7 +70,7 @@ public function edit(Announcement $announcement)
     {
         // $user = User::findOrFail($id);
         // return view('user.update', compact('user'));
-        return view('announcement.edit', ['announcement' => $announcement]);
+        return view('admin.announcement.edit', ['announcement' => $announcement]);
     }
 
 
@@ -98,7 +98,7 @@ public function edit(Announcement $announcement)
     $announcement->save();
 
     // Redirect back with a success message
-    return redirect()->route('announcement.edit', ['announcement' => $announcement])
+    return redirect()->route('admin.announcement.edit', ['announcement' => $announcement])
         ->with('message', 'Announcement details updated successfully.');
 }
 

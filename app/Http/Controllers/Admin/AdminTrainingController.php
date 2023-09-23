@@ -34,11 +34,11 @@ class AdminTrainingController extends Controller
             return DataTables::of($trainings)->toJson();
         }
 
-        return view('training.index'); // Replace 'training.index' with your actual view name
+        return view('admin.training.index'); // Replace 'training.index' with your actual view name
     }
 
     public function create(){
-        return view('training.create');
+        return view('admin.training.create');
     }
 
     public function store(Request $request)
@@ -80,7 +80,7 @@ class AdminTrainingController extends Controller
     public function edit(Training $training)
     {
         
-        return view('training.edit', ['training' => $training]);
+        return view('admin.training.edit', ['training' => $training]);
     }
 
 
@@ -113,7 +113,7 @@ class AdminTrainingController extends Controller
     $training->save();
 
     // Redirect back with a success message
-    return redirect()->route('training.edit', ['training' => $training])
+    return redirect()->route('admin.training.edit', ['training' => $training])
         ->with('message', 'Training program details updated successfully.');
 }
 

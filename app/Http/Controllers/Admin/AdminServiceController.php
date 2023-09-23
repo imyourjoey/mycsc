@@ -22,11 +22,11 @@ class AdminServiceController extends Controller
             return DataTables::of($services)->toJson();
         }
     
-        return view('service.index'); 
+        return view('admin.service.index'); 
 
     }
     public function create(){
-        return view('service.create');
+        return view('admin.service.create');
     }
 
 
@@ -69,7 +69,7 @@ class AdminServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view('service.edit', ['service' => $service]);
+        return view('admin.service.edit', ['service' => $service]);
     }
 
 
@@ -101,7 +101,7 @@ class AdminServiceController extends Controller
         $service->save();
 
         // Redirect back with a success message
-        return redirect()->route('service.edit', ['service' => $service])
+        return redirect()->route('admin.service.edit', ['service' => $service])
         ->with('message', 'Service details updated successfully.');
     }
 

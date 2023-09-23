@@ -20,7 +20,7 @@ class AdminInvoiceController extends Controller
         ->get();
 
 
-        return view('invoice.create',['orders' => $orders]);
+        return view('admin.invoice.create',['orders' => $orders]);
     }
 
     public function edit(Invoice $invoice)
@@ -34,7 +34,7 @@ class AdminInvoiceController extends Controller
 
         // $user = User::findOrFail($id);
         // return view('user.update', compact('user'));
-        return view('invoice.edit', ['invoice' => $invoice,'client' => $client, 'orders'=> $orders]);
+        return view('admin.invoice.edit', ['invoice' => $invoice,'client' => $client, 'orders'=> $orders]);
 
         
     }
@@ -61,7 +61,7 @@ class AdminInvoiceController extends Controller
     
         // Check if the invoice was found
         if ($invoice) {
-            return view('invoice.show-invoice', ['invoice' => $invoiceInfo]);
+            return view('admin.invoice.show-invoice', ['invoice' => $invoiceInfo]);
         } else {
             // Handle the case where the invoice with the given ID was not found
             // You can redirect to an error page or return an error message
@@ -95,7 +95,7 @@ class AdminInvoiceController extends Controller
         if ($invoiceInfo) {
             $balanceDue = $invoiceInfo->totalPayable - $invoiceInfo->paymentAmount;
             $invoiceInfo->balanceDue = $balanceDue;
-            return view('invoice.show-receipt', ['invoice' => $invoiceInfo]);
+            return view('admin.invoice.show-receipt', ['invoice' => $invoiceInfo]);
         } else {
             // Handle the case where the invoice with the given ID was not found
             // You can redirect to an error page or return an error message
@@ -132,7 +132,7 @@ class AdminInvoiceController extends Controller
     
     $invoice->save();
 
-    return redirect()->route('invoice.create')->with('message', 'Invoice created successfully!');
+    return redirect()->route('admin.invoice.create')->with('message', 'Invoice created successfully!');
 }
 
 
@@ -159,7 +159,7 @@ public function index(Request $request)
         return DataTables::of($invoices)->toJson();
     }
 
-    return view('invoice.index');
+    return view('admin.invoice.index');
 }
 
 public function update(Request $request, Invoice $invoice)
@@ -184,7 +184,7 @@ public function update(Request $request, Invoice $invoice)
     $invoice->save();
 
     // Redirect back with a success message
-    return redirect()->route('invoice.edit', ['invoice' => $invoice])
+    return redirect()->route('admin.invoice.edit', ['invoice' => $invoice])
         ->with('message', 'Invoice details updated successfully.');
 }
 

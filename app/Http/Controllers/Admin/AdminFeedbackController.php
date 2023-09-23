@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class AdminFeedbackController extends Controller
 {
     public function create(){
-        return view('feedback.create');
+        return view('admin.feedback.create');
     }
 
 
@@ -34,7 +34,7 @@ class AdminFeedbackController extends Controller
         return DataTables::of($feedback)->toJson();
     }
 
-    return view('feedback.index');
+    return view('admin.feedback.index');
 }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class AdminFeedbackController extends Controller
 public function edit(Feedback $feedback)
 {
     $user = User::where('userTag', $feedback->userTag)->first();
-    return view('feedback.edit', ['feedback' => $feedback , 'user' => $user]);
+    return view('admin.feedback.edit', ['feedback' => $feedback , 'user' => $user]);
    
 }
 
@@ -80,7 +80,7 @@ public function update(Request $request, Feedback $feedback)
     $feedback->save();
 
     // Redirect back with a success message
-    return redirect()->route('feedback.edit', ['feedback' => $feedback])
+    return redirect()->route('admin.feedback.edit', ['feedback' => $feedback])
         ->with('message', 'Feedback details updated successfully.');
 }
 

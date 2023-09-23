@@ -37,7 +37,7 @@ class AdminAppointmentController extends Controller
         $clients = DB::table('users')->where('role','client')->get();
 
       
-        return view('appointment.create', ['clients' => $clients, 'selectedDate'=> $selectedDate]);
+        return view('admin.appointment.create', ['clients' => $clients, 'selectedDate'=> $selectedDate]);
 
     }
 
@@ -93,7 +93,7 @@ class AdminAppointmentController extends Controller
         //     ];
         // }
         
-        return view('appointment.index', ['events' => $events, 'clients' => $clients]);
+        return view('admin.appointment.index', ['events' => $events, 'clients' => $clients]);
     }
 
     public function store(Request $request)
@@ -131,7 +131,7 @@ class AdminAppointmentController extends Controller
     }
 
     public function edit(Appointment $appointment){
-        return view('appointment.edit', ['appointment' => $appointment]);
+        return view('admin.appointment.edit', ['appointment' => $appointment]);
     }
 
     public function generateUniqueAppointmentID()
@@ -178,7 +178,7 @@ class AdminAppointmentController extends Controller
     $appointment->save();
 
     // Redirect back with a success message
-    return redirect()->route('appointment.edit', ['appointment' => $appointment])
+    return redirect()->route('admin.appointment.edit', ['appointment' => $appointment])
         ->with('message', 'Appointment details updated successfully.');
 }
 

@@ -68,31 +68,31 @@
 <div class="collapse navbar-collapse" id="navbarToggler">
 <ul class="navbar-nav ml-auto navbar-right-section">
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('user.index') }}">User</a>
+    <a class="nav-link" href="{{ route('admin.user.index') }}">User</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('service.index') }}">Service</a>
+    <a class="nav-link" href="{{ route('admin.service.index') }}">Service</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('appointment.index') }}">Calendar</a>
+    <a class="nav-link" href="{{ route('admin.appointment.index') }}">Calendar</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('order.index') }}">Order</a>
+    <a class="nav-link" href="{{ route('admin.order.index') }}">Order</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('invoice.index') }}">Invoice</a>
+    <a class="nav-link" href="{{ route('admin.invoice.index') }}">Invoice</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('feedback.index') }}">Feedback</a>
+    <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('inquiry.index') }}">Inquiry</a>
+    <a class="nav-link" href="{{ route('admin.inquiry.index') }}">Inquiry</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('training.index') }}">Training</a>
+    <a class="nav-link" href="{{ route('admin.training.index') }}">Training</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('announcement.index') }}">News</a>
+    <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -122,31 +122,31 @@
 <div class="collapse navbar-collapse" id="navbarToggler">
 <ul class="navbar-nav ml-auto navbar-right-section">
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('user.index') }}">User</a>
+    <a class="nav-link" href="{{ route('admin.user.index') }}">User</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('service.index') }}">Service</a>
+    <a class="nav-link" href="{{ route('admin.service.index') }}">Service</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('appointment.index') }}">Calendar</a>
+    <a class="nav-link" href="{{ route('admin.appointment.index') }}">Calendar</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('order.index') }}">Order</a>
+    <a class="nav-link" href="{{ route('admin.order.index') }}">Order</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('invoice.index') }}">Invoice</a>
+    <a class="nav-link" href="{{ route('admin.invoice.index') }}">Invoice</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('feedback.index') }}">Feedback</a>
+    <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('inquiry.index') }}">Inquiry</a>
+    <a class="nav-link" href="{{ route('admin.inquiry.index') }}">Inquiry</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('training.index') }}">Training</a>
+    <a class="nav-link" href="{{ route('admin.training.index') }}">Training</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('announcement.index') }}">News</a>
+    <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

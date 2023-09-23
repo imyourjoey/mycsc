@@ -17,7 +17,7 @@ class AdminOrderController extends Controller
         $technicians = DB::table('users')->where('role','technician')->get();
         $services = DB::table('service')->get();
 
-        return view('order.create',['clients' => $clients, 'technicians'=> $technicians, 'services'=> $services]);
+        return view('admin.order.create',['clients' => $clients, 'technicians'=> $technicians, 'services'=> $services]);
     }
 
     public function store(Request $request)
@@ -108,7 +108,7 @@ class AdminOrderController extends Controller
             return DataTables::of($orders)->toJson();
         }
     
-        return view('order.index'); 
+        return view('admin.order.index'); 
 
     }
 
@@ -120,7 +120,7 @@ class AdminOrderController extends Controller
 
         // $user = User::findOrFail($id);
         // return view('user.update', compact('user'));
-        return view('order.edit', ['order' => $order,'clients' => $clients, 'technicians'=> $technicians, 'services'=> $services]);
+        return view('admin.order.edit', ['order' => $order,'clients' => $clients, 'technicians'=> $technicians, 'services'=> $services]);
 
         
     }
@@ -173,7 +173,7 @@ class AdminOrderController extends Controller
         $order->save();
 
         // Redirect back with a success message
-        return redirect()->route('order.edit', ['order' => $order])
+        return redirect()->route('admin.order.edit', ['order' => $order])
         ->with('message', 'Order details updated successfully.');
     }
 

@@ -57,7 +57,7 @@ class AdminUserController extends Controller
 
 
     public function create(){
-        return view('user.create');
+        return view('admin.user.create');
     }
 
 
@@ -105,13 +105,13 @@ class AdminUserController extends Controller
             return DataTables::of($users)->toJson();
         }
     
-        return view('user.index'); 
+        return view('admin.user.index'); 
 
     }
 
     public function edit(User $user)
     {
-        return view('user.edit', ['user' => $user]);
+        return view('admin.user.edit', ['user' => $user]);
     }
 
     public function update(Request $request, User $user)
@@ -136,7 +136,7 @@ class AdminUserController extends Controller
 
         // Redirect back with a success message
         return redirect()
-        ->route('user.edit', ['user' => $user])
+        ->route('admin.user.edit', ['user' => $user])
         ->with('message', 'User details updated successfully');
     }
 

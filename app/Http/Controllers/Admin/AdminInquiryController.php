@@ -29,10 +29,10 @@ class AdminInquiryController extends Controller
             return DataTables::of($inquiries)->toJson();
         }
 
-        return view('inquiry.index');
+        return view('admin.inquiry.index');
     }
     public function create(){
-        return view('inquiry.create');
+        return view('admin.inquiry.create');
     }
 
     public function store(Request $request)
@@ -57,7 +57,7 @@ class AdminInquiryController extends Controller
 
     public function edit(Inquiry $inquiry)
 {
-    return view('inquiry.edit', ['inquiry' => $inquiry]);
+    return view('admin.inquiry.edit', ['inquiry' => $inquiry]);
    
 }
 
@@ -76,7 +76,7 @@ public function update(Request $request, Inquiry $inquiry)
     $inquiry->save();
 
     // Redirect back with a success message
-    return redirect()->route('inquiry.edit', ['inquiry' => $inquiry])
+    return redirect()->route('admin.inquiry.edit', ['inquiry' => $inquiry])
         ->with('message', 'Inquiry details updated successfully.');
 }
 

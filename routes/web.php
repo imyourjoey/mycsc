@@ -68,7 +68,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('dash', [DashboardController::class, 'showAdminDash'])->name('admin.index');
 
     //User
-    Route::prefix('users')->name('user.')->group(function () {
+    Route::prefix('users')->name('admin.user.')->group(function () {
     Route::get('',[AdminUserController::class,'index'])->name('index');
     Route::get('create', [AdminUserController::class, 'create'])->name('create');
     Route::post('store', [AdminUserController::class, 'store'])->name('store');
@@ -78,7 +78,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     });
     
     //service
-    Route::prefix('services')->name('service.')->group(function () {
+    Route::prefix('services')->name('admin.service.')->group(function () {
     Route::get('', [AdminServiceController::class, 'index'])->name('index');
     Route::get('create',[AdminServiceController::class, 'create'])->name('create');
     Route::post('store', [AdminServiceController::class, 'store'])->name('store');
@@ -90,7 +90,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     
 
     //Order
-    Route::prefix('orders')->name('order.')->group(function () {
+    Route::prefix('orders')->name('admin.order.')->group(function () {
         Route::get('', [AdminOrderController::class, 'index'])->name('index');
         Route::get('create',[AdminOrderController::class, 'create'])->name('create');
         Route::post('store', [AdminOrderController::class, 'store'])->name('store');
@@ -101,7 +101,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     });
 
     //Invoice
-    Route::prefix('invoices')->name('invoice.')->group(function () {
+    Route::prefix('invoices')->name('admin.invoice.')->group(function () {
         Route::get('{invoice}/showInvoice',[AdminInvoiceController::class, 'showInvoice'])->name('showInvoice');
         Route::get('{invoice}/showReceipt',[AdminInvoiceController::class, 'showReceipt'])->name('showReceipt');
         Route::get('', [AdminInvoiceController::class, 'index'])->name('index');
@@ -114,16 +114,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     });
     
     //Feedback
-    Route::prefix('feedbacks')->name('feedback.')->group(function () {
+    Route::prefix('feedbacks')->name('admin.feedback.')->group(function () {
         Route::get('', [AdminFeedbackController::class, 'index'])->name('index');
         Route::get('create',[AdminFeedbackController::class, 'create'])->name('create');
         Route::post('store', [AdminFeedbackController::class, 'store'])->name('store'); 
         Route::get('{feedback}/edit', [AdminFeedbackController::class, 'edit'])->name('edit');
-        Route::post('{feedback}/update', [FeedbackController::class, 'update'])->name('update');
+        Route::post('{feedback}/update', [AdminFeedbackController::class, 'update'])->name('update');
         Route::delete('destroy', [AdminFeedbackController::class, 'destroy'])->name('destroy');
     });
     //Inquiry
-    Route::prefix('inquiries')->name('inquiry.')->group(function () {
+    Route::prefix('inquiries')->name('admin.inquiry.')->group(function () {
         Route::get('', [AdminInquiryController::class, 'index'])->name('index');
         Route::get('create', [AdminInquiryController::class, 'create'])->name('create');
         Route::post('store', [AdminInquiryController::class, 'store'])->name('store'); 
@@ -134,7 +134,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 
     //Appointment
-    Route::prefix('appointments')->name('appointment.')->group(function () {
+    Route::prefix('appointments')->name('admin.appointment.')->group(function () {
         Route::get('', [AdminAppointmentController::class, 'index'])->name('index');
         Route::get('show/{id}', [AdminAppointmentController::class, 'show'])->name('show');
         Route::get('create', [AdminAppointmentController::class, 'create'])->name('create');
@@ -150,7 +150,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     
 
     //Training
-    Route::prefix('trainings')->name('training.')->group(function () {
+    Route::prefix('trainings')->name('admin.training.')->group(function () {
         Route::get('', [AdminTrainingController::class, 'index'])->name('index');
         Route::get('create', [AdminTrainingController::class, 'create'])->name('create');
         Route::post('store', [AdminTrainingController::class, 'store'])->name('store'); 
@@ -160,7 +160,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     });
     
     //News
-    Route::prefix('announcements')->name('announcement.')->group(function () {
+    Route::prefix('announcements')->name('admin.announcement.')->group(function () {
         Route::get('', [AdminAnnouncementController::class, 'index'])->name('index');
         Route::get('create', [AdminAnnouncementController::class, 'create'])->name('create');
         Route::post('store', [AdminAnnouncementController::class, 'store'])->name('store'); 
