@@ -1,5 +1,11 @@
 {{-- import css --}}
 @vite(['resources/css/navbar.css'])
+<style>
+  :root {
+    --fa-right:-50%;
+        }
+</style>
+
 
 <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,6 +100,22 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
+  <li class="nav-item ml-1 mr-1">
+    <a class="nav-link" href="{{ route('admin.announcement.index') }}">
+     
+        
+      <span class="fa-layers fa-fw ">
+        <i class="fa fa-bell h4"></i>
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">1,419</p></span>
+      </span>
+          {{-- <i class="fa fa-bell" style="color:#871719"></i> --}}
+        
+      
+    </a>
+      
+      
+      
+  </li>
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
@@ -112,7 +134,7 @@
 </ul>
 </div>
 
-{{-- Admin Dashboard --}}
+{{-- Client Dashboard --}}
 @elseif(auth()->check() && auth()->user()->role === 'client')
 
 <a class="navbar-brand" href={{ route('admin.index') }}>
@@ -148,6 +170,12 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.announcement.index') }}"><i class="fa-regular fa-bell fa-bounce"></i></a>
+  </li>
+
+  
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     

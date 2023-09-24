@@ -19,7 +19,7 @@
             </div>
         @endforeach
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-scrollbar"></div>
         </div>
             {{-- <div class="service-card col-md-4 mt-1">
                 <div class="service-card card p-3">
@@ -53,12 +53,9 @@
             loop: true,
             slidesPerView: 3,
             centeredSlides: true,
-            pagination: {
-        el: ".swiper-pagination",
-        dynamicBullets: true,
-        grabCursor: true,
-        clickable: true,
-      },
+            scrollbar: {
+            el: ".swiper-scrollbar"
+            },
             
         });
       
