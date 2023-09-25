@@ -2,7 +2,7 @@
 @vite(['resources/css/navbar.css'])
 <style>
   :root {
-    --fa-right:-50%;
+    --fa-right:-23%;
         }
 </style>
 
@@ -101,16 +101,13 @@
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
   <li class="nav-item ml-1 mr-1">
-    <a class="nav-link" href="{{ route('admin.announcement.index') }}">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#notificationModal">
      
         
       <span class="fa-layers fa-fw ">
         <i class="fa fa-bell h4"></i>
-        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">1,419</p></span>
-      </span>
-          {{-- <i class="fa fa-bell" style="color:#871719"></i> --}}
-        
-      
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">12</p></span>
+      </span>        
     </a>
       
       
@@ -197,10 +194,15 @@
 @endif
 
   </div>
+
 </nav>
+
+<x-notification-modal/>
+
 
 
 {{-- Dropdown Menu --}}
+
 
 
 
