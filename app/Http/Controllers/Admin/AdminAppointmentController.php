@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use App\Notifications\AppointmentRequested;
+
 
 class AdminAppointmentController extends Controller
 {
@@ -126,6 +128,12 @@ class AdminAppointmentController extends Controller
         $appointment->appointmentStatus = 'approved';
         $appointment->remarks = $request->remarks;
         $appointment->save();
+
+        $admins = User::where('role', 'admin')->get();
+        
+        foreach ($admins as $admin) {
+            $admin->notify(new AppointmentRequested($appointment));
+        }
 
         return redirect()->back()->with('message', 'Appointment created successfully!');
     }

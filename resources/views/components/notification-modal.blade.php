@@ -51,25 +51,28 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-slideout" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h3 class="modal-title" id="notificationModalLabel">Notifications</h3>
             </div>
             <div class="modal-body">
-              <div class="row pt-3 pb-2">
-                <div class="col-6 h6">Title</div>
-                <div class="col-6 h6 d-flex justify-content-end">6d</div>
+
+
+
+              @foreach(auth()->user()->unreadNotifications as $notification)
+              <div class="row pt-3 pb-3">
+                <div class="col-8">{{ $notification->data['message'] }} 
+
+                @if (isset($notification->data['appointmentDateTime']))
+                    {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j F h:i A') }}
+                @endif</div>
+                
+                <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
+                
 
               </div>  
-              <div class="row pt-3 pb-2">
-                <div class="col-6 h6">Title</div>
-                <div class="col-6 h6 d-flex justify-content-end">6d</div>
+          @endforeach
 
-              </div> 
-              <div class="row pt-3 pb-2">
-                <div class="col-6 h6">Title</div>
-                <div class="col-6 h6 d-flex justify-content-end">6d</div>
-
-              </div> 
 
 
 
