@@ -134,44 +134,48 @@
 {{-- Client Dashboard --}}
 @elseif(auth()->check() && auth()->user()->role === 'client')
 
-<a class="navbar-brand" href={{ route('admin.index') }}>
+<a class="navbar-brand" href={{ route('client.index') }}>
   <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
 <ul class="navbar-nav ml-auto navbar-right-section">
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.user.index') }}">User</a>
+    <a class="nav-link" href="{{ route('admin.user.index') }}">Appointment</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.service.index') }}">Service</a>
+    <a class="nav-link" href="{{ route('admin.service.index') }}">Order</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.appointment.index') }}">Calendar</a>
+    <a class="nav-link" href="{{ route('admin.appointment.index') }}">Invoice</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.order.index') }}">Order</a>
+    <a class="nav-link" href="{{ route('admin.order.index') }}">Training</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.invoice.index') }}">Invoice</a>
+    <a class="nav-link" href="{{ route('admin.invoice.index') }}">Inquiry</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.inquiry.index') }}">Inquiry</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.training.index') }}">Training</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
+  <li class="nav-item ml-1 mr-1">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#notificationModal">
+     
+        
+      <span class="fa-layers fa-fw ">
+        <i class="fa fa-bell h4"></i>
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">12</p></span>
+      </span>        
+    </a>
+      
+      
+      
   </li>
 
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.announcement.index') }}"><i class="fa-regular fa-bell fa-bounce"></i></a>
-  </li>
-
+  </li> --}}
+  
   
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

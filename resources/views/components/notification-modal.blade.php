@@ -58,7 +58,8 @@
             <div class="modal-body">
 
 
-
+            @auth
+            
               @foreach(auth()->user()->unreadNotifications as $notification)
               <div class="row pt-3 pb-3">
                 <div class="col-8">{{ $notification->data['message'] }} 
@@ -72,6 +73,7 @@
 
               </div>  
           @endforeach
+          @endauth
 
 
 

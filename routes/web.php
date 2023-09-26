@@ -174,7 +174,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth', 'role:client'])->group(function () {
-    Route::get('/clients/index', [DashboardController::class, 'showClientDash'])->name('client.index');
+    Route::get('clients/index', [DashboardController::class, 'showClientDash'])->name('client.index');
 });
 
 Route::middleware(['auth', 'role:technician'])->group(function () {
