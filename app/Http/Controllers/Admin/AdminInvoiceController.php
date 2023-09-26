@@ -61,7 +61,7 @@ class AdminInvoiceController extends Controller
     
         // Check if the invoice was found
         if ($invoice) {
-            return view('admin.invoice.show-invoice', ['invoice' => $invoiceInfo]);
+            return view('show-invoice', ['invoice' => $invoiceInfo]);
         } else {
             // Handle the case where the invoice with the given ID was not found
             // You can redirect to an error page or return an error message
@@ -95,7 +95,7 @@ class AdminInvoiceController extends Controller
         if ($invoiceInfo) {
             $balanceDue = $invoiceInfo->totalPayable - $invoiceInfo->paymentAmount;
             $invoiceInfo->balanceDue = $balanceDue;
-            return view('admin.invoice.show-receipt', ['invoice' => $invoiceInfo]);
+            return view('show-receipt', ['invoice' => $invoiceInfo]);
         } else {
             // Handle the case where the invoice with the given ID was not found
             // You can redirect to an error page or return an error message

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ClientAppointmentController extends Controller
 {
-    public function index(){
-        return view('client.appointment.index');
-    }
+    
 
     public function create(){
 
@@ -20,6 +21,6 @@ class ClientAppointmentController extends Controller
     }
 
     public function destroy(){
-        
+
     }
 }
