@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerifyEmailController;
@@ -12,11 +13,16 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminInquiryController;
 use App\Http\Controllers\Admin\AdminInvoiceController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Client\ClientOrderController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminTrainingController;
+use App\Http\Controllers\Client\ClientInquiryController;
+use App\Http\Controllers\Client\ClientInvoiceController;
+use App\Http\Controllers\Client\ClientFeedbackController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
 use App\Http\Controllers\Admin\AdminAnnouncementController;
-use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Client\ClientEnrollmentController;
+use App\Http\Controllers\Client\ClientAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,8 +179,80 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 });
 
-Route::middleware(['auth', 'role:client'])->group(function () {
+Route::middleware(['auth', 'role:client'])->prefix('client')->group(function () {
     Route::get('clients/index', [DashboardController::class, 'showClientDash'])->name('client.index');
+
+    //Appointments
+    Route::prefix('appointments')->name('client.appointment.')->group(function () {
+        Route::get('', [ClientAppointmentController::class, 'index'])->name('index');
+        Route::get('show/{id}', [ClientAppointmentController::class, 'show'])->name('show');
+        Route::get('create', [ClientAppointmentController::class, 'create'])->name('create');
+        Route::post('store', [ClientAppointmentController::class, 'store'])->name('store'); 
+        Route::get('{appointment}/edit', [ClientAppointmentController::class, 'edit'])->name('edit');
+        Route::put('{appointment}/update', [ClientAppointmentController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientAppointmentController::class, 'destroy'])->name('destroy');
+    });
+
+
+    //Order
+    Route::prefix('orders')->name('client.order.')->group(function () {
+        Route::get('', [ClientOrderController::class, 'index'])->name('index');
+        Route::get('create',[ClientOrderController::class, 'create'])->name('create');
+        Route::post('store', [ClientOrderController::class, 'store'])->name('store');
+        Route::get('{order}/edit', [ClientOrderController::class, 'edit'])->name('edit');
+        Route::post('{order}/update', [ClientOrderController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientOrderController::class, 'destroy'])->name('destroy');
+    
+    });
+
+
+    //Invoice
+    Route::prefix('invoices')->name('client.invoice.')->group(function () {
+        Route::get('{invoice}/showInvoice',[ClientInvoiceController::class, 'showInvoice'])->name('showInvoice');
+        Route::get('{invoice}/showReceipt',[ClientInvoiceController::class, 'showReceipt'])->name('showReceipt');
+        Route::get('', [ClientInvoiceController::class, 'index'])->name('index');
+        Route::get('create', [ClientInvoiceController::class, 'create'])->name('create');
+        Route::post('store', [ClientInvoiceController::class, 'store'])->name('store'); 
+        Route::get('{invoice}/edit', [ClientInvoiceController::class, 'edit'])->name('edit');
+        Route::put('{invoice}/update', [ClientInvoiceController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientInvoiceController::class, 'destroy'])->name('destroy');
+        
+    });
+
+
+
+    //Training
+    Route::prefix('enrollments')->name('client.enrollment.')->group(function () {
+        Route::get('', [ClientEnrollmentController::class, 'index'])->name('index');
+        Route::get('create', [ClientEnrollmentController::class, 'create'])->name('create');
+        Route::post('store', [ClientEnrollmentController::class, 'store'])->name('store'); 
+        Route::get('{training}/edit', [ClientEnrollmentController::class, 'edit'])->name('edit');
+        Route::put('{training}/update', [ClientEnrollmentController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientEnrollmentController::class, 'destroy'])->name('destroy');
+    });
+
+
+    //Inquiry
+    Route::prefix('inquiries')->name('client.inquiry.')->group(function () {
+        Route::get('', [ClientInquiryController::class, 'index'])->name('index');
+        Route::get('create', [ClientInquiryController::class, 'create'])->name('create');
+        Route::post('store', [ClientInquiryController::class, 'store'])->name('store'); 
+        Route::get('{inquiry}/edit', [ClientInquiryController::class, 'edit'])->name('edit');
+        Route::put('{inquiry}/update', [ClientInquiryController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientInquiryController::class, 'destroy'])->name('destroy');
+    });
+
+
+    //Feedback
+    Route::prefix('feedbacks')->name('client.feedback.')->group(function () {
+        Route::get('', [ClientFeedbackController::class, 'index'])->name('index');
+        Route::get('create',[ClientFeedbackController::class, 'create'])->name('create');
+        Route::post('store', [ClientFeedbackController::class, 'store'])->name('store'); 
+        Route::get('{feedback}/edit', [ClientFeedbackController::class, 'edit'])->name('edit');
+        Route::post('{feedback}/update', [ClientFeedbackController::class, 'update'])->name('update');
+        Route::delete('destroy', [ClientFeedbackController::class, 'destroy'])->name('destroy');
+    });
+
 });
 
 Route::middleware(['auth', 'role:technician'])->group(function () {

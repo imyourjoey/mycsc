@@ -141,22 +141,22 @@
 <div class="collapse navbar-collapse" id="navbarToggler">
 <ul class="navbar-nav ml-auto navbar-right-section">
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.user.index') }}">Appointment</a>
+    <a class="nav-link" href="{{ route('client.appointment.index') }}">Appointment</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.service.index') }}">Order</a>
+    <a class="nav-link" href="{{ route('client.order.index') }}">Order</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.appointment.index') }}">Invoice</a>
+    <a class="nav-link" href="{{ route('client.invoice.index') }}">Invoice</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.order.index') }}">Training</a>
+    <a class="nav-link" href="{{ route('client.enrollment.index') }}">Training</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.invoice.index') }}">Inquiry</a>
+    <a class="nav-link" href="{{ route('client.inquiry.index') }}">Inquiry</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
+    <a class="nav-link" href="{{ route('client.feedback.index') }}">Feedback</a>
   </li>
   <li class="nav-item ml-1 mr-1">
     <a class="nav-link" href="#" data-toggle="modal" data-target="#notificationModal">
