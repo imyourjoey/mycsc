@@ -195,6 +195,59 @@
 </ul>
 </div>
 
+{{-- Technician Dashboard --}}
+{{-- Client Dashboard --}}
+@elseif(auth()->check() && auth()->user()->role === 'technician')
+
+<a class="navbar-brand" href={{ route('technician.index') }}>
+  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+</a>
+
+<div class="collapse navbar-collapse" id="navbarToggler">
+<ul class="navbar-nav ml-auto navbar-right-section">
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('technician.order.index') }}">Order</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('technician.service.index') }}">Service</a>
+  </li>
+  <li class="nav-item ml-1 mr-1">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#notificationModal">
+     
+        
+      <span class="fa-layers fa-fw ">
+        <i class="fa fa-bell h4"></i>
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">12</p></span>
+      </span>        
+    </a>
+      
+      
+      
+  </li>
+
+  {{-- <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.announcement.index') }}"><i class="fa-regular fa-bell fa-bounce"></i></a>
+  </li> --}}
+  
+  
+<li class="nav-item dropdown red-rounded-square mr-3">
+  <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+    {{-- {{ auth()->user()->name }} --}}
+    {{ explode(' ', auth()->user()->name)[0] }}
+
+  </a>
+  <div class="dropdown-menu" aria-labelledby="logoutDropdown">
+    <a class="dropdown-item" href="/">My Profile</a>
+    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+  </form>
+  </div>
+</li>
+</ul>
+</div>
+
 @endif
 
   </div>

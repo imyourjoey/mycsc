@@ -18,8 +18,10 @@ use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminTrainingController;
 use App\Http\Controllers\Client\ClientInquiryController;
 use App\Http\Controllers\Client\ClientInvoiceController;
+use App\Http\Controllers\Technician\TechOrderController;
 use App\Http\Controllers\Client\ClientFeedbackController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
+use App\Http\Controllers\Technician\TechServiceController;
 use App\Http\Controllers\Admin\AdminAnnouncementController;
 use App\Http\Controllers\Client\ClientEnrollmentController;
 use App\Http\Controllers\Client\ClientAppointmentController;
@@ -70,7 +72,7 @@ Route::post('{user}/verifyemail',  [VerifyEmailController::class, 'verifyEmail']
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     //dashboard
-    Route::get('dash', [DashboardController::class, 'showAdminDash'])->name('admin.index');
+    Route::get('index', [DashboardController::class, 'showAdminDash'])->name('admin.index');
 
     //User
     Route::prefix('users')->name('admin.user.')->group(function () {
@@ -180,7 +182,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth', 'role:client'])->prefix('client')->group(function () {
-    Route::get('clients/index', [DashboardController::class, 'showClientDash'])->name('client.index');
+    Route::get('index', [DashboardController::class, 'showClientDash'])->name('client.index');
 
     //Appointments
     Route::prefix('appointments')->name('client.appointment.')->group(function () {
@@ -255,6 +257,30 @@ Route::middleware(['auth', 'role:client'])->prefix('client')->group(function () 
 
 });
 
-Route::middleware(['auth', 'role:technician'])->group(function () {
-    Route::get('/technicians/index', [DashboardController::class, 'showTechnicianDash'])->name('technician.index');
+Route::middleware(['auth', 'role:technician'])->prefix('technician')->group(function () {
+    Route::get('index', [DashboardController::class, 'showTechnicianDash'])->name('technician.index');
+
+    //Order
+    Route::prefix('orders')->name('technician.order.')->group(function () {
+        Route::get('', [TechOrderController::class, 'index'])->name('index');
+        Route::get('create',[TechOrderController::class, 'create'])->name('create');
+        Route::post('store', [TechOrderController::class, 'store'])->name('store');
+        Route::get('{order}/edit', [TechOrderController::class, 'edit'])->name('edit');
+        Route::post('{order}/update', [TechOrderController::class, 'update'])->name('update');
+        Route::delete('destroy', [TechOrderController::class, 'destroy'])->name('destroy');
+    
+    });
+
+    //service
+    Route::prefix('services')->name('technician.service.')->group(function () {
+        Route::get('', [TechServiceController::class, 'index'])->name('index');
+        Route::get('create',[TechServiceController::class, 'create'])->name('create');
+        Route::post('store', [TechServiceController::class, 'store'])->name('store');
+        Route::get('{service}/edit', [TechServiceController::class, 'edit'])->name('edit');
+        Route::post('{service}/update', [TechServiceController::class, 'update'])->name('update');
+        Route::delete('destroy', [TechServiceController::class, 'destroy'])->name('destroy');
+    
+        });
+
+
 });
