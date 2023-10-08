@@ -180,10 +180,7 @@
                 extend: 'selected', // Bind to Selected row
                 text: 'Delete',
                 action: function (e, dt, button, config) {
-            // var selectedIds = dt.rows({ selected: true }).ids().toArray();
-            // console.log(selectedIds);
             var selectedIds = table.rows({selected: true}).ids().toArray();
-            console.log(selectedIds);
             
     
     

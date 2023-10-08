@@ -79,8 +79,7 @@ class AdminOrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $orders = Order::select(['orderID', 'clientTag', 'serviceID', 'technicianTag', 'deviceType', 'hardwareManufacturer', 'partNo', 'serialNo', 'diskCapacity', 'capacityRestored', 'othersIncluded', 'orderStatus', 'orderStatusPic', 'orderRemarks', 'created_at', 'updated_at']);
-
+            
             $orders = DB::table('order')
                 ->select([
                     'order.orderID',
