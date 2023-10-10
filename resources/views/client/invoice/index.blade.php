@@ -76,110 +76,12 @@
           dom: 'Bfrtip', // Specify the buttons to display
           lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], // Options for the length menu
           buttons: [
+
               {
                   extend: 'spacer',
-                  text: 'Table Control:'
+                  text: 'Generate:'
               },
-              'pageLength',
-              {
-                  extend: 'savedStatesCreate',
-                  config: {
-                      splitSecondaries: [
-                          'renameState',
-                          'removeState',
-                          ''
-                      ]
-                  }
-              },
-              {
-                  extend: 'colvis',
-                  text: 'Show/Hide',
-                  columns: 'th.colvis',
-                  columnText: function (dt, idx, title) {
-                      if (idx == 0) {
-                          return 'Checkbox';
-                      } else {
-                          return title;
-                      }
-                  }
-              },
-              {
-                  extend: 'collection',
-                  text: 'Export',
-                  buttons: ['excel', {
-                      extend: 'pdfHtml5',
-                      orientation: 'landscape',
-                      pageSize: 'LEGAL'
-                  }]
-              },
-              {
-                  extend: 'collection',
-                  text: 'Select',
-                  buttons: ['selectAll', 'selectNone']
-              },
-              {
-                  extend: 'searchBuilder',
-                  config: {
-                      depthLimit: 2,
-                      columns: [1, 2, 3, 4, 5, 6]
-                  }
-              },
-              {
-                  extend: 'spacer',
-                  style: 'bar',
-                  text: 'Actions:'
-              },
-              {
-                  text: 'Add',
-                  action: function (e, dt, button, config) {
-                      window.location = "{{ route('admin.invoice.create') }}";
-                  }
-              },
-              {
-                  extend: 'selectedSingle', // Bind to Selected row
-                  text: 'Edit',
-                  name: 'edit',
-                  action: function (e, dt, button, config) {
-                      // Get the selected data
-                      var selectedData = table.row({ selected: true }).data();
-
-                      if (selectedData) {
-                          // Redirect to the invoice details page with the selected invoice's ID
-                          window.location = "{{ route('admin.invoice.edit', ['invoice' => ':invoiceID']) }}".replace(':invoiceID', selectedData.invoiceID);
-                      }
-                  }
-              },
-              {
-                  extend: 'selected', // Bind to Selected row
-                  text: 'Delete',
-                  action: function (e, dt, button, config) {
-                      var selectedIds = table.rows({ selected: true }).ids().toArray();
-
-                      if (selectedIds.length === 0) {
-                          alert('No records selected for deletion.');
-                          return;
-                      }
-
-                      if (confirm('Are you sure you want to delete the selected records?')) {
-                          $.ajax({
-                              url: "{{ route('admin.invoice.destroy') }}",
-                              type: "DELETE",
-                              data: { selectedIds: selectedIds },
-                              headers: {
-                                  'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-                              },
-                              success: function (response) {
-                                  toastr.success('Selected record(s) have been deleted successfully');
-                                  // You can reload the DataTable or update it as needed.
-                                  table.ajax.reload();
-                              },
-                              error: function (xhr, status, error) {
-                                  alert('Error deleting records: ' + xhr.responseText);
-                              }
-                          });
-                      }
-                  }
-              },
+              
               {
                 extend: 'selectedSingle', 
                   text: 'Invoice',
@@ -216,7 +118,7 @@
           },
           {
             targets: [1,2,3,4,5,6,7,8],
-            defaultContent:"-"
+            defaultContent:"N/A"
           }
           
         ],

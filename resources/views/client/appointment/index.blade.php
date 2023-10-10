@@ -1,9 +1,5 @@
 <x-layout>
-  <style>
-    div.dt-buttons {
-    float: right;
-}
-  </style>
+
   <x-navbar />
   <div class="container-fluid">
     <div class="row">
@@ -111,7 +107,7 @@
               url: '{{ route('client.appointment.index') }}',
               type: 'GET'
           },
-          dom: 'Brtip',
+          dom: 'Bfrtip',
           lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
           buttons: [
               // 'pageLength',
