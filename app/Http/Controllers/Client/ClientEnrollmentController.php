@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
+use App\Models\Training;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClientEnrollmentController extends Controller
 {
@@ -12,7 +13,8 @@ class ClientEnrollmentController extends Controller
      */
     public function index()
     {
-        return view('client.enrollment.index');
+        $trainings = Training::all();
+        return view('client.enrollment.index' ,compact('trainings'));
     }
 
     /**

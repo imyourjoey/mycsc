@@ -16,10 +16,19 @@
                             </button>
                         </h2>
                     </div>
-                    <div id="collapse{{ $training->trainingID }}" class="collapse" aria-labelledby="heading{{ $training->trainingID }}"
+                    <div id="collapse{{ $training->trainingID }}" class="collapse show" aria-labelledby="heading{{ $training->trainingID }}"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                            {{ $training->trainingDesc }}
+                            
+                            <div>Description: {{ $training->trainingDesc }}</div>
+                            <div>Starting Date & Time: {{ $training->startDateTime }}</div>
+                            <div>Ending Date & Time: {{ $training->endDateTime }}</div>
+                            <div>Venue: {{ $training->trainingVenue }}</div>
+                            <div>Capacity: {{ $training->trainingCapacity }}</div>
+                            <div>Instructor: {{ $training->trainerName }}</div>
+                            <div>Registration Deadline: {{ $training->regisDeadline }}</div>
+                            
+                            
                         </div>
                     </div>
                 </div>
