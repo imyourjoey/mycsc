@@ -227,7 +227,7 @@ $(".selector").flatpickr({
   }); 
   </script>
 
-<script>
+{{-- <script>
   $(document).ready(function () {
       $("#createAppointmentBtn").click(function () {
           // Get form data
@@ -236,7 +236,7 @@ $(".selector").flatpickr({
           // Send AJAX request
           $.ajax({
               type: "POST",
-              url: "{{ route('client.appointment.create') }}", // Replace with the actual route for creating an appointment
+              url: "{{ route('client.appointment.store') }}", // Replace with the actual route for creating an appointment
               data: formData,
               success: function (response) {
                   // Handle success (e.g., show a success message)
@@ -250,5 +250,5 @@ $(".selector").flatpickr({
           });
       });
   });
-</script>
+</script> --}}
 
