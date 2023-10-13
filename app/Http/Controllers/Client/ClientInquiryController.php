@@ -51,7 +51,22 @@ class ClientInquiryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'inquiryMessage' => 'required|string',
+        ]);
+
+        $inquiry = new Inquiry();
+
+        // Update properties using the $inquiry variable
+        $inquiry->userTag = auth()->user()->userTag;
+        $inquiry->inquiryID = self::generateUniqueInquiryID();
+        $inquiry->inquiryName = auth()->user()->name; 
+        $inquiry->inquiryMessage = $request->inquiryMessage;
+        $inquiry->inquiryContactEmail = auth()->user()->email; 
+
+        $inquiry->save();
+
+        return redirect()->back()->with('message', 'Inquiry created successfully!');
     }
 
     /**
@@ -95,4 +110,30 @@ class ClientInquiryController extends Controller
     
         return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
     }
+
+
+
+    public function generateUniqueInquiryID()
+{
+    $prefix = 'IN';
+
+    if ($prefix) {
+        $unique = false;
+        $count = 1;
+
+        while (!$unique) {
+            $inquiryID = $prefix . str_pad($count, 3, '0', STR_PAD_LEFT);
+
+            if (!Inquiry::where('inquiryID', $inquiryID)->exists()) {
+                $unique = true;
+            }
+
+            $count++;
+        }
+
+        return $inquiryID;
+    }
+
+    return '';
+}
 }

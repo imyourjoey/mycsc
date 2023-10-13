@@ -13,7 +13,7 @@
                 <tr>
                     <th style="max-width: 20px"></th>
                     <th class="colvis">ID</th>
-                    <th class="colvis" style="max-width: 30px">No.</th>
+                    <th class="colvis" style="max-width: 25px">No.</th>
                     <th class="colvis">Inquiry</th>
                     <th class="colvis">Reply</th>
                     <th style="max-width: 40px"></th>
@@ -26,9 +26,31 @@
 
 
     {{-- Submit Inquiry --}}
+    <div class="h2 mt-4 font-weight-bold">Submit Inquiries</div>
+    <p>Please fill out the form below, and we'll get back to you as soon as possible.</p>
+    
+    <form method="POST" action={{ route('client.inquiry.store') }} id="submitInquiryForm">
+      @csrf
     <div class="row">
+      <div class="form-group col-md-6">
+        {{-- <label for="inquiryMessage">Your Inquiry/Message <span class="form-required">*</span></label> --}}
+        <textarea type="text" class="form-control" id="inquiryMessage"
+            placeholder="Type your inquiry or message here" name="inquiryMessage"
+            value="{{ old('inquiryMessage') }}" rows="4"></textarea>
 
+        @error('inquiryMessage')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-primary btn-block">Submit <i class="fa fa-arrow-right"
+                  aria-hidden="true"></i></button>
+
+      </div>
+  </div>
+    </form>
   </div>
 </x-layout>
 
