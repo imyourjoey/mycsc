@@ -7,6 +7,7 @@ use Egulias\EmailValidator\Parser\Comment;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -60,6 +61,8 @@ Route::get('/profile/edit', [ProfileController::class,'edit'])->name('profile.ed
 Route::post('/{user}/profile/update', [ProfileController::class,'update'])->name('profile.update');
 
 //show change password page
+Route::get('/password/edit', [PasswordController::class,'edit'])->name('password.edit');
+Route::post('/{user}/password/update', [PasswordController::class,'update'])->name('password.update');
 
 
 

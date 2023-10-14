@@ -22,7 +22,7 @@
             <input type="text" class="form-control" id="fullName" value="{{ ucfirst($user->name) }}" placeholder="Enter full name" name="name" readonly>
   
             @error('name')
-            <p class="text-red-500 text-xs mt-1">Please enter your name</p>
+            <div class="invalid-feedback">{{ $message }}</div>
             @enderror
   
           </div>
@@ -31,7 +31,7 @@
             <input type="email" class="form-control" id="email" value="{{ $user->email }}" placeholder="Enter email" name="email" readonly>
   
             @error('email')
-            <p class="text-red-500 text-xs mt-1">Please enter a valid email address</p>
+            <div class="invalid-feedback">{{ $message }}</div>
             @enderror
           </div>
           <div class="form-group">
@@ -39,7 +39,7 @@
             <input type="tel" class="form-control" id="phoneNumber" value="{{ $user->phoneNo }}" placeholder="Enter phone number" name="phoneNo">
   
             @error('phoneNo')
-            <p class="text-red-500 text-xs mt-1">Please enter your phone number</p>
+            <div class="invalid-feedback">{{ $message }}</div>
             @enderror
           </div>
           <div class="form-group mt-4">
