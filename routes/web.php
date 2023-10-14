@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerifyEmailController;
@@ -51,7 +52,16 @@ Route::get('/kkkk', function () {
 
 
 
+
 Route::get('', [LandingController::class,'showLandingPage'])->name('landing');
+
+//show my profile
+Route::get('/profile/edit', [ProfileController::class,'edit'])->name('profile.edit');
+Route::post('/{user}/profile/update', [ProfileController::class,'update'])->name('profile.update');
+
+//show change password page
+
+
 
 // Route::get('appointment/create', [CalendarController::class,'create'])->name('appointment.create');
 
