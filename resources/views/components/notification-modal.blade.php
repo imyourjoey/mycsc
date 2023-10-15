@@ -60,18 +60,20 @@
 
             @auth
             
-              @foreach(auth()->user()->unreadNotifications as $notification)
+              @foreach(auth()->user()->notifications as $notification)
+              <a href="{{ route('admin.appointment.edit', ['appointment' => $notification->data['appointmentID']]) }}" style="text-decoration: none; color:black">
               <div class="row pt-3 pb-3">
-                <div class="col-8">{{ $notification->data['message'] }} 
+                <div class="col-8">{{ $notification->data['clientName'] }} has requested an appointment for  
 
                 @if (isset($notification->data['appointmentDateTime']))
-                    {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j F h:i A') }}
+                    {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j M, H:i') }}
                 @endif</div>
                 
                 <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
                 
 
-              </div>  
+              </div> 
+            </a> 
           @endforeach
           @endauth
 

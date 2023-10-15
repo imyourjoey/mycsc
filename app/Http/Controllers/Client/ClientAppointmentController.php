@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\AppointmentRequested;
+
 
 class ClientAppointmentController extends Controller
 {
@@ -73,6 +76,12 @@ class ClientAppointmentController extends Controller
     $appointment->appointmentStatus = 'pending';
     $appointment->remarks = null;
     $appointment->save();
+
+    $admins = User::where('role', 'admin')->get();
+        
+    foreach ($admins as $admin) {
+            $admin->notify(new AppointmentRequested($appointment));
+    }
 
     return redirect()->back()->with('message', 'Appointment request submitted successfully!');
     }

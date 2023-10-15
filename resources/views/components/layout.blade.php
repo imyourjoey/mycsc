@@ -287,6 +287,23 @@
 </script>
 
 
+<script>
+    $(document).ready(function () {
+      $('.mark-notifications-as-read').on('click', function () {
+          $.ajax({
+              type: 'POST',
+              url: '{{ route("mark-notifications-as-read") }}',
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function () {
+                  console.log('hello');
+              }
+          });
+      });
+  });
+  </script>
+
 
 <x-flash-message />
 

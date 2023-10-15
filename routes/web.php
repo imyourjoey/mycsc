@@ -10,6 +10,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminInquiryController;
@@ -63,6 +64,13 @@ Route::post('/{user}/profile/update', [ProfileController::class,'update'])->name
 //show change password page
 Route::get('/password/edit', [PasswordController::class,'edit'])->name('password.edit');
 Route::post('/{user}/password/update', [PasswordController::class,'update'])->name('password.update');
+
+
+
+Route::post('/mark-notifications-as-read', [NotificationController::class,'markAsRead'])->name('mark-notifications-as-read');
+
+
+
 
 
 
@@ -294,6 +302,10 @@ Route::middleware(['auth', 'role:technician'])->prefix('technician')->group(func
         Route::delete('destroy', [TechServiceController::class, 'destroy'])->name('destroy');
     
         });
+
+
+
+
 
 
 });

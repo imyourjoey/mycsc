@@ -129,11 +129,11 @@ class AdminAppointmentController extends Controller
         $appointment->remarks = $request->remarks;
         $appointment->save();
 
-        $admins = User::where('role', 'admin')->get();
+        // $admins = User::where('role', 'admin')->get();
         
-        foreach ($admins as $admin) {
-            $admin->notify(new AppointmentRequested($appointment));
-        }
+        // foreach ($admins as $admin) {
+        //     $admin->notify(new AppointmentRequested($appointment));
+        // }
 
         return redirect()->back()->with('message', 'Appointment created successfully!');
     }

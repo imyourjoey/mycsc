@@ -101,13 +101,15 @@
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
   <li class="nav-item ml-1 mr-1">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#notificationModal">
+    <a class="nav-link mark-notifications-as-read" href="#" data-toggle="modal" data-target="#notificationModal">
      
         
       <span class="fa-layers fa-fw ">
         <i class="fa fa-bell h4"></i>
-        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">12</p></span>
-      </span>        
+        @if ($unreadNotificationCount > 0)
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">{{ $unreadNotificationCount }}</p></span>
+      </span> 
+      @endif       
     </a>
       
       
@@ -165,8 +167,9 @@
         
       <span class="fa-layers fa-fw ">
         <i class="fa fa-bell h4"></i>
-        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">12</p></span>
-      </span>        
+        @if ($unreadNotificationCount > 0)
+        <span class="fa-layers-counter" style="background:#871719;" ><p class="h1">{{ $unreadNotificationCount }}</p></span>
+        @endif      
     </a>
       
       
@@ -259,6 +262,9 @@
 </nav>
 
 <x-notification-modal/>
+
+
+
 
 
 

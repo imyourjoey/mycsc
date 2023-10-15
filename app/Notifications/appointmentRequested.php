@@ -47,7 +47,7 @@ class appointmentRequested extends Notification
     public function toDatabase($notifiable)
     {
     return [
-        'message' => 'You have an appointment scheduled on ',
+        'notificationType' => 'appointmentReqByClient',
         'appointmentID' => $this->appointment->appointmentID,
         'appointmentDateTime' => $this->appointment->appointmentDateTime,
         'clientName' => $this->appointment->appointmentName,
