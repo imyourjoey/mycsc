@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Notifications\invoiceIssued;
 
 class AdminInvoiceController extends Controller
 {
@@ -131,6 +133,14 @@ class AdminInvoiceController extends Controller
     $invoice->paymentMethod = $request->paymentMethod;
     
     $invoice->save();
+
+    //notify user
+    $user = User::where('userTag', $clientTag)->first();
+
+        if ($user) {
+            // Send a notification to the user
+            $user->notify(new invoiceIssued($invoice));
+        }
 
     return redirect()->route('admin.invoice.create')->with('message', 'Invoice created successfully!');
 }
