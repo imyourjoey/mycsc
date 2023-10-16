@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use App\Notifications\appointmentApproved;
 use App\Notifications\AppointmentRequested;
 
 
@@ -175,6 +176,17 @@ class AdminAppointmentController extends Controller
         'status' => 'required|in:pending,approved', // Assuming "status" can only be "pending" or "approved"
         'remarks' => 'nullable',
     ]);
+
+// Check if the status is being updated to "approved"
+    if ($appointment->appointmentStatus === 'pending' && $validatedData['status'] === 'approved') {
+        // Send a notification to the user
+        $user = User::where('userTag', $appointment->userTag)->first();
+
+        if ($user) {
+            // Send a notification to the user
+            $user->notify(new appointmentApproved($appointment));
+        }
+    }
 
     // Update the appointment's attributes
     $appointment->appointmentName = $validatedData['clientName'];

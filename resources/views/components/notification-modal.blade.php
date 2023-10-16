@@ -61,19 +61,37 @@
             @auth
             
               @foreach(auth()->user()->notifications as $notification)
+              @if ($notification->data['notificationType'] === 'appointmentReqByClient')
               <a href="{{ route('admin.appointment.edit', ['appointment' => $notification->data['appointmentID']]) }}" style="text-decoration: none; color:black">
-              <div class="row pt-3 pb-3">
-                <div class="col-8">{{ $notification->data['clientName'] }} has requested an appointment for  
-
-                @if (isset($notification->data['appointmentDateTime']))
-                    {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j M, H:i') }}
-                @endif</div>
-                
-                <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
-                
-
-              </div> 
-            </a> 
+                <div class="row pt-3 pb-3">
+                  <div class="col-8">{{ $notification->data['clientName'] }} has requested an appointment for  
+  
+                  @if (isset($notification->data['appointmentDateTime']))
+                      {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j M, H:i') }}
+                  @endif</div>
+                  
+                  <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
+                  
+  
+                </div> 
+              </a>   
+              @elseif ($notification->data['notificationType'] === 'appointmentApproved')
+              <a href="{{ route('client.appointment.index')}}" style="text-decoration: none; color:black">
+                <div class="row pt-3 pb-3">
+                  <div class="col-8">Your appointment on 
+  
+                  @if (isset($notification->data['appointmentDateTime']))
+                      {{ \Carbon\Carbon::parse($notification->data['appointmentDateTime'])->format('j M, H:i') }}
+                  @endif has been approved.</div>
+                  
+                  <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
+                  
+  
+                </div> 
+              </a>  
+              @endif
+              
+              
           @endforeach
           @endauth
 

@@ -305,6 +305,16 @@
   </script>
 
 
+<script>
+    // Function to refresh the page
+    function refreshPage() {
+        location.reload();
+    }
+
+    setTimeout(refreshPage, 300000);
+</script>
+
+
 <x-flash-message />
 
 
