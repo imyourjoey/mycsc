@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Service;
 use App\Models\Feedback;
 use App\Models\Training;
@@ -18,4 +19,7 @@ class LandingController extends Controller
 
         return view('landing', compact('trainings', 'announcements', 'services', 'feedbacks')); 
     }
+
+
+    
 }

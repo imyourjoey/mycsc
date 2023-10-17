@@ -6,7 +6,7 @@
   <div class="col-sm-6">
     <h2 class="text-center">Inquiry Form</h2>
     <p class="text-center"> Please fill out this form. We will get in touch with you shortly.</p>
-    <form id="inquiryform" method="POST" action="/inquiry">
+    <form id="inquiryform" method="POST" action="{{ route('submitGuestInquiry') }}">
       @csrf
       <div class="form-group">
         <label for="name">Name:</label>

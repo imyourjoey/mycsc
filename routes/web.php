@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
@@ -68,6 +69,11 @@ Route::post('/{user}/password/update', [PasswordController::class,'update'])->na
 
 
 Route::post('/mark-notifications-as-read', [NotificationController::class,'markAsRead'])->name('mark-notifications-as-read');
+
+
+
+//Guest routes
+Route::post('/submit-guest-inquiry', [GuestController::class,'submitGuestInquiry'])->name('submitGuestInquiry');
 
 
 
