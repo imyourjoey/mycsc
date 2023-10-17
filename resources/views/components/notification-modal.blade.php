@@ -99,6 +99,18 @@
   
                 </div> 
               </a>
+              @elseif ($notification->data['notificationType'] === 'inquirySent')
+              <a href="{{ route('admin.inquiry.edit', ['inquiry' => $notification->data['inquiryID']]) }}" style="text-decoration: none; color:black">
+                <div class="row pt-3 pb-3">
+                  <div class="col-8">{{ $notification->data['inquiryName'] }} has submitted an inquiry</div>
+                  {{-- <div class="col-8">{{ $notification->data['inquiryName'] }} has requested an appointment for   --}}
+                  {{-- @endif</div> --}}
+                  
+                  <p class="col-4 text-muted text-right d-flex justify-content-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
+                  
+  
+                </div> 
+              </a> 
             @endif
               
               

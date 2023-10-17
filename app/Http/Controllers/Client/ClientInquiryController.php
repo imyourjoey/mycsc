@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\User;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Inquiry;
+use App\Notifications\inquirySent;
 
 class ClientInquiryController extends Controller
 {
@@ -65,6 +67,15 @@ class ClientInquiryController extends Controller
         $inquiry->inquiryContactEmail = auth()->user()->email; 
 
         $inquiry->save();
+
+
+
+        //notify admins
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+            $admin->notify(new inquirySent($inquiry));
+    }
 
         return redirect()->back()->with('message', 'Inquiry created successfully!');
     }
