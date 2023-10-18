@@ -27,7 +27,9 @@
                             <div>Capacity: {{ $training->trainingCapacity }}</div>
                             <div>Instructor: {{ $training->trainerName }}</div>
                             <div>Registration Deadline: {{ $training->regisDeadline }}</div>
-                            
+                            <div class="mt-2">
+                                <a class="btn btn-primary text-white" href="{{ route('showGuestEnrollment', ['trainingID' => $training->trainingID] )}}" >Enrol Now!</a>
+                              </div> 
                             
                         </div>
                     </div>

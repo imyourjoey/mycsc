@@ -127,6 +127,12 @@
             border-color: #2A2A2A;
         }
 
+
+        .btn-primary:active {
+            background-color: black!important; 
+            
+        }
+
         .invalid-feedback{
             display: block;
         }

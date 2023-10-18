@@ -73,7 +73,12 @@ Route::post('/mark-notifications-as-read', [NotificationController::class,'markA
 
 
 //Guest routes
-Route::post('/submit-guest-inquiry', [GuestController::class,'submitGuestInquiry'])->name('submitGuestInquiry');
+Route::post('guest/inquiry/store', [GuestController::class,'submitGuestInquiry'])->name('submitGuestInquiry');
+
+//Guest Enroll Training
+Route::get('guest/enrollments/{trainingID}/create',[GuestController::class,'showGuestEnrollment'])->name('showGuestEnrollment');
+Route::post('guest/enrollments/store',[GuestController::class,'submitGuestEnrollment'])->name('submitGuestEnrollment');
+
 
 
 

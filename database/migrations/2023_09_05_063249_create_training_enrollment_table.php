@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('training_enrollment', function (Blueprint $table) {
             $table->string('enrollmentID', 15)->primary(); // Specify the VARCHAR type and length for the primary key
-            $table->string('userTag', 15);
+            $table->string('userTag', 15)->nullable();
             $table->foreign('userTag')->references('userTag')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('trainingID', 15);
             $table->foreign('trainingID')->references('trainingID')->on('training')->onDelete('cascade');;
