@@ -98,6 +98,9 @@
     <a class="nav-link" href="{{ route('admin.training.index') }}">Training</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.enrollment.index') }}">Enrollments</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
   </li>
   <li class="nav-item ml-1 mr-1">

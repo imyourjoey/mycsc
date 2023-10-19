@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\AdminTrainingController;
 use App\Http\Controllers\Client\ClientInquiryController;
 use App\Http\Controllers\Client\ClientInvoiceController;
 use App\Http\Controllers\Technician\TechOrderController;
+use App\Http\Controllers\Admin\AdminEnrollmentController;
 use App\Http\Controllers\Client\ClientFeedbackController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
 use App\Http\Controllers\Technician\TechServiceController;
@@ -196,6 +197,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('{training}/edit', [AdminTrainingController::class, 'edit'])->name('edit');
         Route::put('{training}/update', [AdminTrainingController::class, 'update'])->name('update');
         Route::delete('destroy', [AdminTrainingController::class, 'destroy'])->name('destroy');
+    });
+    
+    //enrollments
+    Route::prefix('enrollment')->name('admin.enrollment.')->group(function () {
+        Route::get('', [AdminEnrollmentController::class, 'index'])->name('index');
+        Route::get('create', [AdminEnrollmentController::class, 'create'])->name('create');
+        Route::post('store', [AdminEnrollmentController::class, 'store'])->name('store'); 
+        Route::get('{enrollment}/edit', [AdminEnrollmentController::class, 'edit'])->name('edit');
+        Route::put('{enrollment}/update', [AdminEnrollmentController::class, 'update'])->name('update');
+        Route::delete('destroy', [AdminEnrollmentController::class, 'destroy'])->name('destroy');
     });
     
     //News
