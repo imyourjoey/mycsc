@@ -2,7 +2,7 @@
   <x-navbar/>
 
   <div class="container-fluid">
-      <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Trainings</div>
+      <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Enrollments</div>
 
       <div style="margin-top: 1rem"></div>
       <table class="display cell-border" id="training-table" style="width: 100%;">
@@ -137,7 +137,7 @@
                   action: function (e, dt, button, config) {
                       var selectedData = table.row({ selected: true }).data();
                       if (selectedData) {
-                          window.location = "{{ route('admin.training.edit', ['training' => ':trainingID']) }}".replace(':trainingID', selectedData.trainingID); // Change this route to the appropriate Training edit route
+                          window.location = "{{ route('admin.enrollment.edit', ['enrollment' => ':enrollmentID']) }}".replace(':enrollmentID', selectedData.enrollmentID); // Change this route to the appropriate Training edit route
                       }
                   }
               },
@@ -152,7 +152,7 @@
                       }
                       if (confirm('Are you sure you want to delete the selected records?')) {
                           $.ajax({
-                              url: "{{ route('admin.training.destroy') }}", // Change this route to the appropriate Training destroy route
+                              url: "{{ route('admin.enrollment.destroy') }}", // Change this route to the appropriate Training destroy route
                               type: "DELETE",
                               data: { selectedIds: selectedIds },
                               headers: {

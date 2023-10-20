@@ -93,6 +93,42 @@ class AdminEnrollmentController extends Controller
 
     }
 
+
+
+    public function edit(Enrollment $enrollment){
+        $training= DB::table('training')->where('trainingID', $enrollment->trainingID)->first();
+        return view('admin.enrollment.edit', compact('training', 'enrollment'));
+    }
+
+    public function update(Request $request, Enrollment $enrollment){
+        $validatedData = $request->validate([
+            'enrollStatus' => 'required|in:Pending,Approved',
+        ]);
+
+        $enrollment->enrollStatus = $validatedData['enrollStatus'];
+        $enrollment->save();
+
+        return redirect()->back()->with('message', 'Enrollment have been successfully updated!');
+
+
+        
+    }
+
+    public function destroy(Request $request)
+    {
+        $selectedIds = $request->input('selectedIds');
+        
+        // Ensure selectedIds is an array and not empty
+        if (!is_array($selectedIds) || count($selectedIds) === 0) {
+            return response()->json(['message' => 'No records selected for deletion.'], 400);
+        }
+
+        // Delete the selected records from the database
+        Enrollment::whereIn('enrollmentID', $selectedIds)->delete();
+
+        return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
+    }
+
     public function generateUniqueEnrollmentID()
     {
         $prefix = 'EN';
@@ -116,4 +152,8 @@ class AdminEnrollmentController extends Controller
     
         return '';
     }
+
+
+
+
 }
