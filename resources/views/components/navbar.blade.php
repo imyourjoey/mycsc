@@ -20,31 +20,31 @@
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
-<ul class="navbar-nav ml-auto navbar-right-section">
-  <li class="nav-item">
-    <a class="nav-link" href="#">Service</a>
-  </li>
+    <ul class="navbar-nav ml-auto navbar-right-section">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Service</a>
+        </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="#">News</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+        </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="#">Training</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Training</a>
+        </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="#">Testimonial</a>
-  </li>
-  
-  <li class="nav-item">
-    <a class="nav-link" href="#">Inquiry</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Testimonial</a>
+        </li>
 
-  <li class="nav-item red-rounded-square">
-    <a class="nav-link" href="{{ route('login') }}">Login</a>
-  </li>
-</ul>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Inquiry</a>
+        </li>
+
+        <li class="nav-item red-rounded-square">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+        </li>
+    </ul>
 </div>
 
 {{-- Login Form --}}
@@ -55,12 +55,12 @@
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
-<ul class="navbar-nav ml-auto navbar-right-section">
+    <ul class="navbar-nav ml-auto navbar-right-section">
 
-  <li class="nav-item red-rounded-square">
-    <a class="nav-link" href="{{ route('landing') }}">Back</a>
-  </li>
-</ul>
+        <li class="nav-item red-rounded-square">
+            <a class="nav-link" href="{{ route('landing') }}">Back</a>
+        </li>
+    </ul>
 </div>
 
 
@@ -127,7 +127,6 @@
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
-    {{-- {{ auth()->user()->name }} --}}
     {{ explode(' ', auth()->user()->name)[0] }}
 
   </a>
@@ -185,16 +184,10 @@
       
       
   </li>
-
-  {{-- <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.announcement.index') }}"><i class="fa-regular fa-bell fa-bounce"></i></a>
-  </li> --}}
-  
   
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
-    {{-- {{ auth()->user()->name }} --}}
     {{ explode(' ', auth()->user()->name)[0] }}
 
   </a>
@@ -211,7 +204,6 @@
 </div>
 
 {{-- Technician Dashboard --}}
-{{-- Client Dashboard --}}
 @elseif(auth()->check() && auth()->user()->role === 'technician')
 
 <a class="navbar-brand" href={{ route('technician.index') }}>
@@ -241,12 +233,6 @@
       
       
   </li>
-
-  {{-- <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.announcement.index') }}"><i class="fa-regular fa-bell fa-bounce"></i></a>
-  </li> --}}
-  
-  
 <li class="nav-item dropdown red-rounded-square mr-3">
   <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
@@ -280,7 +266,6 @@
 
 
 
-{{-- Dropdown Menu --}}
 
 
 

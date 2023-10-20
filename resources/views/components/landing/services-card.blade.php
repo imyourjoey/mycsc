@@ -13,7 +13,7 @@
                     <div class="card-body p-0 mt-3">
                         <h5 class="card-title">{{ $service->serviceName }}</h5>
                         <p class="card-text">{{ $service->serviceDesc }}</p>
-                        <a href="#" class="btn btn-primary form-control">Learn More</a>
+                        {{-- <a href="#" class="btn btn-primary form-control">Learn More</a> --}}
                     </div>
                 </div>
             </div>
@@ -21,26 +21,7 @@
             </div>
             <div class="swiper-scrollbar"></div>
         </div>
-            {{-- <div class="service-card col-md-4 mt-1">
-                <div class="service-card card p-3">
-                    <div class="card-img-top" style="height: 200px; background-color: #f0f0f0;"></div>
-                    <div class="card-body p-0 mt-3">
-                        <h5 class="card-title">Person 1</h5>
-                        <p class="card-text">Description of Person 1.</p>
-                        <a href="#" class="btn btn-primary form-control">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="service-card col-md-4 mt-1">
-                <div class="service-card card p-3">
-                    <div class="card-img-top" style="height: 200px; background-color: #f0f0f0;"></div>
-                    <div class="card-body p-0 mt-3">
-                        <h5 class="card-title">Person 1</h5>
-                        <p class="card-text">Description of Person 1.</p>
-                        <a href="#" class="btn btn-primary form-control">Learn More</a>
-                    </div>
-                </div>
-            </div> --}}
+
             
 
         </div>

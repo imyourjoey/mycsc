@@ -6,8 +6,11 @@ use App\Models\User;
 use App\Models\Inquiry;
 use App\Models\Training;
 use App\Models\Enrollment;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Notifications\inquirySent;
+use App\Notifications\AppointmentRequested;
+
 
 class GuestController extends Controller
 {
@@ -67,13 +70,13 @@ class GuestController extends Controller
         if ($existingEnrollment) {
         // The user has already enrolled in this training
         return redirect()->back()->with('error', 'You have already enrolled in this training using this phone number.');
-    }
+        }
 
-    $request->validate([
+        $request->validate([
         'name' => 'required|string',
         'email' => 'email|string',
         'phoneNo' => 'required'
-    ]);
+        ]);
 
         $enrollment = new Enrollment();
         $enrollment->enrollmentID = GuestController::generateUniqueEnrollmentID(); // You can generate a unique enrollment ID as per your requirement
@@ -91,8 +94,46 @@ class GuestController extends Controller
 
 
     }
+
+
+    public function showGuestAppointmentForm(){
+        return view('guest.appointment.create');
+    }
+
+    public function submitGuestAppointmentForm(Request $request)
+    {
     
 
+    // Validate the request data here if needed
+    $request->validate([
+        'datetime' => 'required|date_format:Y-m-d H:i',
+        'name' =>'required|string',
+        'phoneNo' => 'required',
+        'email' => 'required|email'
+    ]);
+    // Create a new appointment
+    
+    $appointment = new Appointment();
+    $appointment->appointmentID = GuestController::generateUniqueAppointmentID();
+    $appointment->appointmentName = $request->name;
+    $appointment->userTag = null;
+    $appointment->appointmentContact = $request->phoneNo;
+    $appointment->appointmentEmail = $request->email;
+    $appointment->appointmentDateTime = $request->datetime;
+    $appointment->appointmentStatus = 'pending';
+    $appointment->remarks = null;
+    $appointment->save();
+
+    $admins = User::where('role', 'admin')->get();
+        
+    foreach ($admins as $admin) {
+            $admin->notify(new AppointmentRequested($appointment));
+    }
+
+    return redirect()->back()->with('message','Appointment Request Successfully Submitted!');
+    
+
+}
 
     public function generateUniqueInquiryID()
     {
@@ -138,6 +179,31 @@ class GuestController extends Controller
         }
 
         return $enrollmentID;
+        }
+
+        return '';
+    }
+
+
+    public function generateUniqueAppointmentID()
+    {
+        $prefix = 'AP';
+    
+        if ($prefix) {
+        $unique = false;
+        $count = 1;
+        
+        while (!$unique) {
+            $appointmentID = $prefix . str_pad($count, 3, '0', STR_PAD_LEFT);
+            
+            if (!Appointment::where('appointmentID', $appointmentID)->exists()) {
+                $unique = true;
+            }
+            
+            $count++;
+        }
+
+        return $appointmentID;
         }
 
         return '';

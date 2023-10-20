@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('appointment', function (Blueprint $table) {
             $table->string('appointmentID', 15)->primary(); // Specify the VARCHAR type and length for the primary key
             $table->string('appointmentName', 255);
-            $table->string('userTag', 15);
+            $table->string('userTag', 15)->nullable();
             $table->foreign('userTag')->references('userTag')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('appointmentContact', 255);
             $table->string('appointmentEmail', 255);

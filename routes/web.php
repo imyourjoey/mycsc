@@ -80,6 +80,11 @@ Route::post('guest/inquiry/store', [GuestController::class,'submitGuestInquiry']
 Route::get('guest/enrollments/{trainingID}/create',[GuestController::class,'showGuestEnrollment'])->name('showGuestEnrollment');
 Route::post('guest/enrollments/store',[GuestController::class,'submitGuestEnrollment'])->name('submitGuestEnrollment');
 
+//Guest Make Appointment
+Route::get('guest/appointments/create',[GuestController::class,'showGuestAppointmentForm'])->name('showGuestAppointmentForm');
+Route::post('guest/appointments/store',[GuestController::class,'submitGuestAppointmentForm'])->name('submitGuestAppointmentForm');
+
+
 
 
 

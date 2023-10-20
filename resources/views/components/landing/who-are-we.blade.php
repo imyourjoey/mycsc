@@ -13,6 +13,9 @@
       <p class="text-justify">MyCyberSecurity Clinic is the trusted partner for assuring control through proven services, people and technology that recover, analyze and manage information and is a trustworthy and credible entityfor secure data handling and recovery.
 
         </p>
+        <div>
+          <a class="btn text-white" style="background: #871719" href="{{ route('showGuestAppointmentForm')}}" >Schedule an Appointment</a>
+        </div>
     </div>
   </div>
   <div class="line"></div>
