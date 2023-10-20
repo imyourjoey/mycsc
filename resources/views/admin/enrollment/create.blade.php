@@ -9,73 +9,49 @@
           <p>Please fill in the following information to enroll to a training programme.</p>
       </div>
 
-      <form method="POST" action={{ route('user.create') }} id="createUserForm">
+      <form method="POST" id="createEnrollmentForm" action=" {{ route('admin.enrollment.store') }}">
           @csrf
           <div class="row">
-            <div class="form-group col-md-6">
-              <label for="title">Programme Title <span class="form-required">*</span></label>
-              <input type="text" class="form-control" id="title"
-                  placeholder="Please choose the training program you wish to enroll in"
-                  name="title"
-                  value="{{ old('title') }}">
+            
+                <div class="form-group col-md-6">
+                    <label for="trainingTitle">Training Title<span class="form-required">*</span></label>
+                    <select class="selectpicker form-control border bg-white" id="trainingTitle" data-live-search="true" name="trainingTitle">
+                        <option disabled selected>-Select Training Program-</option>
+                        @foreach ($trainings as $training)
+                        <option value="{{ $training->trainingTitle }}" @if(old('trainingTitle')=== $training->trainingTitle ) selected @endif>{{ $training->trainingTitle }}</option>
+                      @endforeach
+                      </select>
 
-              @error('title')
-                  <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-          </div>
 
-          </div>
-
+                    @error('trainingTitle')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
           
-          <div class="row">
-            <div class="form-group col-md-6">
-              <div class="h5 mt-4 mb-3"> Applicant Details</div>
-              <label for="name">Name<span class="form-required">*</span></label>
-              <input type="text" class="form-control" id="name"
-                  placeholder="Please choose the training program you wish to enroll in"
-                  name="name"
-                  value="{{ old('name') }}">
-
-              @error('name')
-                  <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-          </div>
 
           </div>
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="email">Email<span class="form-required">*</span></label>
-              <input type="text" class="form-control" id="email"
-                  placeholder="Email address (e.g., name@example.com)"
-                  name="email"
-                  value="{{ old('email') }}">
+                <label for="userTag" class="m-0">Client ID<span class="form-required">*</span></label>
+                <select class="selectpicker form-control border bg-white" id="userTag" data-live-search="true" name="userTag">
+                    <option disabled selected>-Select Client ID-</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->userTag }}" @if(old('userTag')=== $user->userTag ) selected @endif>{{ $user->userTag }} - {{ $user->name }}</option>
+                  @endforeach
+                  </select>
 
-              @error('email')
-                  <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-          </div>
 
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label for="phoneNo">Contact Number<span class="form-required">*</span></label>
-              <input type="text" class="form-control" id="phoneNo"
-                  placeholder="Enter your phone number (e.g., 012-4567890)"
-                  name="phoneNo"
-                  value="{{ old('phoneNo') }}">
-
-              @error('phoneNo')
-                  <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-          </div>
+                @error('userTag')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
           </div>
+
 
           <div class="row">
               <div class="form-group col-md-6">
-                  <br>
                   <button type="submit" class="btn btn-primary btn-block">Enroll <i class="fa fa-arrow-right"
                           aria-hidden="true"></i></button>
 

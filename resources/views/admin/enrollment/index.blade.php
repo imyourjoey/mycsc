@@ -127,7 +127,7 @@
               {
                   text: 'Add',
                   action: function (e, dt, button, config) {
-                      window.location = "{{ route('admin.training.create') }}"; // Change this route to the appropriate Training create route
+                      window.location = "{{ route('admin.enrollment.create') }}"; // Change this route to the appropriate Training create route
                   }
               },
               {
