@@ -94,11 +94,17 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.inquiry.index') }}">Inquiry</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.training.index') }}">Training</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('admin.enrollment.index') }}">Enrollments</a>
+
+
+
+
+  <li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="trainingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Training</a>
+
+    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="trainingDropdown">
+      <a class="dropdown-item" href="{{ route('admin.training.index') }}">Programs</a>
+      <a class="dropdown-item" href="{{ route('admin.enrollment.index') }}">Enrollments</a>
+    </div>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{ route('admin.announcement.index') }}">News</a>
