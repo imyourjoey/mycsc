@@ -63,7 +63,7 @@ class AdminAppointmentController extends Controller
             
             $events[] = [
                 'id'   => $approvedAppointment->appointmentID,
-                'title' => 'Appointment with: '.$client->name,
+                'title' => 'Appointment with: '.$approvedAppointment->appointmentName,
                 'start' => $approvedAppointment->appointmentDateTime,
                 'end' => $appointmentEndTime,
             ];
@@ -79,7 +79,7 @@ class AdminAppointmentController extends Controller
             
             $events[] = [
                 'id'   => $unapprovedAppointment->appointmentID,
-                'title' => 'Appointment with: '.$client->name,
+                'title' => 'Appointment with: '.$unapprovedAppointment->appointmentName,
                 'start' => $unapprovedAppointment->appointmentDateTime,
                 'end' => $appointmentEndTime,
                 'color' =>'#FE9100'
