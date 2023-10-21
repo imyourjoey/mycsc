@@ -3,7 +3,7 @@
 
 {{-- inquiry form --}}
 <div id="hello"></div>
-<div class="container form-container" id="inquiry-form">
+<div class="container form-container pt-5 pb-2" id="inquiry-form">
   <div class="col-sm-6">
     <h2 class="text-center">Inquiry Form</h2>
     <p class="text-center"> Please fill out this form. We will get in touch with you shortly.</p>

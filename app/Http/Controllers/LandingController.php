@@ -15,7 +15,9 @@ class LandingController extends Controller
         $services = Service::all();
         $announcements = Announcement::all();
         $trainings = Training::all();
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::select('feedback.*', 'users.name as name')
+        ->leftJoin('users', 'feedback.userTag', '=', 'users.userTag')
+        ->get();
 
         return view('landing', compact('trainings', 'announcements', 'services', 'feedbacks')); 
     }

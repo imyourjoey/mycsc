@@ -1,8 +1,9 @@
-<div class="container-fluid">
-  <div class="h2 ml-5 pt-4 mb-4">Training</div>
+<div class="container-fluid" style="margin-bottom:200px">
+  <div class="h2 ml-5 pt-4 mb-5">Training</div>
 
   <div class="row justify-content-center">
     <div class="col-9">
+        <div class="training-accordion-container">
         <div class="accordion" id="accordionExample">
             @foreach($trainings as $training)
                 <div class="card">
@@ -36,6 +37,11 @@
                 </div>
             @endforeach
         </div>
+        <img src="{{ asset('img/training.svg') }}" class="training-image">
+    </div>
     </div>
 </div>
+
+
+
 </div>

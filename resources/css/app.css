@@ -37,7 +37,7 @@ body {
   background-color: #000000;
   padding-top: 50px;
   padding-bottom: 10px;
-  margin-top: 5rem;
+  margin-top:30px;
 }
 
 .page-footer h4 {
@@ -171,5 +171,42 @@ th {
   th:first-child {
   border-left: 2px solid #dddddd;
   }
+
+
+
+
+/*Training landing*/
+.training-accordion-container {
+    position: relative;
+}
+
+
+.training-image {
+  position: absolute;
+  z-index: -1; 
+  right: -160px;
+  bottom:-230px;
+  width: 460px;
+}
+
+.testimonial-container{
+  position: relative;
+}
+
+.testimonial-image{
+  position:absolute;
+  width: 340px;
+  bottom:-28px;
+  right: 50px;
+  z-index: 0;
+}
+
+
+
+
+
+
+
+
 
 
