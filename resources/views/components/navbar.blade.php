@@ -22,23 +22,23 @@
 <div class="collapse navbar-collapse" id="navbarToggler">
     <ul class="navbar-nav ml-auto navbar-right-section">
         <li class="nav-item">
-            <a class="nav-link" href="#">Service</a>
+            <a class="nav-link" href="#" data-section="service-section">Service</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">News</a>
+            <a class="nav-link" href="#" data-section="news-section">News</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">Training</a>
+            <a class="nav-link" href="#" data-section="training-section">Training</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">Testimonial</a>
+            <a class="nav-link" href="#" data-section="testimonial-section">Testimonial</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">Inquiry</a>
+            <a class="nav-link" href="#" data-section="inquiry-section">Inquiry</a>
         </li>
 
         <li class="nav-item red-rounded-square">
