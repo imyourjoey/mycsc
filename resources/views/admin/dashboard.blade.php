@@ -13,17 +13,17 @@
                 <div class="row">
                     <div class="col-4 text-center">
                         <p>Scheduled Today</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $scheduledAppointmentCount }}</span></p>
   
                     </div>
                     <div class="col-4 text-center">
                         <p>Requested Today</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $requestedAppointmentCount }}</span></p>
                         
                     </div>
                     <div class="col-4 text-center">
                         <p>Unapproved</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $unapprovedAppointmentCount }}</span></p>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                 </div>
                 <div class="card-body text-center">
                     <p>Month-To-Date</p>
-                    <p><span class="h2 font-weight-bold">RM{{ $inquiryCount }}</span></p>
+                    <p><span class="h2 font-weight-bold">RM{{ $totalPaymentAmount }}</span></p>
                     
                 </div>
         </div>
@@ -57,17 +57,17 @@
                 <div class="row">
                     <div class="col-4 text-center">
                         <p>Scheduled Today</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $scheduledTrainingCount }}</span></p>
   
                     </div>
                     <div class="col-4 text-center">
                         <p>Enrolled Today</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $enrollmentCount }}</span></p>
                         
                     </div>
                     <div class="col-4 text-center">
                         <p>Unapproved</p>
-                        <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+                        <p><span class="h2 font-weight-bold">{{ $unapprovedEnrollmentCount }}</span></p>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@
                 </div>
                 <div class="card-body text-center">
                     <p>Today</p>
-                    <p><span class="h2 font-weight-bold">RM{{ $inquiryCount }}</span></p>
+                    <p><span class="h2 font-weight-bold">RM{{ $totalPaymentAmountToday }}</span></p>
                     
                 </div>
         </div>
@@ -110,7 +110,7 @@
         </div>
         <div class="card-body text-center">
             <p>Received Today</p>
-            <p><span class="h2 font-weight-bold">{{ $inquiryCount }}</span></p>
+            <p><span class="h2 font-weight-bold">{{ $feedbackCount }}</span></p>
             
         </div>
 </div>
