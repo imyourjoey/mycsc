@@ -230,22 +230,73 @@
             'landing': 'Home',
             'login': 'Login',
             'admin.index': 'Dashboard',
-            'admin.createUserForm': 'Create User',
-            'user.index' : 'Manage Users',
-            'user.create' : 'Create User',
-            'user.edit' : 'Edit User',
-            'service.create' : 'Create Service',
-            'service.index' : 'Manage Services',
-            'service.edit' : 'Edit Services',
-            'order.create' : 'Create Orders',
-            'order.index' : 'Manage Orders',
-            'order.edit' : 'Edit Orders',
-            'appointment.index' : 'Manage Appointments',
-            'appointment.create' : 'Schedule Appointments',
-            'appointment.edit' : 'Edit Appointments',
-            'inquiry.index' : 'Manage Inquiries',
-            'inquiry.create' : 'Submit Inquiries',
-            'inquiry.edit' : 'Edit Inquiries',
+            
+            'admin.user.index': 'Users',
+            'admin.user.create': 'Create User',
+            'admin.user.edit': 'Update User', 
+
+            'admin.service.index': 'Services',
+            'admin.service.create': 'Create Service',
+            'admin.service.edit': 'Update Service',  
+
+            'admin.appointment.index': 'Appointments',
+            'admin.appointment.create': 'Create Appointment',
+            'admin.appointment.edit': 'Update Appointment', 
+            
+            'admin.order.index': 'Orders',
+            'admin.order.create': 'Create Order',
+            'admin.order.edit': 'Update Order',
+
+            'admin.invoice.index': 'Invoices',
+            'admin.invoice.create': 'Create Invoice',
+            'admin.invoice.edit': 'Update Invoice',
+
+            'admin.feedback.index': 'Feedbacks',
+            'admin.feedback.create': 'Create Feedback',
+            'admin.feedback.edit': 'Update Feedback',
+
+            'admin.inquiry.index': 'Inquiries',
+            'admin.inquiry.create': 'Create Inquiry',
+            'admin.inquiry.edit': 'Update Inquiry',
+
+            'admin.training.index': 'Trainings',
+            'admin.training.create': 'Create Training',
+            'admin.training.edit': 'Update Training',
+
+            'admin.enrollment.index': 'Enrollments',
+            'admin.enrollment.create': 'Create Enrollment',
+            'admin.enrollment.edit': 'Update Enrollment',
+
+            'admin.announcement.index': 'Announcements',
+            'admin.announcement.create': 'Create Announcement',
+            'admin.announcement.edit': 'Update Announcement',
+
+
+            'client.appointment.index': 'Appointments',
+            'client.order.index': 'Orders',
+            'client.invoice.index': 'Invoices',
+            'client.training.index': 'Trainings',
+            'client.inquiry.index': 'Inquiries',
+            'client.feedback.index': 'Feedbacks',
+
+            'technician.order.index': 'Orders',
+            'technician.order.edit': 'Update Order',
+
+
+            'technician.service.index': 'Services',
+            'technician.service.edit': 'Update Service',
+
+
+            'password.edit': 'Change Password',
+            'profile.edit': 'My Profile',
+
+
+
+
+
+
+
+
 
 
 

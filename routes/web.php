@@ -7,7 +7,6 @@ use App\Http\Controllers\LogoutController;
 use Egulias\EmailValidator\Parser\Comment;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerifyEmailController;
@@ -41,20 +40,6 @@ use App\Http\Controllers\Client\ClientAppointmentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/hello', [CalendarController::class, 'index'])->name('calendar.index');
-
-
-Route::delete('/hello/destroy', [CalendarController::class, 'destroy'])->name('calendar.destroy');
-
-
-
-
-Route::get('/kkkk', function () {
-    return view('invoice.create');
-})->name('kkkk');
-
-
-
 
 
 Route::get('', [LandingController::class,'showLandingPage'])->name('landing');
