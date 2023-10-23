@@ -9,12 +9,15 @@ use App\Models\Feedback;
 use App\Models\Training;
 use App\Models\Enrollment;
 use App\Models\Appointment;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function showClientDash(){
-        return view('client.dashboard');
+        $announcements = Announcement::all();
+
+        return view('client.dashboard',['announcements' => $announcements]);
     }
 
     public function showAdminDash(){
@@ -74,7 +77,9 @@ class DashboardController extends Controller
     }
 
     public function showTechnicianDash(){
-        return view('technician.dashboard');
+        $announcements = Announcement::all();
+
+        return view('technician.dashboard',['announcements' => $announcements]);
     }
 
 
