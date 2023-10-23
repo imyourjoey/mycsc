@@ -155,7 +155,10 @@ white-space: normal;
     success: function(response) {
       // Update the modal content with appointment details
       $('#appointmentModal .modal-body .client-name').text(response.clientName);
-      $('#appointmentModal .modal-body .date-time').text(response.dateTime);
+      var dateTime = new Date(response.dateTime);
+      var formattedDateTime = dateTime.getDate() + ' ' + dateTime.toLocaleString("en-GB", { month: 'short' }) + '. ' + ('0' + dateTime.getHours()).slice(-2) + ':' + ('0' + dateTime.getMinutes()).slice(-2);
+      
+      $('#appointmentModal .modal-body .date-time').text(formattedDateTime);
       $('#appointmentModal .modal-body .remarks').text(response.remarks);
       $('#appointmentModal .modal-body .status').text(response.status.charAt(0).toUpperCase() + response.status.slice(1));
       // Show the modal

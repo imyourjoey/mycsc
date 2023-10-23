@@ -226,17 +226,30 @@
                 return data.charAt(0).toUpperCase() + data.slice(1);
             }  
         },
-        {   data: 'created_at', 
-            name: 'created_at',
-            className: 'none',  
-            render: function (data) {
-            return new Date(data).toLocaleString("en-GB"); 
+        // {   data: 'created_at', 
+        //     name: 'created_at',
+        //     className: 'none',  
+        //     render: function (data) {
+        //     return new Date(data).toLocaleString("en-GB"); 
+        // }},
+        {
+        data: 'created_at',
+        name: 'created_at',
+        className: 'none',
+        render: function (data) {
+            var date = new Date(data);
+            var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+            var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+            return formattedDate;
         }},
         {   data: 'updated_at', 
             name: 'updated_at',
             className: 'none', 
             render: function (data) {
-            return new Date(data).toLocaleString("en-GB");
+            var date = new Date(data);
+            var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+            var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+            return formattedDate;
         }},
         {
                   data: null,

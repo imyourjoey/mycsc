@@ -176,42 +176,6 @@
                   }
               }
               },
-      //         {
-      //         extend: 'selected', // Bind to Selected row
-      //         text: 'Delete',
-      //         action: function (e, dt, button, config) {
-      //     var selectedIds = table.rows({selected: true}).ids().toArray();
-          
-  
-  
-      //     if (selectedIds.length === 0) {
-      //         alert('No records selected for deletion.');
-      //         return;
-      //     }
-  
-      //     if (confirm('Are you sure you want to delete the selected records?')) {
-      //         $.ajax({
-      //             url: "{{ route('technician.order.destroy') }}",
-      //             type: "DELETE",
-      //             data: { selectedIds: selectedIds },
-      //             headers: {
-      //             'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-      //             },
-      //             success: function (response) {
-      //                 //alert(response.message);
-      //                 toastr.success('Selected record(s) have been deleted successfully')
-      //                 // You can reload the DataTable or update it as needed.
-      //                 table.ajax.reload();
-      //             },
-      //             error: function (xhr, status, error) {
-      //                 alert('Error deleting records: ' + xhr.responseText);
-      //             }
-      //         });
-      //     }
-      // }
-      //         }
-              
-              
           ],
   
   
@@ -257,12 +221,25 @@
       }           
           },
           { data: 'orderRemarks', name: 'orderRemarks', className:'none' },
-          { data: 'created_at', name: 'created_at', className:'none', render: function (data) {
-              return new Date(data).toLocaleString("en-GB"); 
+          { data: 'created_at', 
+            name: 'created_at', 
+            className:'none', 
+            render: function (data) {
+                var date = new Date(data);
+                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                return formattedDate;
+            }},
+          { data: 'updated_at', 
+            name: 'updated_at' , 
+            className:'none',
+            render: function (data) {
+                var date = new Date(data);
+                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                return formattedDate;
           }},
-          { data: 'updated_at', name: 'updated_at' , className:'none',render: function (data) {
-              return new Date(data).toLocaleString("en-GB");}},
-              {
+          {
             
             data: null,
             defaultContent: '',

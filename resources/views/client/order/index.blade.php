@@ -93,131 +93,7 @@
               },
               dom: 'frtip', // Specify the buttons to display
               lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ], // Options for the length menu
-  
-    //           buttons: 
-    //           [{
-    //               extend: 'spacer',
-    //               text: 'Table Control:'
-    //           },
-  
-    //           'pageLength',
-    //           {
-    //               extend: 'savedStatesCreate',
-    //               config: 
-    //               {
-    //                 splitSecondaries: [
-    //                   'renameState',
-    //                   'removeState',
-    //                   ''
-    //                   ]
-    //               }
-    //           },
-    //           {
-    //               extend: 'colvis',
-    //               text: 'Show/Hide',
-    //               columns:'th.colvis',
-    //               columnText: function ( dt, idx, title ) 
-    //               {
-    //                   if(idx == 0 ){
-    //                       return 'Checkbox';
-    //                   }else{
-    //                       return title;
-    //                   }
-    //               }
-    //           },
-    //           {
-    //           extend: 'collection',
-    //           text: 'Export',
-    //           buttons: [ 'excel',
-    //                       {
-    //                       extend: 'pdfHtml5',
-    //                       orientation: 'landscape',
-    //                       pageSize: 'LEGAL'
-    //                       } 
-    //                    ]
-    //           },
-    //           {
-    //           extend: 'collection',
-    //           text: 'Select',
-    //           buttons: [ 'selectAll', 'selectNone' ]
-    //           },   
-    //           {
-    //           extend: 'searchBuilder',
-    //           config:
-    //               {
-    //                   depthLimit:2,
-    //                   columns: [1,2,3,4,5,12]
-    //               }
-    //           },
-    //           {
-    //               extend: 'spacer',
-    //               style: 'bar',
-    //               text: 'Actions:'
-    //           },
-    //           {
-    //           text: 'Add',
-    //           action: function ( e, dt, button, config ) {
-    //           window.location =  "{{ route('admin.order.create') }}" ;
-    //           }
-    //           },
-    //           {
-    //           extend: 'selectedSingle', // Bind to Selected row
-    //           text: 'Edit',
-    //           name: 'edit',
-    //           action: function (e, dt, button, config) {
-    //                       // Get the selected data
-    //               var selectedData = table.row({ selected: true }).data();
-  
-    //               if (selectedData) {
-    //                           // Redirect to the user details page with the selected user's ID
-    //                           window.location = "{{ route('admin.order.edit', ['order' => ':orderID']) }}".replace(':orderID', selectedData.orderID);
-                              
-  
-    //               }
-    //           }
-    //           },
-    //           {
-    //           extend: 'selected', // Bind to Selected row
-    //           text: 'Delete',
-    //           action: function (e, dt, button, config) {
-    //       // var selectedIds = dt.rows({ selected: true }).ids().toArray();
-    //       // console.log(selectedIds);
-    //       var selectedIds = table.rows({selected: true}).ids().toArray();
-    //       console.log(selectedIds);
-          
-  
-  
-    //       if (selectedIds.length === 0) {
-    //           alert('No records selected for deletion.');
-    //           return;
-    //       }
-  
-    //       if (confirm('Are you sure you want to delete the selected records?')) {
-    //           $.ajax({
-    //               url: "{{ route('admin.order.destroy') }}",
-    //               type: "DELETE",
-    //               data: { selectedIds: selectedIds },
-    //               headers: {
-    //               'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-    //               },
-    //               success: function (response) {
-    //                   //alert(response.message);
-    //                   toastr.success('Selected record(s) have been deleted successfully')
-    //                   // You can reload the DataTable or update it as needed.
-    //                   table.ajax.reload();
-    //               },
-    //               error: function (xhr, status, error) {
-    //                   alert('Error deleting records: ' + xhr.responseText);
-    //               }
-    //           });
-    //       }
-    //   }
-    //           }
-              
-              
-    //       ],
-  
-  
+
           columnDefs:
           [{
               targets:-1,
@@ -264,11 +140,24 @@
       }           
           },
           { data: 'orderRemarks', name: 'orderRemarks', className:'none' },
-          { data: 'created_at', name: 'created_at', className:'none', render: function (data) {
-              return new Date(data).toLocaleString("en-GB"); 
-          }},
-          { data: 'updated_at', name: 'updated_at' , className:'none',render: function (data) {
-              return new Date(data).toLocaleString("en-GB");}},
+          { data: 'created_at',
+            name: 'created_at', 
+            className:'none', 
+            render: function (data) {
+                var date = new Date(data);
+                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                return formattedDate;
+            }},
+          { data: 'updated_at', 
+            name: 'updated_at' , 
+            className:'none',
+            render: function (data) {
+                var date = new Date(data);
+                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                return formattedDate;
+            }},
               {
             
             data: null,
