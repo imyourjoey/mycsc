@@ -55,7 +55,7 @@
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
                           var data = row.data();
-                          return 'Details of ' + data.trainingID;
+                          return 'Training Details';
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

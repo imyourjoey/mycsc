@@ -49,8 +49,10 @@
                   target: -1,
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
-                          var data = row.data();
-                          return 'Details of ' + data.announcementID;
+                            var data = row.data();
+                        //   return 'Details of ' + data.announcementID;
+                            return 'Announcement Information';
+
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

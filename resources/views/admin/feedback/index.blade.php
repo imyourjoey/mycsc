@@ -49,7 +49,7 @@
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
                           var data = row.data();
-                          return 'Details of ' + data.feedbackID;
+                          return 'Feedback Details';
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

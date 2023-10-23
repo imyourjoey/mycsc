@@ -74,7 +74,7 @@
                           header: function (row) 
                           {
                               var data = row.data();
-                              return 'Details of ' + data.orderID;
+                              return 'Order Information';
                           }
                       }),
                   renderer: DataTable.Responsive.renderer.tableAll()

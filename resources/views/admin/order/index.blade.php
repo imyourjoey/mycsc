@@ -74,7 +74,7 @@
                             header: function (row) 
                             {
                                 var data = row.data();
-                                return 'Details of ' + data.orderID;
+                                return 'Order Information'
                             }
                         }),
                     renderer: DataTable.Responsive.renderer.tableAll()
@@ -198,9 +198,7 @@
                     'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                     },
                     success: function (response) {
-                        //alert(response.message);
                         toastr.success('Selected record(s) have been deleted successfully')
-                        // You can reload the DataTable or update it as needed.
                         table.ajax.reload();
                     },
                     error: function (xhr, status, error) {

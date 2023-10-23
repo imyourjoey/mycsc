@@ -67,7 +67,7 @@
                         header: function (row) 
                         {
                             var data = row.data();
-                            return 'User Details';
+                            return 'User Information';
                         }
                     }),
                 renderer: DataTable.Responsive.renderer.tableAll()
@@ -167,8 +167,6 @@
             extend: 'selected', // Bind to Selected row
             text: 'Delete',
             action: function (e, dt, button, config) {
-        // var selectedIds = dt.rows({ selected: true }).ids().toArray();
-        // console.log(selectedIds);
         var selectedIds = table.rows({selected: true}).ids().toArray();
         console.log(selectedIds);
         
@@ -185,12 +183,10 @@
                 type: "DELETE",
                 data: { selectedIds: selectedIds },
                 headers: {
-                'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+                'X-CSRF-TOKEN': csrfToken 
                 },
                 success: function (response) {
-                    //alert(response.message);
                     toastr.success('Selected record(s) have been deleted successfully')
-                    // You can reload the DataTable or update it as needed.
                     table.ajax.reload();
                 },
                 error: function (xhr, status, error) {

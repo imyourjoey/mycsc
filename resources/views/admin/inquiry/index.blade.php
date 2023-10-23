@@ -50,7 +50,7 @@
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
                           var data = row.data();
-                          return 'Details of ' + data.inquiryID;
+                          return 'Inquiry Details';
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

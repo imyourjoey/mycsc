@@ -36,7 +36,7 @@ white-space: normal;
           </button>
 
           <div class="container mt-4">
-            <div class="form-group h3">Appointment Details</div>
+            <div class="form-group h3">Appointment Information</div>
             <div class="row">
               <div class="col-6">
                 Client Name:
@@ -82,24 +82,10 @@ white-space: normal;
             <div class="row">
               <div class="col-6">
                 <p class="d-inline ml-3 mr-2">Actions:</p>
-                <a href="" id="editLink" class="link-dark">Edit <i class="fas fa-edit fa-lg"></i></a>
+                <a href="#" id="editLink" class="link-dark">Edit <i class="fas fa-edit fa-lg"></i></a>
                 <a href="#" id="deleteAppointments" class="link-dark">Delete <i class="fas fa-trash fa-lg"></i></a>
               </div>
           </div>
-          {{-- <div class="form-group">
-            <label for="client_name">Client Name</label>
-            <select class="form-control selectpicker" id="client_name" data-live-search="true">
-              @foreach ($clients as $client)
-              <option>{{ $client->name }}</option>
-            @endforeach
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="appointmentDateTime">Date</label>
-            <div class="input-group date">
-              <input type="text" class="form-control selector border"  id="appointmentDateTime">
-            </div>
-          </div> --}}
         </div>
         
         

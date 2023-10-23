@@ -52,7 +52,7 @@
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
                           var data = row.data();
-                          return 'Details of ' + data.enrollmentID;
+                          return 'Enrollment Information'
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

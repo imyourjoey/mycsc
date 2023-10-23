@@ -65,7 +65,7 @@
                           header: function (row) 
                           {
                               var data = row.data();
-                              return 'Details of ' + data.serviceName;
+                              return 'Service Information ';
                           }
                       }),
                   renderer: DataTable.Responsive.renderer.tableAll()

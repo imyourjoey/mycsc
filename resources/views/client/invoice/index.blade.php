@@ -59,7 +59,7 @@
                   display: $.fn.dataTable.Responsive.display.modal({
                       header: function (row) {
                           var data = row.data();
-                          return 'Details of ' + data.invoiceID;
+                          return 'Invoice Information' + data.invoiceID;
                       }
                   }),
                   renderer: DataTable.Responsive.renderer.tableAll()

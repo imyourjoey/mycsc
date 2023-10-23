@@ -65,7 +65,7 @@
                           header: function (row) 
                           {
                               var data = row.data();
-                              return 'Details of ' + data.serviceName;
+                              return 'Service Information' ;
                           }
                       }),
                   renderer: DataTable.Responsive.renderer.tableAll()
@@ -73,7 +73,7 @@
               },
               select: 
               {
-                  style: 'multi', // Allow multi-row selection
+                  style: 'multi', 
                   selector: 'td:first-child'
               },
               ajax: 
