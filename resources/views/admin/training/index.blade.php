@@ -198,20 +198,29 @@
               { data: 'startDateTime', 
                 name: 'startDateTime',
                 render: function (data) {
-                      return new Date(data).toLocaleString("en-GB");
-                }
+                  var date = new Date(data);
+                  var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                  var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                  return formattedDate;
+              }
               },
               { data: 'endDateTime',
                 name: 'endDateTime',
                 render: function (data) {
-                      return new Date(data).toLocaleString("en-GB");
-                }
+                  var date = new Date(data);
+                  var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                  var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                  return formattedDate;
+              }
               },
               { data: 'regisDeadline',
                 name: 'regisDeadline',
                 render: function (data) {
-                      return new Date(data).toLocaleString("en-GB");
-                }
+                  var date = new Date(data);
+                  var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+                  var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+                  return formattedDate;
+              }
               },
               {
                   data: 'created_at',
