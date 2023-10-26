@@ -13,6 +13,7 @@
                   <th class="colvis">Client Name</th>
                   <th class="colvis">User Tag</th>
                   <th class="colvis">Inquiry Message</th>
+                  <th class="colvis">Reply</th>
                   <th class="colvis">Contact Email</th>
                   <th>Created At</th>
                   <th>Updated At</th>
@@ -173,7 +174,11 @@
                   targets: -1,
                   orderable: false,
                   className: 'dtr-control arrow-right',
-              }
+              },
+              {
+            targets: [1,2,3,4,5,6],
+            defaultContent:"N/A"
+          }
           ],
           columns: [
               {
@@ -187,6 +192,7 @@
               { data: 'clientName', name: 'clientName' },
               { data: 'userTag', name: 'userTag' },
               { data: 'inquiryMessage', name: 'inquiryMessage' },
+              { data: 'inquiryReply', name: 'inquiryReply' },
               { data: 'contactEmail', name: 'contactEmail' },
               {
                   data: 'created_at',

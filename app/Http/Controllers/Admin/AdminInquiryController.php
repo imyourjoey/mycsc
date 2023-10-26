@@ -21,6 +21,7 @@ class AdminInquiryController extends Controller
                     'inquiry.userTag',
                     'inquiry.inquiryMessage',
                     'inquiry.inquiryContactEmail as contactEmail',
+                    'inquiry.inquiryReply',
                     'inquiry.created_at',
                     'inquiry.updated_at',
                 ])
@@ -67,10 +68,13 @@ public function update(Request $request, Inquiry $inquiry)
     // Validate the form data
     $validatedData = $request->validate([
         'inquiryMessage' => 'required|string',
+        'inquiryReply' => 'string'
     ]);
 
     // Update the inquiry attributes
     $inquiry->inquiryMessage = $validatedData['inquiryMessage'];
+    $inquiry->inquiryReply = $validatedData['inquiryReply'];
+
 
     // Save the changes
     $inquiry->save();

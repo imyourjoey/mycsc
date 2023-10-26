@@ -189,7 +189,11 @@
                 orderable:false,
                 className: 'dtr-control arrow-right',
                
-            }],
+            },
+            {
+            targets: [1,2,3,4],
+            defaultContent:"N/A"
+          }],
           columns: [
               {
                 targets:0,

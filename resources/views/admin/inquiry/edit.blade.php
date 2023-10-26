@@ -45,6 +45,19 @@
           </div>
 
           <div class="row">
+            <div class="form-group col-md-6">
+                <label for="inquiryReply">Inquiry/Message <span class="form-required">*</span></label>
+                <textarea type="text" class="form-control" id="inquiryReply"
+                    placeholder="Type your reply" name="inquiryReply" rows="4">{{ old('inquiryReply', $inquiry->inquiryReply) }}</textarea>
+
+                @error('inquiryReply')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+        </div>
+
+          <div class="row">
               <div class="form-group col-md-6">
                   <label for="email">Contact Email <span class="form-required">*</span></label>
                   <input type="text" class="form-control" id="email" placeholder="Enter your email address"
