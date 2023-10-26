@@ -170,61 +170,7 @@
 
 
 
-{{-- Footer --}}
-<footer class="page-footer pb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Service</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Training</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md-3">
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Data Sanitisation</a></li>
-                    <li><a href="#">Data Recovery</a></li>
-                    <li><a href="#">Data Disposal</a></li>
-
-
-                </ul>
-            </div>
-            <div class="col-6 col-md-3">
-                <h4>Accounts</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Admin</a></li>
-                    <li><a href="#">Client</a></li>
-                    <li><a href="#">Technician</a></li>
-
-                </ul>
-
-            </div>
-            <div class="col-6 col-md-3">
-
-                <h4>Socials</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Facebook </a></li>
-                    <li><a href="#">Instagram </a></li>
-                    <li><a href="#">Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-        <p>More ways to reach us:&nbsp;call 05-10008000, or visit <a
-                href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank">Universiti Malaysia Sabah</a></p>
-        <hr>
-        <div class="footer-legal">
-            <div class="d-inline-block copyright">
-                <p class="d-inline-block">Copyright MyCyberSecurity Clinic UMS © 2012. All Rights Reserved<br></p>
-            </div>
-
-        </div>
-    </div>
-    </div>
-</footer>
+<x-footer/>
 
 
 
