@@ -181,12 +181,82 @@ return [
     */
 
     'attributes' => [
-        'phoneNo' =>'phone number',
-        'serviceTitle' => 'service title',
-        'serviceDesc' => 'service description',
-        'servicePic' => 'service picture',
-        'estDuration' => 'estimated duration',
-        'adminName' => 'admin name',
+        //User
+        'role' => '"Role"',
+        'password' => '"Password"',
+        'name' => '"Name"',
+        'password_confirmation' => '"Confirm Password"',
+        'email' => '"Email"',
+        'phoneNo' => '"Phone Number"',
+
+        //appointment
+        'clientName' => '"Client Name"',
+        'datetime' => '"Date and Time"',
+        'remarks' => '"Remarks"',
+
+        //Service
+        'serviceTitle' => '"Service Title"',
+        'serviceDesc' => '"Service Description"',
+        'servicePic' => '"Service Image"',
+        'estDuration' => '"Estimated Duration"',
+        'adminName' => '"Admin Name"',
+
+
+        //order
+        'serviceType' => '"Service Type"',
+        'deviceType' => '"Device Type"',
+        'clientName' => '"Client Name"',
+        'manufacturer' => '"Manufacturer"',
+        'assignedTechnician' => '"Assigned Technician"',
+        'partNo' => '"Part No"',
+        'orderStatus' => '"Order Status"',
+        'serialNo' => '"Serial No"',
+        'statusPic' => '"Order Status Image"',
+        'othersIncluded' => '"Others Included"',
+        'remarks' => '"Remarks"',
+        'diskCapacity' => '"Disk Capacity"',
+        'capacityRestored' => '"Capacity Restored"',
+
+
+        //invoice
+        'orderID' => '"Order ID"',
+        'dueDate' => '"Invoice Due Date"',
+        'totalPayable' => '"Total Payable"',
+        'amountPaid' => '"Amount Paid"',
+        'paymentStatus' => '"Payment Status"',
+        'paymentMethod' => '"Payment Method"',
+
+
+        //feedback
+        'feedbackMessage' => '"Feedback Message"',
+        'rating' => '"Rating"',
+
+        //inquiry
+        'name' => '"Name"',
+        'inquiryMessage' => '"Inquiry Message"',
+        'email' => '"Contact Email"',
+
+
+        //training
+        'trainingTitle' => '"Title"',
+        'trainingDesc' => '"Description"',
+        'trainingVenue' => '"Venue"',
+        'trainerName' => '"Trainer Name"',
+        'trainingCapacity' => '"Maximum Capacity"',
+        'startDateTime' => '"Starting Date & Time"',
+        'endDateTime' => '"Ending Date & Time"',
+        'regisDeadline' => '"Registration Deadline"',
+
+        //enrollment
+        'trainingTitle' => '"Training Title"',
+        'userTag' => '"Client ID"',
+
+        //anouncement
+        'title' => '"Title"',
+        'description' => '"Description"',
+        'picture' => '"Image"',
+
+
         
     ],
 

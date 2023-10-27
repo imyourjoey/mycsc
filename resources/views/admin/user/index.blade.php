@@ -219,7 +219,7 @@
         { data: 'userTag', name: 'userTag' },
         { data: 'name', name: 'name' },
         { data: 'email', name: 'email' },
-        { data: 'phoneNo', name: 'phoneNo' },
+        { data: 'phoneNo', name: 'phoneNo'},
         { data: 'role', 
           name: 'role',
           render: function (data) {
