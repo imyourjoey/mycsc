@@ -11,6 +11,8 @@
 
     <x-landing.who-are-we />
 
+    <x-landing.appointment></x-landing.appointment>
+
     <div id="service-section" data-offset="80">
     <x-landing.services-card :services="$services"/>
     </div>
