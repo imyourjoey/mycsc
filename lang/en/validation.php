@@ -257,6 +257,10 @@ return [
         'picture' => '"Image"',
 
 
+        //Guest
+        'guestEmail' => '"Email"'
+
+
         
     ],
 

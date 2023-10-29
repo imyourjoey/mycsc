@@ -13,7 +13,7 @@
   </button>
     
 
-@if (!request()->routeIs('login') && !auth()->check())
+@if ((!request()->routeIs('login') && !request()->routeIs('showGuestAppointment')) && !auth()->check())
 
 <a class="navbar-brand" href="{{ route('landing') }}">
   <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
@@ -48,7 +48,7 @@
 </div>
 
 {{-- Login Form --}}
-@elseif (request()->routeIs('login') && !auth()->check())  
+@elseif ((request()->routeIs('login') || request()->routeIs('showGuestAppointment')) && !auth()->check())  
 
 <a class="navbar-brand" href="{{ route('landing') }}">
   <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">

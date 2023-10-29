@@ -69,6 +69,8 @@ Route::post('guest/enrollments/store',[GuestController::class,'submitGuestEnroll
 Route::get('guest/appointments/create',[GuestController::class,'showGuestAppointmentForm'])->name('showGuestAppointmentForm');
 Route::post('guest/appointments/store',[GuestController::class,'submitGuestAppointmentForm'])->name('submitGuestAppointmentForm');
 
+//Guest Check Appointment
+Route::get('guest/appointments/show',[GuestController::class,'showGuestAppointment'])->name('showGuestAppointment');
 
 
 

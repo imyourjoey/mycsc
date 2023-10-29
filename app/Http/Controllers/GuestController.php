@@ -8,9 +8,11 @@ use App\Models\Training;
 use App\Models\Enrollment;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use App\Notifications\inquirySent;
+use Illuminate\Support\Facades\DB;
 use App\Notifications\AppointmentRequested;
-
+use Illuminate\Auth\Events\Validated;
 
 class GuestController extends Controller
 {
@@ -105,35 +107,70 @@ class GuestController extends Controller
     
 
     // Validate the request data here if needed
-    $request->validate([
-        'datetime' => 'required|date_format:Y-m-d H:i',
-        'name' =>'required|string',
-        'phoneNo' => 'required',
-        'email' => 'required|email'
-    ]);
-    // Create a new appointment
-    
-    $appointment = new Appointment();
-    $appointment->appointmentID = GuestController::generateUniqueAppointmentID();
-    $appointment->appointmentName = $request->name;
-    $appointment->userTag = null;
-    $appointment->appointmentContact = $request->phoneNo;
-    $appointment->appointmentEmail = $request->email;
-    $appointment->appointmentDateTime = $request->datetime;
-    $appointment->appointmentStatus = 'pending';
-    $appointment->remarks = null;
-    $appointment->save();
-
-    $admins = User::where('role', 'admin')->get();
+        $request->validate([
+            'datetime' => 'required|date_format:Y-m-d H:i',
+            'name' =>'required|string',
+            'phoneNo' => 'required',
+            'email' => 'required|email'
+        ]);
+        // Create a new appointment
         
-    foreach ($admins as $admin) {
-            $admin->notify(new AppointmentRequested($appointment));
+        $appointment = new Appointment();
+        $appointment->appointmentID = GuestController::generateUniqueAppointmentID();
+        $appointment->appointmentName = $request->name;
+        $appointment->userTag = null;
+        $appointment->appointmentContact = $request->phoneNo;
+        $appointment->appointmentEmail = $request->email;
+        $appointment->appointmentDateTime = $request->datetime;
+        $appointment->appointmentStatus = 'pending';
+        $appointment->remarks = null;
+        $appointment->save();
+
+        $admins = User::where('role', 'admin')->get();
+            
+        foreach ($admins as $admin) {
+                $admin->notify(new AppointmentRequested($appointment));
+        }
+
+        return redirect()->back()->with('message','Appointment Request Successfully Submitted!');
+        
+
     }
 
-    return redirect()->back()->with('message','Appointment Request Successfully Submitted!');
-    
 
-}
+    public function showGuestAppointment(Request $request){
+
+
+        if (!$request->ajax()){
+            $request->validate([
+                'guestEmail' => 'required|email'
+            ]);
+        }
+        
+        $guestEmail = $request->input('guestEmail');
+
+        if ($request->ajax()) {
+
+            $clientAppointments = DB::table('appointment')
+                ->select([
+                    'appointment.appointmentID',
+                    'appointment.appointmentDateTime',
+                    'appointment.appointmentStatus',
+                    'appointment.remarks',
+                    'appointment.created_at',
+                    'appointment.updated_at'
+                ])
+                ->where('appointment.userTag', '=', $guestEmail )
+                ->get();
+
+            return DataTables::of($clientAppointments)->toJson();
+        }
+
+        return view('guest.appointment.show', ['email' => $guestEmail]);
+    }
+
+
+
 
     public function generateUniqueInquiryID()
     {
@@ -185,6 +222,10 @@ class GuestController extends Controller
     }
 
 
+
+
+
+
     public function generateUniqueAppointmentID()
     {
         $prefix = 'AP';
@@ -208,4 +249,6 @@ class GuestController extends Controller
 
         return '';
     }
+
+
 }

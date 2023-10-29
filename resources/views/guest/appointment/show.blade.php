@@ -4,12 +4,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-8">
-        <div class="h2 mt-4 font-weight-bold">My Appointments</div>
+        <div class="h2 mt-4 font-weight-bold">Appointments</div>
+        <div class="h6 font-weight-bold">Requested with email: {{ $email }} </div>
+
 
         <table class="display cell-border" id="client-appointments-table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th style="max-width: 20px"></th>
+                    {{-- <th style="max-width: 20px"></th> --}}
                     <th class="colvis">ID</th>
                     <th class="colvis">Date & Time</th>
                     <th class="colvis">Status</th>
@@ -21,46 +23,6 @@
       </div>
     </div>
 
-
-    <div class="row">
-      <div class="col-8">
-        <div class="h2 mt-5 mb-2 font-weight-bold">Request Appointment</div>
-
-        <form method="POST" action={{ route('client.appointment.store') }} id="requestAppointmentForm" enctype="multipart/form-data">
-          @csrf
-          
-            <div class="row">
-              <div class="form-group col-md-6">
-                  <input type="text" class="form-control selector bg-white"  id="datetime"
-                      placeholder="Select Appointment Date and Time" name="datetime" value="{{ old('datetime') }}">
-
-                      @error('datetime')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
-              </div>
-
-          
-          </div>
-
-
-
-
-          
-
-
-
-
-
-          <div class="row">
-              <div class="form-group col-md-6">
-                  <button type="submit" class="btn btn-primary btn-block">Request <i class="fa fa-arrow-right"
-                          aria-hidden="true"></i></button>
-
-              </div>
-          </div>
-      </form>
-      </div>
-    </div>
 
   </div>
 </x-layout>
@@ -104,7 +66,7 @@
                     selector: 'td:first-child'
                 },
           ajax: {
-              url: '{{ route('client.appointment.index') }}',
+              url: '{{ route('showGuestAppointment') }}',
               type: 'GET'
           },
           dom: 'Bfrtip',
@@ -144,44 +106,44 @@
               //         columns: [0, 1, 2, 3, 4, 5]
               //     }
               // },
-              {
-                    extend: 'spacer',
-                    text: 'Action:'
-              },
-              {
-                  extend: 'selected',
-                  text: 'Delete',
-                  action: function (e, dt, button, config) {
-            var selectedIds = table.rows({selected: true}).ids().toArray();
+        //       {
+        //             extend: 'spacer',
+        //             text: 'Action:'
+        //       },
+        //       {
+        //           extend: 'selected',
+        //           text: 'Delete',
+        //           action: function (e, dt, button, config) {
+        //     var selectedIds = table.rows({selected: true}).ids().toArray();
             
     
     
-            if (selectedIds.length === 0) {
-                alert('No records selected for deletion.');
-                return;
-            }
+        //     if (selectedIds.length === 0) {
+        //         alert('No records selected for deletion.');
+        //         return;
+        //     }
     
-            if (confirm('Are you sure you want to delete the selected records?')) {
-                $.ajax({
-                    url: "{{ route('client.appointment.destroy') }}",
-                    type: "DELETE",
-                    data: { selectedIds: selectedIds },
-                    headers: {
-                    'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-                    },
-                    success: function (response) {
-                        //alert(response.message);
-                        toastr.success('Selected record(s) have been deleted successfully')
-                        // You can reload the DataTable or update it as needed.
-                        table.ajax.reload();
-                    },
-                    error: function (xhr, status, error) {
-                        alert('Error deleting records: ' + xhr.responseText);
-                    }
-                });
-            }
-        }
-              },
+        //     if (confirm('Are you sure you want to delete the selected records?')) {
+        //         $.ajax({
+        //             url: "{{ route('client.appointment.destroy') }}",
+        //             type: "DELETE",
+        //             data: { selectedIds: selectedIds },
+        //             headers: {
+        //             'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+        //             },
+        //             success: function (response) {
+        //                 //alert(response.message);
+        //                 toastr.success('Selected record(s) have been deleted successfully')
+        //                 // You can reload the DataTable or update it as needed.
+        //                 table.ajax.reload();
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 alert('Error deleting records: ' + xhr.responseText);
+        //             }
+        //         });
+        //     }
+        // }
+        //       },
           ],
           columnDefs:
             [{
@@ -195,13 +157,13 @@
             defaultContent:"N/A"
           }],
           columns: [
-              {
-                targets:0,
-                data: null,
-                defaultContent: '',
-                orderable: false, 
-                className: 'select-checkbox'
-              },
+              // {
+              //   targets:0,
+              //   data: null,
+              //   defaultContent: '',
+              //   orderable: false, 
+              //   className: 'select-checkbox'
+              // },
               { data: 'appointmentID', name: 'appointmentID' },
               { data: 'appointmentDateTime', 
                 name: 'appointmentDateTime',

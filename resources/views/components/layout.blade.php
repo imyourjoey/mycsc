@@ -225,6 +225,9 @@
             'profile.edit': 'My Profile',
 
 
+            'showGuestAppointment': 'Appointments'
+
+
 
 
 
