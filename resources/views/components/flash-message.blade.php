@@ -1,21 +1,13 @@
 @if(session()->has('message'))
     <script>
-        toastr.success("{{session('message')}} ", {
-            timeOut: 5000, 
-            positionClass: "toast-top-right",
-            
-
-        });
+        toastr.success("{{session('message')}}");
 
     </script>
 @elseif (session()->has('error'))
 <script>
-    toastr.error("{{ session('error') }}", {
-        timeOut: 0, 
-        positionClass: "toast-top-right",
-
-    });
-
+    toastr.options.positionClass = 'toast-top-right';
+    toastr.error("{{ session('error') }}");
 </script>
+
 @endif
 
