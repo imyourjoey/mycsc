@@ -1,4 +1,15 @@
 <x-layout>
+    <style>
+        .invoicePaid{
+            color: #46D737;
+            font-weight: 600;
+        }
+
+        .invoiceUnpaid{
+            color: #FF9A41;
+            font-weight: 600;
+        }
+    </style>
   <x-navbar/>
   <div class="container-fluid">
       <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Invoices</div>
@@ -13,9 +24,9 @@
                   <th class="colvis">Client Name</th>
                   <th class="colvis">Total Payable</th>
                   <th class="colvis">Invoice Due Date</th>
-                  <th class="colvis">Payment Status</th>
                   <th class="colvis">Payment Amount</th>
                   <th class="colvis">Payment Method</th>
+                  <th class="colvis">Payment Status</th>
                   <th class="colvis">Created At</th>
                   <th class="colvis">Updated At</th>
                   <th style="max-width: 40px"></th>
@@ -246,12 +257,6 @@
                 return formattedDate;
                 
               }},
-              { data: 'paymentStatus', 
-                name: 'paymentStatus',
-                render: function (data) {
-                         return data.charAt(0).toUpperCase() + data.slice(1);
-                         } 
-              },
               { data: 'paymentAmount', 
                 name: 'paymentAmount',
                 render: function (data) {
@@ -262,6 +267,12 @@
                 }  
               },
               { data: 'paymentMethod', name: 'paymentMethod' },
+              { data: 'paymentStatus', 
+                name: 'paymentStatus',
+                render: function (data) {
+                         return data.charAt(0).toUpperCase() + data.slice(1);
+                         } 
+              },
               {
                   data: 'created_at',
                   name: 'created_at',
@@ -288,7 +299,16 @@
                   orderable: false,
                   className: 'text-center'
               }
-          ]
+          ],
+            rowCallback: function(row, data, index) {
+            if (data.paymentStatus == "paid") {
+            $("td:eq(8)", row).addClass("invoicePaid");
+            }
+
+            if (data.paymentStatus == "pending") {
+            $("td:eq(8)", row).addClass("invoiceUnpaid");
+      }
+    }
       });
   });
 

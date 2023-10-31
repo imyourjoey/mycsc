@@ -1,10 +1,10 @@
 @vite('resources/css/services.css')
 
 
-<div class="container-fluid mb-5">
+<div class="container-fluid mb-4">
   <h2 class="ml-5 mt-4 mb-3">Services</h2>
         <div class="row justify-content-between pr-5 pl-5" >
-            <div class="swiper service-swiper col-12" style="height: 450px">
+            <div class="swiper service-swiper col-12" style="height: 400px">
                 <div class="swiper-wrapper">
             @foreach ($services as $service)
             <div class="col-md-4 mt-1 swiper-slide">
