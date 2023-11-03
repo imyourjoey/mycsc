@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
@@ -40,6 +41,18 @@ use App\Http\Controllers\Client\ClientAppointmentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/card-reader-data', function () {
+    $data = Http::get('http://127.0.0.1:8080')->json();
+
+    $formattedData = array_map(function ($value) {
+        return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
+    }, $data);
+
+
+    return response()->json($formattedData);
+});
 
 
 Route::get('', [LandingController::class,'showLandingPage'])->name('landing');
@@ -98,6 +111,8 @@ Route::post('{user}/verifyemail',  [VerifyEmailController::class, 'verifyEmail']
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     //dashboard
     Route::get('index', [DashboardController::class, 'showAdminDash'])->name('admin.index');
+
+    
 
     //User
     Route::prefix('users')->name('admin.user.')->group(function () {
@@ -316,10 +331,6 @@ Route::middleware(['auth', 'role:technician'])->prefix('technician')->group(func
         Route::delete('destroy', [TechServiceController::class, 'destroy'])->name('destroy');
     
         });
-
-
-
-
 
 
 });

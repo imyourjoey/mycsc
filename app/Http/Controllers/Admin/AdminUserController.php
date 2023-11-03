@@ -92,7 +92,7 @@ class AdminUserController extends Controller
         
         //Send OTP to email 
         Mail::to($user->email)->send(new WelcomeEmail($user));
-        return redirect()->back()->with('message', 'User created successfully!');
+        return redirect()->route('admin.user.index')->with('message', 'User created successfully!');
         
     }
 

@@ -1,9 +1,7 @@
 <x-layout>
+
     <x-navbar />
-
-
     <div class="container">
-
         <div class="mt-4 mb-4">
             @if(session()->has('message'))
             <div class="row">
@@ -15,7 +13,7 @@
             </div>
           @endif
             <p class="h2">Create New User</p>
-            <p>Please fill in the following information to create a new user.</p>
+            <p>Insert your MyKad and complete the following information to create a new user. <a href="javascript:void(0)" id="manualEntryLink">Click here</a> to enter the details manually.</p>
         </div>
 
         <form method="POST" action={{ route('admin.user.store') }} id="createUserForm">
@@ -57,7 +55,7 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="name">Name <span class="form-required">*</span></label>
+                    <label for="name">Name <span id="retrievedMyKad"></span> <span class="form-required">*</span></label>
                     <input type="text" class="form-control" id="name"
                         placeholder="Enter Your Full Name (e.g., Jane Doe)" name="name"
                         value="{{ old('name') }}">
@@ -123,4 +121,69 @@
             </div>
         </form>
     </div>
+
+    <script>
+        let shouldStopFetching = false; // Flag to control fetching
+
+        function stopFetching() {
+            shouldStopFetching = true;
+            document.getElementById('retrievedMyKad').innerText = "";
+            document.getElementById('name').value = "";
+        }
+
+        document.getElementById('manualEntryLink').addEventListener('click', function() {
+            stopFetching(); // Stop the fetching when the link is clicked
+        });
+
+        document.getElementById('createUserButton').addEventListener('click', function() {
+        stopFetching(); // Stop the fetching when the Create button is clicked
+        });
+
+        function fetchDataFromCardReader() {
+            if (!shouldStopFetching) {
+                fetch('/card-reader-data')
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Card data not available');
+                        }
+                    })
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            document.getElementById('name').value = data[0];
+                            document.getElementById('retrievedMyKad').innerText = "(Retrieved from MyKad)";
+                            // Update other fields accordingly
+                        } else {
+                            document.getElementById('name').value = '';
+                            document.getElementById('retrievedMyKad').innerText = ''; // Clear the retrieval information
+                            // Clear or reset other fields accordingly
+                        }
+        
+                        // Call the function again after a delay if fetching is not stopped
+                        if (!shouldStopFetching) {
+                            setTimeout(fetchDataFromCardReader, 1000); // Schedule the next call
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        document.getElementById('name').value = '';
+                        document.getElementById('retrievedMyKad').innerText = ''; // Clear the retrieval information on error
+                        // Retry the function after an error occurred if fetching is not stopped
+                        if (!shouldStopFetching) {
+                            setTimeout(fetchDataFromCardReader, 1000); // Schedule the next call even after an error
+                        }
+                    });
+            } else {
+                // Fetching stopped
+                console.log('Fetching stopped.');
+            }
+        }
+
+        // Initial call to start the fetching process
+        fetchDataFromCardReader();
+    </script>
+        
+        
+
 </x-layout>
