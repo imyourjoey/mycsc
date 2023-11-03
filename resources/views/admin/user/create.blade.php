@@ -13,7 +13,7 @@
             </div>
           @endif
             <p class="h2">Create New User</p>
-            <p>Insert your MyKad and complete the following information to create a new user. <a href="javascript:void(0)" id="manualEntryLink">Click here</a> to enter the details manually.</p>
+            <p>Insert MyKad and complete the following information to create a new user. <a href="javascript:void(0)" id="manualEntryLink">Click here</a> to enter the details manually.</p>
         </div>
 
         <form method="POST" action={{ route('admin.user.store') }} id="createUserForm">
@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <br>
-                    <button type="submit" class="btn btn-primary btn-block">Create <i class="fa fa-arrow-right"
+                    <button type="submit" id="createUserButton" class="btn btn-primary btn-block">Create <i class="fa fa-arrow-right"
                             aria-hidden="true"></i></button>
 
                 </div>
@@ -127,11 +127,12 @@
 
         function stopFetching() {
             shouldStopFetching = true;
-            document.getElementById('retrievedMyKad').innerText = "";
-            document.getElementById('name').value = "";
+            
         }
 
         document.getElementById('manualEntryLink').addEventListener('click', function() {
+            document.getElementById('retrievedMyKad').innerText = "";
+            document.getElementById('name').value = "";
             stopFetching(); // Stop the fetching when the link is clicked
         });
 
