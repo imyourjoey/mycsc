@@ -146,6 +146,7 @@
 
         document.getElementById('manualEntryLink').addEventListener('click', function() {
             document.getElementById('retrievedMyKad').innerText = "";
+            document.getElementById('retrievedMyKad2').innerText = "";
             document.getElementById('name').value = "";
             document.getElementById('icNum').value = "";
             stopFetching(); // Stop the fetching when the link is clicked
