@@ -29,14 +29,15 @@ class UserFactory extends Factory
 
 
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'remember_token' => Str::random(10),
-            'username' => $this->faker->unique()->name(),
-            'phoneNo' => $this->faker->randomNumber(5, true),
-            'password' => bcrypt('hello'), // You may replace 'password' with a hashed password.
-            'role' => $this->faker->randomElement(['admin', 'client','technician']), // Adjust the roles as needed.
-            'remember_token' => Str::random(10),
+            'name' => 'Joey Lim Jun Yi',
+            'email' => 'joey@gmail.com',
+            'icNum' => '000119050057',
+            'phoneNo' => '019-9929292',
+            'password' => bcrypt('88888888'), 
+            'userTag' =>'AD001',
+            'role' => 'admin',
+            'emailVerified' => 1, 
+
         ];
     }
 

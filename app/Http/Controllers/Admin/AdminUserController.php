@@ -69,6 +69,7 @@ class AdminUserController extends Controller
             'phoneNo' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:8',
+            'icNum' =>'required',
         ],
         [
             // 'phoneNo.required' => 'The phone number field is required'
@@ -82,6 +83,7 @@ class AdminUserController extends Controller
         $user->role = $request->role;
         $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
+        $user->icNum = $request->icNum;
         $user->password = Hash::make($request->password);
         
         // Generate a random six-digit one-time pin

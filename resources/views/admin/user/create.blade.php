@@ -86,6 +86,20 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
+                    <label for="icNum">IC Number <span id="retrievedMyKad2"></span> <span class="form-required">*</span></label>
+                    <input type="text" class="form-control" id="icNum"
+                        placeholder="Please enter your IC number (without dashes '-')" name="icNum"
+                        value="{{ old('icNum') }}">
+
+                    @error('icNum')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
                     <label for="email">Email <span class="form-required">*</span></label>
                     <input type="text" class="form-control" id="email"
                         placeholder="Email address (e.g., name@example.com)" name="email"
@@ -133,6 +147,7 @@
         document.getElementById('manualEntryLink').addEventListener('click', function() {
             document.getElementById('retrievedMyKad').innerText = "";
             document.getElementById('name').value = "";
+            document.getElementById('icNum').value = "";
             stopFetching(); // Stop the fetching when the link is clicked
         });
 
@@ -154,11 +169,16 @@
                         if (data && data.length > 0) {
                             document.getElementById('name').value = data[0];
                             document.getElementById('retrievedMyKad').innerText = "(Retrieved from MyKad)";
+
+                            document.getElementById('icNum').value = data[1];
+                            document.getElementById('retrievedMyKad2').innerText = "(Retrieved from MyKad)";
                             // Update other fields accordingly
                         } else {
                             document.getElementById('name').value = '';
                             document.getElementById('retrievedMyKad').innerText = ''; // Clear the retrieval information
                             // Clear or reset other fields accordingly
+                            document.getElementById('icNum').value = '';
+                            document.getElementById('retrievedMyKad2').innerText = '';
                         }
         
                         // Call the function again after a delay if fetching is not stopped
@@ -169,7 +189,11 @@
                     .catch(error => {
                         console.error('Error fetching data:', error);
                         document.getElementById('name').value = '';
-                        document.getElementById('retrievedMyKad').innerText = ''; // Clear the retrieval information on error
+                        document.getElementById('retrievedMyKad').innerText = '';
+                        
+                        document.getElementById('icNum').value = '';
+                        document.getElementById('retrievedMyKad2').innerText = '';
+                        // Clear the retrieval information on error
                         // Retry the function after an error occurred if fetching is not stopped
                         if (!shouldStopFetching) {
                             setTimeout(fetchDataFromCardReader, 1000); // Schedule the next call even after an error

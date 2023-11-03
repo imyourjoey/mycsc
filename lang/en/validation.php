@@ -188,6 +188,7 @@ return [
         'password_confirmation' => '"Confirm Password"',
         'email' => '"Email"',
         'phoneNo' => '"Phone Number"',
+        'icNum' => '"IC Number"',
 
         //appointment
         'clientName' => '"Client Name"',
