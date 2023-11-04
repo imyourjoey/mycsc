@@ -220,6 +220,29 @@ class AdminOrderController extends Controller
 
     }
 
+
+    public function authenticate(Request $request){
+        $enteredOTP = $request->input('enteredOTP');
+        $selectedOrderID = $request->input('selectedOrderID');
+
+        $order = Order::find($selectedOrderID);
+
+        $user = User::where('userTag', $order->clientTag)->first();
+
+        $decryptedOTP = Crypt::decrypt($user->oneTimePin);
+
+        if ( $decryptedOTP == $enteredOTP) {
+            $order->orderStatus = 'Completed';
+            $order->save();
+
+
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+
+    }
+
     public function generateUniqueOrderID()
     {
         $prefix = 'OR';

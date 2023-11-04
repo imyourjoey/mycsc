@@ -226,7 +226,8 @@
                 data: { selectedOrderIDs: selectedData.orderID },
                 success: function (response) {
                     // Handle success - display message or perform necessary actions
-                    toastr.success('OTP sent successfully!')
+                    toastr.success('OTP sent successfully!');
+                    
 
                 },
                 error: function (xhr, status, error) {
@@ -236,7 +237,48 @@
             });
         }
     }
-                }
+                },
+                {
+    extend: 'selectedSingle', // Bind to Selected row
+    text: 'Authenticate',
+    action: function (e, dt, button, config) {
+        // Get the selected data
+        var selectedData = table.row({ selected: true }).data();
+
+        if (selectedData) {
+            // Assuming the authentication function is 'verifyAuthentication'
+            var inputOTP = prompt('Please enter your OTP:');
+            
+            if (inputOTP !== null) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.order.authenticate') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+                    },
+                    data: {
+                        selectedOrderID: selectedData.orderID,
+                        enteredOTP: inputOTP
+                    },
+                    success: function (response) {
+                        // Handle success - display message or perform necessary actions
+                        if (response.success) {
+                            toastr.success('Authentication successful!');
+                            table.ajax.reload();
+                        } else {
+                            toastr.error('Invalid OTP, Please try again!');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle errors
+                        alert('Error verifying OTP: ' + xhr.responseText);
+                    }
+                });
+            }
+        }
+    }
+}
+
                 
                 
             ],
