@@ -207,6 +207,35 @@
                 });
             }
         }
+                },
+
+
+                {
+                extend: 'selectedSingle', // Bind to Selected row
+                text: 'OTP',
+                action: function (e, dt, button, config) {
+        var selectedData = table.row({ selected: true }).data();
+
+        if (selectedData) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.order.sendOTP') }}",
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
+                    },
+                data: { selectedOrderIDs: selectedData.orderID },
+                success: function (response) {
+                    // Handle success - display message or perform necessary actions
+                    toastr.success('OTP sent successfully!')
+
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors
+                    alert('Error sending OTP: ' + xhr.responseText);
+                }
+            });
+        }
+    }
                 }
                 
                 

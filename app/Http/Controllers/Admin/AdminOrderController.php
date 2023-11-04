@@ -7,8 +7,10 @@ use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Notifications\OTPReceived;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class AdminOrderController extends Controller
 {
@@ -192,7 +194,31 @@ class AdminOrderController extends Controller
     return response()->json(['message' => 'Selected records have been deleted successfully.'], 200);
 }
 
+    
 
+
+    public function sendOTP(Request $request){
+        $selectedOrderIDs = $request->input('selectedOrderIDs');
+
+        $order = Order::find($selectedOrderIDs);
+
+        $user = User::where('userTag', $order->clientTag)->first();
+
+        // Generate a random six-digit one-time pin
+        $oneTimePin = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        // Encrypt and store the OTP
+        // $user->oneTimePin = Crypt::encrypt($oneTimePin);
+        $user->oneTimePin = Crypt::encrypt($oneTimePin);
+        $user->save();
+
+        if ($user) {
+            // Send a notification to the user
+            $user->notify(new OTPReceived($order, $oneTimePin));
+        }
+
+        return redirect()->back()->with('message', 'OTP sent successfully!');
+
+    }
 
     public function generateUniqueOrderID()
     {

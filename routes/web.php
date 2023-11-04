@@ -143,7 +143,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::post('store', [AdminOrderController::class, 'store'])->name('store');
         Route::get('{order}/edit', [AdminOrderController::class, 'edit'])->name('edit');
         Route::post('{order}/update', [AdminOrderController::class, 'update'])->name('update');
+        Route::post('sendOTP', [AdminOrderController::class, 'sendOTP'])->name('sendOTP');
         Route::delete('destroy', [AdminOrderController::class, 'destroy'])->name('destroy');
+        
     
     });
 
