@@ -2,7 +2,7 @@
 
 
 {{-- Who are we --}}
-<div class="who-are-we container-fluid text-white" style="background-color: black">
+<div class="who-are-we container-fluid text-white" style="background-color: #161616 ">
   <div class="row d-flex align-items-center">
     <div class="col">
       <!-- Left section content -->
