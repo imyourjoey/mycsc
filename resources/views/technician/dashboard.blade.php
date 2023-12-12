@@ -3,13 +3,10 @@
     .swiper {
         width: 90%;
         height: 700px;
-        --swiper-pagination-color: #871719;
-        --swiper-theme-color: #871719;
-        --swiper-navigation-size: 25px;
+        --swiper-pagination-color: #F16E00;
+        --swiper-theme-color: #F16E00;
+        --swiper-navigation-size: 45px;
     }
-
-
-  
 </style>
 <x-navbar/>
 <x-welcome-message/>

@@ -1,4 +1,10 @@
 /*Navbar*/
+
+:root 
+{
+  --fa-right:-23%;
+}
+
 .custom-navbar{
   background-color: #161616 ;
 }
@@ -15,13 +21,23 @@
 
 .navbar-dark .navbar-nav .nav-link {
   font-size: 20px;
+  color: white;
 }
+
+
+
+
 
 .red-rounded-square {
   display: inline-block;
   padding: 0px 6px;
   border-radius: 10px;
-  background-color: #871719;
+  background-color: #F16E00;
+}
+
+.nav-link-black{
+  color: #0a0a0a !important;
+  text-shadow: .5px .5px black;
 }
 
 #userDropdown::after {

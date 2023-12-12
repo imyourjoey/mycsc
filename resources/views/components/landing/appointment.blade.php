@@ -1,7 +1,8 @@
-<div class="container-fluid" style="background: #871719">
+@vite('resources/css/appointment.css')
+<div class="appointment-container container-fluid">
   <div class="row pt-4 pb-4">
     <div class="col-6">
-      <div class="p-0 h2 col-auto text-white ml-5">Check Appointment Status</div>
+      <div class="p-0 h2 col-auto ml-5">Check Appointment Status</div>
     </div>
       <div class="col-6">
       <form method="GET" action="{{ route('showGuestAppointment') }}">

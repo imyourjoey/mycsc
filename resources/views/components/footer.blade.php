@@ -35,7 +35,7 @@
           </div>
       </div>
       <p>More ways to reach us:&nbsp;call 05-10008000, or visit <a
-              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank">Universiti Malaysia Sabah</a></p>
+              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank" style="color: #ff7900">Universiti Malaysia Sabah</a></p>
       <hr>
       <div class="footer-legal">
           <div class="d-inline-block copyright">
@@ -108,7 +108,7 @@
 
       </div>
       <p>More ways to reach us:&nbsp;call 05-10008000, or visit <a
-              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank">Universiti Malaysia Sabah</a></p>
+              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank" style="color: #ff7900">Universiti Malaysia Sabah</a></p>
       <hr>
       <div class="footer-legal">
           <div class="d-inline-block copyright">
@@ -167,7 +167,7 @@
 
       </div>
       <p>More ways to reach us:&nbsp;call 05-10008000, or visit <a
-              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank">Universiti Malaysia Sabah</a></p>
+              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank" style="color: #ff7900">Universiti Malaysia Sabah</a></p>
       <hr>
       <div class="footer-legal">
           <div class="d-inline-block copyright">
@@ -218,7 +218,7 @@
 
       </div>
       <p>More ways to reach us:&nbsp;call 05-10008000, or visit <a
-              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank">Universiti Malaysia Sabah</a></p>
+              href="https://goo.gl/maps/PghhTcEvzu9qbK6x9" target="_blank" style="color: #ff7900">Universiti Malaysia Sabah</a></p>
       <hr>
       <div class="footer-legal">
           <div class="d-inline-block copyright">

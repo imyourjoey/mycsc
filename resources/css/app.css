@@ -139,7 +139,7 @@ body {
 
 
 /* Fade in button*/
-        /* Basic button styles */
+/* Basic button styles */
         .fade-in-button {
           padding: 10px 20px;
           cursor: pointer;
@@ -175,31 +175,7 @@ th {
 
 
 
-/*Training landing*/
-.training-accordion-container {
-    position: relative;
-}
 
-
-.training-image {
-  position: absolute;
-  z-index: -1; 
-  right: -160px;
-  bottom:-230px;
-  width: 460px;
-}
-
-.testimonial-container{
-  position: relative;
-}
-
-.testimonial-image{
-  position:absolute;
-  width: 340px;
-  bottom:-28px;
-  right: 50px;
-  z-index: 0;
-}
 
 
 

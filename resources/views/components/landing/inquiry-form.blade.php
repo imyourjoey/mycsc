@@ -36,7 +36,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary submit-button" style="background-color: #871719">Submit</button>
+        <button type="submit" class="btn btn-primary submit-button" >Submit</button>
       </div>
     </form>
   </div>

@@ -104,7 +104,7 @@
           <div class="row">
               <div class="form-group col-md-6">
                   <br>
-                  <button type="submit" class="btn btn-primary btn-block">Edit <i class="fa fa-arrow-right"
+                  <button type="submit" class="btn btn-primary btn-block">Update <i class="fa fa-arrow-right"
                           aria-hidden="true"></i></button>
 
               </div>

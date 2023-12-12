@@ -2,7 +2,7 @@
 
 
 {{-- Who are we --}}
-<div class="who-are-we container-fluid text-white" style="background-color: #161616 ">
+<div class="who-are-we container-fluid text-white" style="background-color: #0a0a0a ">
   <div class="row d-flex align-items-center">
     <div class="col">
       <!-- Left section content -->
@@ -14,7 +14,7 @@
 
         </p>
         <div>
-          <a class="btn text-white" style="background: #871719" href="{{ route('showGuestAppointmentForm')}}" >Schedule an Appointment</a>
+          <a class="btn text-white" id="scheduleAppointmentBtn" href="{{ route('showGuestAppointmentForm')}}" >Schedule an Appointment</a>
         </div>
     </div>
   </div>

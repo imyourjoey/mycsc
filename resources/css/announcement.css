@@ -1,0 +1,26 @@
+.swiper {
+  width: 90%;
+  height: 700px;
+  --swiper-pagination-color: #F16E00;
+  --swiper-theme-color: #F16E00;
+  --swiper-navigation-size: 50px;
+}
+
+
+
+.announcement-container{
+  background: #0a0a0a;
+}
+
+
+.card-img-top{
+  height: 500px; 
+  width: 100%; 
+  background-color: #f0f0f0;
+}
+
+.card-img-top img{
+  height: 100%; 
+  width: 100%; 
+  object-fit: cover;
+}

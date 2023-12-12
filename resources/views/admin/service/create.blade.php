@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <br>
-                    <button type="submit" class="btn btn-primary btn-block">Enroll <i class="fa fa-arrow-right"
+                    <button type="submit" class="btn btn-primary btn-block">Create <i class="fa fa-arrow-right"
                             aria-hidden="true"></i></button>
 
                 </div>

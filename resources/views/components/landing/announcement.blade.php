@@ -1,18 +1,9 @@
-<style>
-  .swiper {
-      width: 90%;
-      height: 700px;
-      --swiper-pagination-color: #871719;
-      --swiper-theme-color: #871719;
-      --swiper-navigation-size: 25px;
-  }
-
-</style>
+@vite('resources/css/announcement.css')
 
 
 <!-- Slider main container -->
 
-<div class="container-fluid pb-5" style="background: black">
+<div class="announcement-container container-fluid pb-5">
 <div class="h2 ml-5 pt-5 mb-5 text-light">News and Announcements</div>
 <div class="swiper announcement-swiper col-9">
   <!-- Additional required wrapper -->
@@ -20,7 +11,7 @@
       <!-- Slides -->
 @foreach ($announcements as $announcement)
 <div class="card swiper-slide border border-dark">
-    <div class="card-img-top" style="height: 500px; width: 100%; background-color: #f0f0f0;"><img style="height: 100%; width: 100%; object-fit: cover;" src="{{ asset('storage/') }}/{{ $announcement->announcementPic }}"></div>
+    <div class="card-img-top"><img src="{{ asset('storage/') }}/{{ $announcement->announcementPic }}"></div>
     <div class="card-body mt-3">
         <h5 class="card-title">{{ $announcement->announcementTitle }}</h5>
         <p class="card-text">{{ $announcement->announcementContent }}</p>

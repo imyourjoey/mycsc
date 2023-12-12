@@ -1,3 +1,5 @@
+@vite('resources/css/training.css')
+
 <div class="container-fluid" style="margin-bottom:200px">
   <div class="h2 ml-5 pt-4 mb-5">Training</div>
 

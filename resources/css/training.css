@@ -1,0 +1,13 @@
+/*Training landing*/
+.training-accordion-container {
+  position: relative;
+}
+
+
+.training-image {
+position: absolute;
+z-index: -1; 
+right: -160px;
+bottom:-230px;
+width: 460px;
+}

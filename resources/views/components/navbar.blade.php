@@ -1,10 +1,6 @@
 {{-- import css --}}
 @vite(['resources/css/navbar.css'])
-<style>
-  :root {
-    --fa-right:-23%;
-        }
-</style>
+
 
 
 <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
@@ -42,7 +38,7 @@
         </li>
 
         <li class="nav-item red-rounded-square">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+            <a class="nav-link nav-link-black" href="{{ route('login') }}">Login</a>
         </li>
     </ul>
 </div>
@@ -58,7 +54,7 @@
     <ul class="navbar-nav ml-auto navbar-right-section">
 
         <li class="nav-item red-rounded-square">
-            <a class="nav-link" href="{{ route('landing') }}">Back</a>
+            <a class="nav-link nav-link-black" href="{{ route('landing') }}">Back</a>
         </li>
     </ul>
 </div>
@@ -125,7 +121,7 @@
       
   </li>
 <li class="nav-item dropdown red-rounded-square mr-3">
-  <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle nav-link-black" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
     {{ explode(' ', auth()->user()->name)[0] }}
 
@@ -186,7 +182,7 @@
   </li>
   
 <li class="nav-item dropdown red-rounded-square mr-3">
-  <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle nav-link-black" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
     {{ explode(' ', auth()->user()->name)[0] }}
 
@@ -234,7 +230,7 @@
       
   </li>
 <li class="nav-item dropdown red-rounded-square mr-3">
-  <a class="nav-link dropdown-toggle" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle nav-link-black" href="#" id="logoutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     
     {{-- {{ auth()->user()->name }} --}}
     {{ explode(' ', auth()->user()->name)[0] }}

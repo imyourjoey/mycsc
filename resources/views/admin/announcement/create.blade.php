@@ -51,7 +51,7 @@
                   <label for="picture">Image</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="picture" name="picture">
-                    <label class="custom-file-label" for="picture">Choose an image for the announcement (optional)</label>
+                    <label class="custom-file-label" for="picture">Choose an image for the announcement</label>
                   </div>
 
                       @error('picture')
