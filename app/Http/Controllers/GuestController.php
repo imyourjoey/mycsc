@@ -140,14 +140,19 @@ class GuestController extends Controller
 
     public function showGuestAppointment(Request $request){
 
-
-        if (!$request->ajax()){
+        if (!$request->ajax()) {
             $request->validate([
                 'guestEmail' => 'required|email'
             ]);
+    
+            // If the request is not ajax and has a valid guestEmail, store it in the session
+            $guestEmail = trim($request->input('guestEmail'));
+            $request->session()->put('guestEmail', $guestEmail);
+        } else {
+            // If the request is ajax, retrieve the guestEmail from the session
+            $guestEmail = $request->session()->get('guestEmail');
         }
-        
-        $guestEmail = $request->input('guestEmail');
+    
 
         if ($request->ajax()) {
 
@@ -160,11 +165,12 @@ class GuestController extends Controller
                     'appointment.created_at',
                     'appointment.updated_at'
                 ])
-                ->where('appointment.userTag', '=', $guestEmail )
+                ->where('appointment.appointmentEmail', '=', $guestEmail)
                 ->get();
 
             return DataTables::of($clientAppointments)->toJson();
         }
+       
 
         return view('guest.appointment.show', ['email' => $guestEmail]);
     }
