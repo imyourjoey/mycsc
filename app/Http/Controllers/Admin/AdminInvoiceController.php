@@ -117,6 +117,16 @@ class AdminInvoiceController extends Controller
         'paymentMethod' => 'nullable|string|max:60',
     ]);
 
+
+    // Custom validation rule: If amountPaid < totalPayable, paymentStatus cannot be pending
+    $request->validate([
+        'paymentStatus' => function ($attribute, $value, $fail) use ($request) {
+            if ($request->amountPaid < $request->totalPayable && $value == 'paid') {
+                $fail('If "Amount Paid" is less than "Total Payable", "Payment Status" cannot be set to "Paid".');
+            }
+        },
+    ]);
+
     $order = Order::where('orderID', $request->input('orderID'))->first();
     $clientTag = $order->clientTag;
 
@@ -181,6 +191,14 @@ public function update(Request $request, Invoice $invoice)
         'paymentStatus' => 'nullable|string',
         'amountPaid' => 'nullable|numeric',
         'paymentMethod' => 'nullable|string',
+    ]);
+
+    $request->validate([
+        'paymentStatus' => function ($attribute, $value, $fail) use ($request) {
+            if ($request->amountPaid < $request->totalPayable && $value == 'paid') {
+                $fail('If "Amount Paid" is less than "Total Payable", "Payment Status" cannot be set to "Paid".');
+            }
+        },
     ]);
 
     // Update the invoice's attributes
