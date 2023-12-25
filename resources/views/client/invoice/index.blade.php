@@ -16,6 +16,7 @@
                   <th class="colvis">Payment Status</th>
                   <th class="colvis">Payment Amount</th>
                   <th class="colvis">Payment Method</th>
+                  <th class="colvis">Payment Date</th>
                   <th class="colvis">Created At</th>
                   <th class="colvis">Updated At</th>
                   <th style="max-width: 40px"></th>
@@ -104,7 +105,7 @@
                         
                       if (selectedData.paymentStatus === 'paid' && selectedData.paymentStatus !==null) {
                           // Redirect to the invoice details page with the selected invoice's ID
-                          window.open("{{ route('admin.invoice.showReceipt', ['invoice' => ':invoiceID']) }}".replace(':invoiceID', selectedData.invoiceID),'_blank');
+                          window.open("{{ route('client.invoice.showReceipt', ['invoice' => ':invoiceID']) }}".replace(':invoiceID', selectedData.invoiceID),'_blank');
                       }else{
                         toastr.error('Receipts can only be generated for paid invoices')
                       }
@@ -156,6 +157,19 @@
                 }  
               },
               { data: 'paymentMethod', name: 'paymentMethod' },
+              {
+                  data: 'paymentDate',
+                  name: 'paymentDate',
+                  render: function (data) {
+                    if (data) {
+            var date = new Date(data);
+            var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
+            var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+            return formattedDate;
+            } else {
+            return 'N/A'; // or any other default value for null dates
+            }
+            }},
               {
                   data: 'created_at',
                   name: 'created_at',

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('paymentStatus', 60)->nullable();
             $table->decimal('paymentAmount', 10, 2)->nullable();
             $table->string('paymentMethod', 60)->nullable();
+            $table->datetime('paymentDate')->nullable();
             $table->timestamps();
         });
     }

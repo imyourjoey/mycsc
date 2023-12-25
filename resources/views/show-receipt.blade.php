@@ -159,9 +159,11 @@
                 </td>
 								<td>
 									Receipt for Invoice #: {{ $invoice->invoiceID }}<br />
+									Payment Date: {{ date('F j, Y', strtotime($invoice->paymentDate)) }}
 									<br/>
                   <br/>
 								</td>
+								
 							</tr>
 						</table>
 					</td>

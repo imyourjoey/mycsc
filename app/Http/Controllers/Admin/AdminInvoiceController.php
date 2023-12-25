@@ -85,6 +85,7 @@ class AdminInvoiceController extends Controller
                 'service.serviceName as serviceType',
                 'invoice.totalPayable',
                 'invoice.paymentAmount',
+                'invoice.paymentDate',
                 'order.capacityRestored'
             )
             ->join('order', 'invoice.orderID', '=', 'order.orderID')
@@ -115,6 +116,7 @@ class AdminInvoiceController extends Controller
         'amountPaid' => 'nullable|numeric|min:0',
         'paymentStatus' => 'required|in:pending,paid',
         'paymentMethod' => 'nullable|string|max:60',
+        'paymentDate' => 'nullable|date'
     ]);
 
 
@@ -126,6 +128,8 @@ class AdminInvoiceController extends Controller
             }
         },
     ]);
+
+    
 
     $order = Order::where('orderID', $request->input('orderID'))->first();
     $clientTag = $order->clientTag;
@@ -142,6 +146,11 @@ class AdminInvoiceController extends Controller
     $invoice->paymentAmount = $request->amountPaid;
     $invoice->paymentMethod = $request->paymentMethod;
     
+
+    if ($request->paymentStatus == 'paid') {
+        $invoice->paymentDate = now(); // Set paymentDate to the current date and time
+    }
+ 
     $invoice->save();
 
     //notify user
@@ -168,6 +177,7 @@ public function index(Request $request)
             'invoice.paymentStatus',
             'invoice.paymentAmount',
             'invoice.paymentMethod',
+            'invoice.paymentDate',
             'invoice.created_at',
             'invoice.updated_at'
             
@@ -191,6 +201,7 @@ public function update(Request $request, Invoice $invoice)
         'paymentStatus' => 'nullable|string',
         'amountPaid' => 'nullable|numeric',
         'paymentMethod' => 'nullable|string',
+        'paymentDate' =>'nullable'
     ]);
 
     $request->validate([
@@ -201,12 +212,21 @@ public function update(Request $request, Invoice $invoice)
         },
     ]);
 
+
+    // Check if paymentStatus is changing from 'pending' to 'paid'
+    $statusChangedToPaid = $invoice->paymentStatus === 'pending' && $validatedData['paymentStatus'] === 'paid';
+
     // Update the invoice's attributes
     $invoice->totalPayable = $validatedData['totalPayable'];
     $invoice->invoiceDueDate = $validatedData['dueDate'];
     $invoice->paymentStatus = $validatedData['paymentStatus'];
     $invoice->paymentAmount = $validatedData['amountPaid'];
     $invoice->paymentMethod = $validatedData['paymentMethod'];
+
+    if ($statusChangedToPaid) {
+        $invoice->paymentDate = now(); // Set paymentDate to the current date and time
+    }
+
 
     // Save the changes
     $invoice->save();

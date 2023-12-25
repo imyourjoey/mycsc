@@ -29,6 +29,7 @@ class ClientInvoiceController extends Controller
             'invoice.paymentStatus',
             'invoice.paymentAmount',
             'invoice.paymentMethod',
+            'invoice.paymentDate',
             'invoice.created_at',
             'invoice.updated_at'
             
@@ -91,6 +92,7 @@ public function showReceipt(Invoice $invoice){
             'service.serviceName as serviceType',
             'invoice.totalPayable',
             'invoice.paymentAmount',
+            'invoice.paymentDate',
             'order.capacityRestored'
         )
         ->join('order', 'invoice.orderID', '=', 'order.orderID')
