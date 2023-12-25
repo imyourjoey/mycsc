@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <img src="{{ asset('img/testimonial.svg') }}" class="testimonial-image">
+    <img src="{{ asset('img/testimonial.svg') }}" class="testimonial-image wow animate__animated animate__fadeInLeft animate__slow"  data-wow-offset="100">
 </div>
 
 <script>

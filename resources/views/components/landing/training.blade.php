@@ -39,7 +39,7 @@
                 </div>
             @endforeach
         </div>
-        <img src="{{ asset('img/training.svg') }}" class="training-image">
+        <img src="{{ asset('img/training.svg') }}" class="training-image wow animate__animated animate__fadeInRight animate__slow" data-wow-offset="100">
     </div>
     </div>
 </div>
@@ -47,3 +47,4 @@
 
 
 </div>
+
