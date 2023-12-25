@@ -12,7 +12,23 @@
 @if ((!request()->routeIs('login') && !request()->routeIs('showGuestAppointment') &&!request()->routeIs('showGuestAppointmentForm')) && !auth()->check())
 
 <a class="navbar-brand" href="{{ route('landing') }}">
-  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  
+  <div class="row align-items-center">
+
+  <div class="col pr-0">
+    <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  </div>
+
+  <div class="col pr-2 pl-0">
+    <div class="h2">@</div>
+  </div>
+
+  <div class="col pl-1">
+    <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+  </div>
+  </div>
+
+
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
@@ -47,7 +63,20 @@
 @elseif ((request()->routeIs('login') || request()->routeIs('showGuestAppointment') ||request()->routeIs('showGuestAppointmentForm')) && !auth()->check())  
 
 <a class="navbar-brand" href="{{ route('landing') }}">
-  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  <div class="row align-items-center">
+
+    <div class="col pr-0">
+      <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+    </div>
+  
+    <div class="col pr-2 pl-0">
+      <div class="h2">@</div>
+    </div>
+  
+    <div class="col pl-1">
+      <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+    </div>
+    </div>
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
@@ -64,7 +93,20 @@
 @elseif(auth()->check() && auth()->user()->role === 'admin')
 
 <a class="navbar-brand" href={{ route('admin.index') }}>
-  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  <div class="row align-items-center">
+
+    <div class="col pr-0">
+      <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+    </div>
+  
+    <div class="col pr-2 pl-0">
+      <div class="h2">@</div>
+    </div>
+  
+    <div class="col pl-1">
+      <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+    </div>
+    </div>
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
@@ -142,7 +184,20 @@
 @elseif(auth()->check() && auth()->user()->role === 'client')
 
 <a class="navbar-brand" href={{ route('client.index') }}>
-  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  <div class="row align-items-center">
+
+    <div class="col pr-0">
+      <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+    </div>
+  
+    <div class="col pr-2 pl-0">
+      <div class="h2">@</div>
+    </div>
+  
+    <div class="col pl-1">
+      <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+    </div>
+    </div>
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
@@ -203,7 +258,20 @@
 @elseif(auth()->check() && auth()->user()->role === 'technician')
 
 <a class="navbar-brand" href={{ route('technician.index') }}>
-  <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+  <div class="row align-items-center">
+
+    <div class="col pr-0">
+      <img src="{{ asset('img/mycsc-logo.png') }}" alt="Logo" width="123" height="55">
+    </div>
+  
+    <div class="col pr-2 pl-0">
+      <div class="h2">@</div>
+    </div>
+  
+    <div class="col pl-1">
+      <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+    </div>
+    </div>
 </a>
 
 <div class="collapse navbar-collapse" id="navbarToggler">
