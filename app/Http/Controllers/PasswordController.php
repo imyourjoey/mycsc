@@ -71,6 +71,8 @@ class PasswordController extends Controller
             'confirmNewPassword' => 'required|same:newPassword',
         ]);
 
+        $user->emailVerified = 1;
+        $user->save();
 
         $user->update([
             'password' => Hash::make($request->input('newPassword')),
@@ -87,5 +89,12 @@ class PasswordController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function newUserEdit()
+    {
+        $user = auth()->user();
+        return view('new-user-change-password',['user' => $user]);
     }
 }

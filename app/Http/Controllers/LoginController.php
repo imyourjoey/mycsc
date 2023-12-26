@@ -32,7 +32,7 @@ class LoginController extends Controller
             return redirect()->route('technician.index')->with('message', 'Logged in successfully as technician!');
         }
         }else{
-            return redirect()->route('showVerify');
+            return redirect()->route('password.newUserEdit');
         }
 
 

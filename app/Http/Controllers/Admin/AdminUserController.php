@@ -68,7 +68,6 @@ class AdminUserController extends Controller
             'role' => 'required|in:client,technician,admin',
             'phoneNo' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
             'icNum' =>'required',
         ],
         [
@@ -84,15 +83,21 @@ class AdminUserController extends Controller
         $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
         $user->icNum = $request->icNum;
-        $user->password = Hash::make($request->password);
         
-        // Generate a random six-digit one-time pin
-        $oneTimePin = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
-        // Encrypt and store the OTP
-        $user->oneTimePin = Crypt::encrypt($oneTimePin);
+        // Generate a random 8 digit temporary password
+        $tempPass = str_pad(rand(0, 999999), 8, '0', STR_PAD_LEFT);
+
+        
+
+        //store temp password in password field
+        $user->password = Hash::make($tempPass);
+
+
+        // Encrypt and store the temporary password in otp field
+        $user->oneTimePin = Crypt::encrypt($tempPass);
         $user->save();
         
-        //Send OTP to email 
+        //Send temporary password to email 
         Mail::to($user->email)->send(new WelcomeEmail($user));
         return redirect()->route('admin.user.index')->with('message', 'User created successfully!');
         

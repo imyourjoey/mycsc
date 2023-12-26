@@ -33,7 +33,7 @@
                     @enderror
 
                 </div>
-                <div class="form-group col-md-6">
+                {{-- <div class="form-group col-md-6">
                     <label for="password">Password <span class="form-required">*</span></label>
                     <div class="input-group">
                         <input type="password" class="form-control" id="password" placeholder="Enter you password"
@@ -50,7 +50,7 @@
                     </div>
 
 
-                </div>
+                </div> --}}
             </div>
 
             <div class="row">
@@ -64,7 +64,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="form-group col-md-6">
+                {{-- <div class="form-group col-md-6">
                     <label for="password_confirmation">Confirm Password <span class="form-required">*</span></label>
 
                     <div class="input-group">
@@ -81,7 +81,7 @@
                         @enderror
                     </div>
 
-                </div>
+                </div> --}}
             </div>
 
             <div class="row">

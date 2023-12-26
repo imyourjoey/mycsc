@@ -21,7 +21,7 @@
     </p>
 
     <p>
-      Please login to your account and verify your email using the code below:
+      Please log in to your account using the temporary password provided below
     </p>
 
     <div class="text-center ml-5 mr-5 bg-light h3 p-3 mb-3">

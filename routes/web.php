@@ -63,6 +63,11 @@ Route::post('/{user}/profile/update', [ProfileController::class,'update'])->name
 
 //show change password page
 Route::get('/password/edit', [PasswordController::class,'edit'])->name('password.edit');
+
+
+//show new user change password page
+Route::get('/password/new-user-edit', [PasswordController::class,'newUserEdit'])->name('password.newUserEdit');
+
 Route::post('/{user}/password/update', [PasswordController::class,'update'])->name('password.update');
 
 
