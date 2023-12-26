@@ -1,4 +1,32 @@
 <x-layout>
+    <style>
+        .invoicePaid div{
+            background-color: #28a745;
+            color: white;
+            font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .invoiceUnpaid div{
+            background-color: #f57c02;
+            color: white;
+            font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+    </style>
+
   <x-navbar/>
   <div class="container-fluid">
       <div class="h1 ml-2 mt-4 mb-4 font-weight-bold">Invoices</div>
@@ -144,8 +172,8 @@
               { data: 'paymentStatus', 
                 name: 'paymentStatus',
                 render: function (data) {
-                         return data.charAt(0).toUpperCase() + data.slice(1);
-                         } 
+                    return '<div>' + data.charAt(0).toUpperCase() + data.slice(1) + '</div>';
+              } 
               },
               { data: 'paymentAmount', 
                 name: 'paymentAmount',
@@ -192,7 +220,16 @@
                   orderable: false,
                   className: 'text-center'
               }
-          ]
+          ],
+          rowCallback: function(row, data, index) {
+            if (data.paymentStatus == "paid") {
+            $("td:eq(6)", row).addClass("invoicePaid");
+            }
+
+            if (data.paymentStatus == "pending") {
+            $("td:eq(6)", row).addClass("invoiceUnpaid");
+            }
+    }
       });
   });
 

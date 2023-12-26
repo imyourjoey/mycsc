@@ -1,5 +1,33 @@
 <x-layout>
 
+    <style>
+        .statusApproved div{
+            background-color: #28a745;
+            color: white;
+            font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .statusPending div{
+            background-color: #f57c02;
+            color: white;
+            font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+    </style>
+
   <x-navbar />
   <div class="container-fluid">
     <div class="row">
@@ -211,7 +239,14 @@
                 var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
                 return formattedDate;
             } },
-              { data: 'appointmentStatus', name: 'appointmentStatus' },
+              { data: 'appointmentStatus', 
+                name: 'appointmentStatus',
+                render: function (data) {
+ 
+                // Wrap the content in a div with the appropriate class
+                return '<div>' + data.charAt(0).toUpperCase() + data.slice(1) + '</div>';
+            }
+              },
               { data: 'remarks', name: 'remarks' },
               {
                   data: null,
@@ -219,7 +254,16 @@
                   orderable: false,
                   className: 'text-center'
               }
-          ]
+          ],
+          rowCallback: function(row, data, index) {
+            if (data.appointmentStatus == "pending") {
+            $("td:eq(3)", row).addClass("statusPending");
+            }
+
+            if (data.appointmentStatus == "approved") {
+            $("td:eq(3)", row).addClass("statusApproved");
+            }
+    }
       });
   });
 </script>
