@@ -1,4 +1,31 @@
 <x-layout>
+
+    <style>
+        .enrollPending div {
+            background-color: #f57c02;
+            color: white;
+            font-weight: 600;
+            border-radius: 15px;
+            padding: 5px 15px;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .enrollApproved div {
+            background-color: #4285F4;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 15px;
+            padding: 5px 15px;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        </style>
   <x-navbar/>
 
   <div class="container-fluid">
@@ -191,7 +218,13 @@
               { data: 'applicantEmail', name: 'applicantEmail' },
               { data: 'applicantContact', name: 'applicantContact' },
               { data: 'userTag', name: 'userTag' },
-              { data: 'enrollStatus', name: 'enrollStatus' },
+              { data: 'enrollStatus', 
+                name: 'enrollStatus',
+                render: function (data) {
+                // Wrap the content in a div with the appropriate class
+                return '<div>' + data.charAt(0).toUpperCase() + data.slice(1) + '</div>';
+            }
+              },
               {
                   data: 'created_at',
                   name: 'created_at',
@@ -220,7 +253,19 @@
                   orderable: false,
                   className: 'text-center'
               }
-          ]
+          ],
+          rowCallback: function(row, data, index) {
+            if (data.enrollStatus == "Approved") {
+            $("td:eq(7)", row).addClass("enrollApproved");
+            }
+
+            if (data.enrollStatus == "Pending") {
+            $("td:eq(7)", row).addClass("enrollPending");
+      }
+    }
+
+
+
       });
   });
 </script>

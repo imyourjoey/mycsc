@@ -1,5 +1,36 @@
 <x-layout>
+
+    <style>
+        .roleTechnician div{
+            background-color: #6c747e;
+            color: white;
+            font-weight: 600;
+            border-radius: 15px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+        }
+    
+        .roleAdmin div{
+            background-color: #4285F4;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 15px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+        }
+    
+        .roleClient div{
+            background-color: #34A853;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 15px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+        }
+    </style>
 <x-navbar/>
+
+
 
     <div class="container-fluid">
     <div class="h1 mt-4 mb-4 ml-2 font-weight-bold">Users</div>
@@ -223,8 +254,20 @@
         { data: 'role', 
           name: 'role',
           render: function (data) {
-                return data.charAt(0).toUpperCase() + data.slice(1);
-            }  
+                var roleClass = '';
+
+                // Set the appropriate class based on the role value
+                if (data.toLowerCase() === 'technician') {
+                    roleClass = 'roleTechnician';
+                } else if (data.toLowerCase() === 'admin') {
+                    roleClass = 'roleAdmin';
+                } else if (data.toLowerCase() === 'client') {
+                    roleClass = 'roleClient';
+                }
+
+                // Wrap the content in a div with the appropriate class
+                return '<div class="' + roleClass + '">' + data.charAt(0).toUpperCase() + data.slice(1) + '</div>';
+            } 
         },
         // {   data: 'created_at', 
         //     name: 'created_at',
@@ -258,7 +301,20 @@
                   className: 'text-center'
         }
                       
-        ]
+        ],
+        rowCallback: function(row, data, index) {
+            if (data.role == "admin") {
+            $("td:eq(5)", row).addClass("roleAdmin");
+            }
+
+            if (data.role == "client") {
+            $("td:eq(5)", row).addClass("roleClient");
+            }
+
+            if(data.role == "technician"){
+            $("td:eq(5)", row).addClass("roleTechnician");
+            }
+    }
         });
     });
 

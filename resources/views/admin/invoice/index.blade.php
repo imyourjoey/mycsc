@@ -1,14 +1,32 @@
 <x-layout>
     <style>
-        .invoicePaid{
-            color: #46D737;
+        .invoicePaid div{
+            background-color: #28a745;
+            color: white;
             font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
         }
 
-        .invoiceUnpaid{
-            color: #FF9A41;
+        .invoiceUnpaid div{
+            background-color: #f57c02;
+            color: white;
             font-weight: 600;
+            border-radius: 25px; /* Adjust the border-radius to control the capsule shape */
+            padding: 5px 15px; /* Adjust padding as needed */
+            display: inline-block; /* Ensures that the background color only covers the content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
         }
+
+        
     </style>
   <x-navbar/>
   <div class="container-fluid">
@@ -270,9 +288,11 @@
               { data: 'paymentMethod', name: 'paymentMethod' },
               { data: 'paymentStatus', 
                 name: 'paymentStatus',
-                render: function (data) {
-                         return data.charAt(0).toUpperCase() + data.slice(1);
-                         } 
+                render: function (data, type, row, meta) {
+            // Wrap the content in a div with the appropriate class
+            var statusClass = data.toLowerCase() === 'paid' ? 'invoicePaid' : 'invoiceUnpaid';
+            return '<div class="' + statusClass + '">' + data.charAt(0).toUpperCase() + data.slice(1) + '</div>';
+        }
               },
               {
                   data: 'paymentDate',
