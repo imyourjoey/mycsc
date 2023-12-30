@@ -144,20 +144,16 @@
             name: 'created_at', 
             className:'none', 
             render: function (data) {
-                var date = new Date(data);
-                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
-                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-                return formattedDate;
-            }},
+                    var date = moment(data);
+                    return date.format('DD/MM/YY hh:mm A');
+              }},
           { data: 'updated_at', 
             name: 'updated_at' , 
             className:'none',
             render: function (data) {
-                var date = new Date(data);
-                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
-                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-                return formattedDate;
-            }},
+                    var date = moment(data);
+                    return date.format('DD/MM/YY hh:mm A');
+              }},
               {
             
             data: null,

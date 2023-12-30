@@ -24,12 +24,12 @@
                         <div class="card-body">
                             
                             <div>Description: {{ $training->trainingDesc }}</div>
-                            <div>Starting Date & Time: {{ $training->startDateTime }}</div>
-                            <div>Ending Date & Time: {{ $training->endDateTime }}</div>
+                            <div>Starting Date & Time: {{ $training->startDateTime->format('j/m/y h:i A') }}</div>
+    <div>Ending Date & Time: {{ $training->endDateTime->format('j/m/y h:i A') }}</div>
                             <div>Venue: {{ $training->trainingVenue }}</div>
                             <div>Capacity: {{ $training->trainingCapacity }}</div>
                             <div>Instructor: {{ $training->trainerName }}</div>
-                            <div>Registration Deadline: {{ $training->regisDeadline }}</div>
+                            <div>Registration Deadline: {{ $training->regisDeadline->format('j/m/y h:i A') }}</div>
                             <div class="mt-2">
                                 <a class="btn btn-primary text-white" href="{{ route('showGuestEnrollment', ['trainingID' => $training->trainingID] )}}" >Enrol Now!</a>
                               </div> 
@@ -48,3 +48,13 @@
 
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Assuming $training->startDateTime and $training->endDateTime are ISO 8601 date strings
+        var startDateTime = moment("{{ $training->startDateTime }}").format('DD/MM/YYYY hh:mm A');
+        var endDateTime = moment("{{ $training->endDateTime }}").format('DD/MM/YYYY hh:mm A');
+
+        document.getElementById('startDateTime').textContent = startDateTime;
+        document.getElementById('endDateTime').textContent = endDateTime;
+    });
+</script>

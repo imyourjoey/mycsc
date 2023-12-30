@@ -11,11 +11,11 @@
 
              <p class="mt-2"> Venue: {{ $training->trainingVenue }}</p>
              
-             <p class="mt-2"> Starting Date & Time:  {{ \Carbon\Carbon::parse($training->startDateTime)->format('h:i a, d M Y ') }}</p>
+             <p class="mt-2"> Starting Date & Time:  {{ \Carbon\Carbon::parse($training->startDateTime)->format('j/m/y h:i A') }}</p>
              
-             <p class="mt-2"> Ending Date & Time:  {{ \Carbon\Carbon::parse($training->endDateTime)->format('h:i a, d M Y ') }}</p>
+             <p class="mt-2"> Ending Date & Time:  {{ \Carbon\Carbon::parse($training->endDateTime)->format('j/m/y h:i A') }}</p>
              
-             <p class="mt-2"> Enrollment Deadline:   {{ \Carbon\Carbon::parse($training->enrollmentDeadline)->format('h:i a, d M Y ') }}</p>
+             <p class="mt-2"> Enrollment Deadline:   {{ \Carbon\Carbon::parse($training->enrollmentDeadline)->format('j/m/y h:i A') }}</p>
 
 
              

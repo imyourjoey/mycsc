@@ -87,7 +87,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         //initialize Datepicker
 $(".selector").flatpickr({
-          dateFormat: "Y-m-d H:i",
+          dateFormat: "d/m/y H:i",
           enableTime: true,
           time_24hr: true,
           minDate: "today",

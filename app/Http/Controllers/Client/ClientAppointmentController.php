@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use DateTime;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
@@ -62,8 +63,12 @@ class ClientAppointmentController extends Controller
 
     // Validate the request data here if needed
     $request->validate([
-        'datetime' => 'required|date_format:Y-m-d H:i'
+        'datetime' => 'required|date_format:d/m/y H:i'
     ]);
+
+    $datetime = DateTime::createFromFormat('d/m/y H:i', $request->datetime);
+
+
     // Create a new appointment
     
     $appointment = new Appointment();
@@ -72,7 +77,7 @@ class ClientAppointmentController extends Controller
     $appointment->userTag = auth()->user()->userTag;
     $appointment->appointmentContact = auth()->user()->phoneNo;
     $appointment->appointmentEmail = auth()->user()->email;
-    $appointment->appointmentDateTime = $request->input('datetime');
+    $appointment->appointmentDateTime = $datetime;
     $appointment->appointmentStatus = 'pending';
     $appointment->remarks = null;
     $appointment->save();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DateTime;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
@@ -103,14 +104,23 @@ class AdminAppointmentController extends Controller
     {
         $request->validate([
         'clientName' => 'required',
-        'datetime' => 'required|date_format:Y-m-d H:i',
+        'datetime' => 'required|date_format:d/m/y H:i',
         'remarks' => 'nullable',
         ]);
     
 
-        $dateTimeFormat = "Y-m-d H:i:s";
-        $appointmentDateTime = strtotime($request->datetime);
-        $appointmentDateTime = date($dateTimeFormat, $appointmentDateTime);
+        // $dateTimeFormat = "Y-m-d H:i:s";
+        // $appointmentDateTime = strtotime($request->datetime);
+        // $appointmentDateTime = date($dateTimeFormat, $appointmentDateTime);
+
+        $appointmentDateTime = DateTime::createFromFormat('d/m/y H:i', $request->datetime);
+    
+    if (!$appointmentDateTime) {
+        // Handle invalid date format
+        return redirect()->back()->withErrors(['datetime' => 'Invalid date format'])->withInput();
+    }
+
+    $appointmentDateTime = $appointmentDateTime->format("Y-m-d H:i:s");
 
         // dd($appointmentDateTime);
         $clientTag = AdminAppointmentController::getUserTagByName($request->clientName);
@@ -172,10 +182,13 @@ class AdminAppointmentController extends Controller
     // Validate the form data
     $validatedData = $request->validate([
         'clientName' => 'required',
-        'datetime' => 'required|date',
-        'status' => 'required|in:pending,approved', // Assuming "status" can only be "pending" or "approved"
+        'datetime' => 'required|date_format:d/m/y H:i',
+        'status' => 'required|in:pending,approved',
         'remarks' => 'nullable',
     ]);
+
+
+    
 
 // Check if the status is being updated to "approved"
     if ($appointment->appointmentStatus === 'pending' && $validatedData['status'] === 'approved') {

@@ -156,8 +156,12 @@ white-space: normal;
       // Update the modal content with appointment details
       $('#appointmentModal .modal-body .client-name').text(response.clientName);
       var dateTime = new Date(response.dateTime);
-      var formattedDateTime = dateTime.getDate() + ' ' + dateTime.toLocaleString("en-GB", { month: 'short' }) + '. ' + ('0' + dateTime.getHours()).slice(-2) + ':' + ('0' + dateTime.getMinutes()).slice(-2);
-      
+      // var formattedDateTime = dateTime.getDate() + ' ' + dateTime.toLocaleString("en-GB", { month: 'short' }) + '. ' + ('0' + dateTime.getHours()).slice(-2) + ':' + ('0' + dateTime.getMinutes()).slice(-2);
+      var formattedDateTime = ('0' + dateTime.getDate()).slice(-2) + '/' + ('0' + (dateTime.getMonth() + 1)).slice(-2) + '/' + ('' + dateTime.getFullYear()).slice(-2) + ' ' + ('0' + dateTime.getHours()).slice(-2) + ':' + ('0' + dateTime.getMinutes()).slice(-2) + ' ' + (dateTime.getHours() >= 12 ? 'PM' : 'AM');
+
+
+
+
       $('#appointmentModal .modal-body .date-time').text(formattedDateTime);
       $('#appointmentModal .modal-body .remarks').text(response.remarks);
       $('#appointmentModal .modal-body .status').text(response.status.charAt(0).toUpperCase() + response.status.slice(1));
@@ -176,7 +180,7 @@ white-space: normal;
       },
 
       select: function(start, end, allDays){
-        var selectedDate = moment(start.startStr).format('YYYY-MM-DD');
+        var selectedDate = moment(start.startStr).format('DD/MM/YY');
         window.location.href = "{{ route('admin.appointment.create', ['date' => '']) }}" + selectedDate;
 
     }

@@ -48,7 +48,7 @@
             <label for="datetime">Date and Time <span class="form-required">*</span></label>
             <input type="text" class="form-control selector bg-white" id="datetime"
                 placeholder="Select date and time for the appointment" name="datetime"
-                value="{{ old('datetime') ?? $appointment->appointmentDateTime }}">
+                value="{{ old('datetime') ?? $appointment->appointmentDateTime->format('j/m/y h:i A') }}">
     
             @error('datetime')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -102,7 +102,7 @@
       document.addEventListener('DOMContentLoaded', function() {
           //initialize Datepicker
   $(".selector").flatpickr({
-            dateFormat: "Y-m-d H:i",
+            dateFormat: "d/m/y H:i",
             enableTime: true,
             time_24hr: true,
             minDate: "today",

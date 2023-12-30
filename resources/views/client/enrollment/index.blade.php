@@ -75,12 +75,12 @@
                             <div class="card-body">
                                 
                                 <div>Description: {{ $training->trainingDesc }}</div>
-                                <div>Starting Date & Time: {{ \Carbon\Carbon::parse($training->startDateTime)->format('d M Y, h:ia') }}</div>
-                                <div>Ending Date & Time: {{ \Carbon\Carbon::parse($training->endDateTime)->format('d M Y, h:ia') }}</div>
+                                <div>Starting Date & Time: {{ \Carbon\Carbon::parse($training->startDateTime)->format('j/m/y h:i A') }}</div>
+                                <div>Ending Date & Time: {{ \Carbon\Carbon::parse($training->endDateTime)->format('j/m/y h:i A') }}</div>
                                 <div>Venue: {{ $training->trainingVenue }}</div>
                                 <div>Capacity: {{ $training->trainingCapacity }}</div>
                                 <div>Instructor: {{ $training->trainerName }}</div>
-                                <div>Registration Deadline: {{ \Carbon\Carbon::parse($training->regisDateline)->format('d M Y, h:ia') }}</div>
+                                <div>Registration Deadline: {{ \Carbon\Carbon::parse($training->regisDateline)->format('j/m/y h:i A') }}</div>
 
                                 <div>
                                     <form method="POST" action={{ route('client.enrollment.store') }} id="trainingEnrollmentForm" enctype="multipart/form-data">
@@ -293,8 +293,18 @@
                 { data: 'enrollmentID', name: 'enrollmentID' },
                 { data: 'trainingTitle', name: 'trainingTitle' },
                 { data: 'trainingDesc', name: 'trainingDesc' },
-                { data: 'startDateTime', name: 'startDateTime' },
-                { data: 'endDateTime', name: 'endDateTime' },
+                { data: 'startDateTime', 
+                  name: 'startDateTime',
+                  render: function (data) {
+                    var date = moment(data);
+                    return date.format('DD/MM/YY hh:mm A');
+               } },
+                { data: 'endDateTime', 
+                  name: 'endDateTime',
+                  render: function (data) {
+                    var date = moment(data);
+                    return date.format('DD/MM/YY hh:mm A');
+              } },
                 { data: 'trainingVenue', name: 'trainingVenue' },
                 { data: 'trainerName', name: 'trainerName' },
                 { data: 'enrollStatus', 
