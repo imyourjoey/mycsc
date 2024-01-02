@@ -32,7 +32,7 @@
             // Optional parameters
             direction: 'horizontal',
             loop: true,
-            slidesPerView: 3,
+            slidesPerView: 5,
             centeredSlides: true,
             scrollbar: {
             el: ".swiper-scrollbar",

@@ -268,10 +268,8 @@
               { data: 'invoiceDueDate', 
                 name: 'invoiceDueDate',
                 render: function (data) {
-                var date = new Date(data);
-                var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
-                var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-                return formattedDate;
+                    var date = moment(data);
+                    return date.format('DD/MM/YY');
                 
               }},
               { data: 'paymentAmount', 
@@ -297,10 +295,8 @@
                   name: 'paymentDate',
                   render: function (data) {
                     if (data) {
-            var date = new Date(data);
-            var monthAbbreviation = date.toLocaleString("en-GB", { month: 'short' });
-            var formattedDate = date.getDate() + ' ' + monthAbbreviation + '. ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-            return formattedDate;
+                        var date = moment(data);
+                    return date.format('DD/MM/YY');
             } else {
             return 'N/A'; // or any other default value for null dates
             }

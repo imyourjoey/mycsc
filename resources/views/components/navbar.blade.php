@@ -24,7 +24,7 @@
   </div>
 
   <div class="col pl-1">
-    <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="85" height="37">
+    <img src="{{ asset('img/ums-logo.png') }}" alt="Logo" width="80" height="37">
   </div>
   </div>
 

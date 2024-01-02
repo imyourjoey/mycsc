@@ -4,8 +4,8 @@
   <div class="h2 ml-5 pt-5 text-light">Testimonials</div>
   <p class="text-light ml-5 p-0 mb-5">What Clients Say About Us?</p>
     <div class="row">
-      <div class="swiper feedback-swiper col-12">
-        <div class="swiper-wrapper" style="padding: 0">
+      <div class="swiper feedback-swiper col-12" style="height: 400px">
+        <div class="swiper-wrapper" style="padding: 0; height:px">
         @foreach ($feedbacks as $feedback)
         <div class="col-4 swiper-slide">
             <div class="card" style="border-radius: 20px; min-height:20px;">
@@ -43,10 +43,6 @@
         loop: true,
         slidesPerView: 3,
         centeredSlides: true,
-        scrollbar: {
-        el: ".swiper-scrollbar",
-        hide: "true",
-        },
         
     });
     </script>
