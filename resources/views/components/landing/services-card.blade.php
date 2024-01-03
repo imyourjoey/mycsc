@@ -1,4 +1,4 @@
-@vite('resources/css/services.css')
+
 
 
 <div class="container-fluid mb-4">
