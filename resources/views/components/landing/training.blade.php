@@ -55,7 +55,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Assuming $training->startDateTime and $training->endDateTime are ISO 8601 date strings
-        if("{{ $training }}"){
+        if(typeof"{{ $training }}" !== undefined){
             var startDateTime = moment("{{ $training->startDateTime }}").format('DD/MM/YYYY hh:mm A');
         var endDateTime = moment("{{ $training->endDateTime }}").format('DD/MM/YYYY hh:mm A');
 
