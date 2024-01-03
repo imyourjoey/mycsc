@@ -52,7 +52,7 @@
 
 </div>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Assuming $training->startDateTime and $training->endDateTime are ISO 8601 date strings
         if(typeof"{{ $training }}" !== undefined){
@@ -64,4 +64,4 @@
         }
  
     });
-</script>
+</script> --}}
