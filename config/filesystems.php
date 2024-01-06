@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => 'https://mycsc-2af69f4a1573.herokuapp.com/storage',
+            'url' => 'https://mycsc-2af69f4a1573.herokuapp.com'.'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
