@@ -158,7 +158,7 @@
 
         function fetchDataFromCardReader() {
             if (!shouldStopFetching) {
-                fetch('card-reader-data')
+                fetch('/card-reader-data')
                     .then(response => {
                         if (response.ok) {
                             return response.json();
