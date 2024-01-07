@@ -43,6 +43,8 @@ class AdminOrderController extends Controller
             // 'phoneNo.required' => 'The phone number field is required'
         ]);
 
+
+        $imgpath = '';
         if($request->hasFile('statusPic')){
             $imgpath = $request->file('statusPic')->store('statusPics', 'public');
         }
@@ -67,7 +69,9 @@ class AdminOrderController extends Controller
         $order->partNo = $request->partNo;
         $order->orderStatus = $request->orderStatus;
         $order->serialNo = $request->serialNo;
-        $order->orderStatusPic = $imgpath;
+        if($imgpath){
+            $order->orderStatusPic = $imgpath;
+        }
         $order->othersIncluded = $request->othersIncluded;
         $order->diskCapacity = $request->diskCapacity;
         $order->capacityRestored = $request->capacityRestored;

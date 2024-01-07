@@ -1,7 +1,7 @@
 
 @if (!auth()->check())
   {{-- Footer --}}
-<footer class="page-footer pb-5">
+<footer class="page-footer">
   <div class="container">
       <div class="row">
           <div class="col-6 col-md-3">
@@ -47,7 +47,7 @@
   </div>
 </footer>
 @elseif (auth()->check() && auth()->user()->role === 'admin')
-<footer class="page-footer pb-5">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
     <div class="col-9">
@@ -121,7 +121,7 @@
 </footer>
 
 @elseif (auth()->check() && auth()->user()->role === 'client')
-<footer class="page-footer pb-5">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
     <div class="col-6">
@@ -180,7 +180,7 @@
 </footer>
 
 @elseif (auth()->check() && auth()->user()->role === 'technician')
-<footer class="page-footer pb-5">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
     <div class="col-4">
