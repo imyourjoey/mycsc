@@ -44,7 +44,7 @@ use App\Http\Controllers\Client\ClientAppointmentController;
 
 
 Route::get('/card-reader-data', function () {
-    $data = Http::get('http://127.0.0.1:8080')->json();
+    $data = Http::get('https://mycsc-2af69f4a1573.herokuapp.com::8080')->json();
 
     $formattedData = array_map(function ($value) {
         return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
