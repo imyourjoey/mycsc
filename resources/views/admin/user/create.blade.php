@@ -158,7 +158,7 @@
 
         function fetchDataFromCardReader() {
             if (!shouldStopFetching) {
-                fetch('/card-reader-data')
+                fetch('https://mycsc-2af69f4a1573.herokuapp.com/card-reader-data')
                     .then(response => {
                         if (response.ok) {
                             return response.json();
